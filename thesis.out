@@ -1,0 +1,10 @@
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 1
+\BOOKMARK [0][-]{chapter.2}{Kalman Filters}{}% 2
+\BOOKMARK [1][-]{section.2.1}{Kalman Filter Algorithm}{chapter.2}% 3
+\BOOKMARK [0][-]{chapter.3}{Extended Kalman Filters}{}% 4
+\BOOKMARK [1][-]{section.3.1}{Extended Kalman Filter Algorithm}{chapter.3}% 5
+\BOOKMARK [0][-]{chapter.4}{Unscented Kalman Filters}{}% 6
+\BOOKMARK [0][-]{chapter.5}{Dual Unscented Kalman Filters}{}% 7
+\BOOKMARK [0][-]{chapter.6}{A Metabolites Example}{}% 8
+\BOOKMARK [1][-]{section.6.1}{Foo section}{chapter.6}% 9
+\BOOKMARK [0][-]{chapter.7}{A Diabetes Example}{}% 10

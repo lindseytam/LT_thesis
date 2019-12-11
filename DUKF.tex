@@ -1,0 +1,79 @@
+\chapter{Dual Unscented Kalman Filters}
+\label{Dual Unscented Kalman Filters}
+
+Used for simultaneously estimating state and parameter in dynamical systems \cite{inbook, inproceedings, article5}. Assumes parameters are identifiable (true value can be obtained from a finite number of observations) \cite{article5}. Has 2 distinct filters: one for state and the other for parameter \cite{inbook, inproceedings}
+
+\begin{center}
+    
+\centering
+\begin{tabular}{ |p{2cm}||p{5cm}|p{2cm}| }
+    \hline
+    \multicolumn{3}{|c|}{Variables in the Dual Unscented Kalman Filter } \\ 
+    \hline
+    Variable & Description & Dimensions \\
+    \hline
+    x & Vector containing state variables & $d_x \times 1$ \\ 
+    $\chi$ & Sigma Point Matrix & $d_x \times 2 d_x + 1 $\\
+    F & State Transition Matrix  & $d_x \times d_x $  \\ 
+    H & Observation Matrix & $d_y \times d_x$\\
+    G & Input Matrix & $d_x \times d_u$\\
+    u & Input Vector  & $d_u \times 1$\\
+    P & Covariance matrix & $d_x \times d_x$   \\
+    k & Time step  & $1 \times 1$\\
+    v & Process Noise Vector & $d_x \times 1$\\
+    w & & \\
+    \hline
+\end{tabular}
+\end{center}
+\begin{enumerate}
+    \item Initialize state vector, parameter vector, covariance, and parameter covariance
+    \begin{align}
+        \hat{x}_{0} &= \mathbb{E}[x_{0}] \\
+        \hat{w}_{0} &= \mathbb{E}[w_{0}] \\
+        P_{x_{0}} &= \mathbb{E}[(x_{0}-\hat{x}_{0})(x_{0}-\hat{x}_{0})^{T}] \\ 
+        P_{w_{0}} &= \mathbb{E}[(w_{0}-\hat{w}_{0})(w_{0}-\hat{w}_{0})^{T}]
+    \end{align}
+    \item Calculate sigma points
+    \begin{align}
+        \mathcal{W}_{0,k|k-1} = \hat{w}_{k|k-1} \\
+        \mathcal{W}_{i,k|k-1} = \hat{w}_{k|k-1} + (\sqrt{(n_{w}+\lambda_{w})P_{w_{k|k-1}}})_{i}, &  i=1,\dots,n_{w} \\
+        \mathcal{W}_{i,k|k-1} = \hat{w}_{k|k-1} - (\sqrt{(n_{w}+\lambda_{w})P_{w_{k|k-1}}})_{i},  &  i=n_{w}+1,\dots,2n_{w}
+    \end{align}
+    \item Calculate the weights for each sigma point
+    \begin{align}
+        \lambda_{x} = \alpha_{x}^{2}(n_{x}+\kappa_{x})-n_{x} \\
+        W^{(m)}_{x,0} = \frac{\lambda_{x}}{n_{x}+ \lambda_{x} } \\
+        W^{(c)}_{x,0} = \frac{\lambda_{x}}{n_{x}+ \lambda_{x} } + (1 - \alpha^{2}_{x} + \beta_{x}) \\
+        W^{(m)}_{x,i} = W^{(c)}_{x,i} = \frac{\lambda_{x}}{2(n_{x}+ \lambda_{x}) }, & i=1,\dots,2n_{x} \\
+        W^{\text{aug,}(m)}_{x,0} = \frac{\lambda_{x}}{2n_{x}+ \lambda_{x} } \\
+        W^{\text{aug,}(c)}_{x,0} = \frac{\lambda_{x}}{2n_{x}+ \lambda_{x} } + (1 - \alpha^{2}_{x} + \beta_{x}) \\
+        W^{\text{aug,}(m)}_{x,i} = W^{\text{aug,}(c)}_{x,i} = \frac{\lambda_{x}}{2(2n_{x}+ \lambda_{x}) }, &  i=1,\dots,4n_{x} \\
+        \lambda_{w} = \alpha_{w}^{2}(n_{w}+\kappa_{w})-n_{w}  \\
+        W^{(m)}_{w,0} = \frac{\lambda_{w}}{n_{w}+ \lambda_{w} } \\
+        W^{(c)}_{w,0} = \frac{\lambda_{w}}{n_{w}+ \lambda_{w} } + (1 - \alpha^{2}_{w} + \beta_{w} )  \\
+        W^{(m)}_{w,i} = W^{(c)}_{w,i} = \frac{\lambda_{w}}{2(n_{w}+ \lambda_{w}) } & i=1,\dots,2n_{w} 
+    \end{align}
+    \item Perform a non-linear transformation on the sigma points
+    \begin{align}
+        \mathcal{Y}_{i,k|k-1} &= h(f(\hat{x}_{k-1},\mathcal{W}_{i,k|k-1}),\mathcal{W}_{i,k|k-1}) \\
+        \hat{y}_{k|k-1} &= \sum_{i=0}^{2n_{w}} W^{(m)}_{w,i} \mathcal{Y}_{i,k|k-1}
+    \end{align}
+    \item Calculate the mean and covariance of the transformed sigma points
+    \item Re-calculate sigma points
+    \item Generate prediction
+    \item Calculate Kalman Gain
+    \begin{align}
+        P_{y_{k}} = \sum_{i=0}^{2n_{w}} W^{(c)}_{w,i} (\mathcal{Y}_{i, k|k-1} - \hat{y}_{k|k-1})(\mathcal{Y}_{i, k|k-1} - \hat{y}_{k|k-1})^{T} + R_{n} \\
+        P_{w_{k}y_{x}} = \sum_{i=0}^{2n_{w}} W^{(c)}_{w,i} (\mathcal{W}_{i,k|k-1} - \hat{w}_{k|k-1})(\mathcal{Y}_{i, k|k-1} - \hat{y}_{k|k-1})^{T} \\
+        K_{k} = P_{w_{k}y_{x}}P^{-1}_{y_{k}}
+    \end{align}
+    \item Update parameter covariance
+    \begin{equation}
+        P_{w_{k}} = P_{w_{k|k-1}} - K_{k}P_{y_{k}}K^{-1}_{k}
+    \end{equation}
+    \item Update parameter estimate
+    \begin{equation}
+        \hat{w}_{k} = \hat{w}_{k|k-1} + K_{k}(y_{k}-\hat{y}_{k|k-1}),
+    \end{equation}
+    
+\end{enumerate}

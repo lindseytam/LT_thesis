@@ -1,0 +1,259 @@
+
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{xcolor}
+\usepackage[english]{babel}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{enumitem}
+\usepackage[colorlinks = true,
+            linkcolor = blue,
+            urlcolor  = blue]{hyperref}
+
+\usepackage{amsmath,textcomp,amssymb,geometry,graphicx,enumerate,listings,harpoon}
+
+\def\Name{Lindsey Tam}
+\def\Session{Spring 2019}
+
+
+
+\def\endproofmark{$\Box$}
+\newenvironment{proof}{\par{\bf Proof}:}{\endproofmark\smallskip}
+
+\textheight=9in
+\textwidth=6.5in
+\topmargin=-.75in
+\oddsidemargin=0.25in
+\evensidemargin=0.25in
+
+\title{Research Thesis Notes}
+\author{\Name}
+\markboth{Research Thesis Notes}
+\def\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{Overview of DA}
+\begin{description}
+  \item[$\bullet$] Predictions are created by finding the "balance" between system data / measurements and model estimates
+  \item[$\bullet$] Data Assimilation  utilizes machine and learning and mechanistic models to make predictions and represent gaps in data \cite{article1}
+  \item[$\bullet$] Current use in leveraging DA as a tool in disease predictions includes limited patient data, resulting in prediction results that are not personalized to the patient. DA solves these issues by filling sparse data with information known about patient data. In addition, control algorithms can be added to DA to suggest changes that will lead to the desired result \cite{article1}
+  \item[$\bullet$] A problem with DA is the complexity of the output - we need to find better ways to make sense of the output data \cite{article1}
+  \item[$\bullet$] DA aids in data smoothing, which is the process filling data gaps and estimating parameters that cannot be exactly measured (ie physiology). For instance, the model would smooth glucose-level data from a sparse data set of finger-prick measurements \cite{article1}
+  \item[$\bullet$] DA has been applied to weather forecasting, manufacturing, flights, and biomedicine.
+  \item[$\bullet$] Current challenges associated with utilizing DA in the medical field include: limited data and incorporating data with non-linear models that take in physiological parameters. \cite{article1}
+  \item[$\bullet$] The use of DA in the medical field shows promise In the context of type 2 diabetes, models were able to take in patient care data (post-meal glucose) to provide suggestions on maintaining certain glucose thresholds \cite{article1}
+  \item[$\bullet$] DA versus machine learning:
+  \begin{description}[labelindent=1cm]
+        \item[$\bullet$] ML is better suited for linear models \cite{article1}
+        \item[$\bullet$] ML requires a lot of input data, DA requires less \cite{article1}
+        \item[$\bullet$] ML has a black box approach (we do not know how estimates are generated)
+        \item[$\bullet$] DA parameters require constant adjustment \cite{article1}
+  \end{description}
+  \item[$\bullet$] Using DA in the medical field requires constant physiological parameter estimations. Parameter estimation can be done online, where data is added in real time, or it can be done offline, where data is added in at a later time \cite{article1}
+  \item[$\bullet$] Since DA can approximate features, it can also generate insight on patient phenotype \\ \\
+  \item[$\bullet$]Due to the fact that DA takes in physiological data, parameters can be non-ideal / ill defined. This paper explored the phenotypes of patients with and without type 2 diabetes \cite{article1}
+\end{description}
+
+
+
+
+
+\section{Key Terms / Concepts}
+\textbf{Covariance matrix: }
+\begin{description} [labelindent=1cm]
+  \item[$\bullet$] Diagnoals is variance, others are covariance
+  \item[$\bullet$] Square matrix $C_{(i,j)} = \sigma(x_i, y_j)$, so C $\in \mathbb{R}^{dxd}$ where d is the number of RV
+  \item[$\bullet$] Is symmetric, $\sigma(x_i, y_j) = \sigma(x_j, y_i)$
+\end{description}
+\textbf{State Space Model:} All possible inputs and outputs of a system represented by first order DFE 
+\begin{description} [labelindent=1cm]
+    \item[$\bullet$] Discrete: values are discrete
+    \item[$\bullet$] Continuous: values are continuous
+\end{description}
+\textbf{Point Processors:} The ability for a computer to carry operations on numbers \\ \\
+\textbf{Linear dynamical Systems:} \\ \\
+\textbf{Regression Method:} \\ \\
+\textbf{Scaling parameter:} 
+\begin{description}[labelindent=1cm]
+    \item[$\bullet$] If probability distribution is normal, this is the standard deviation
+    \item[$\bullet$] Large values indicate data is spread
+    \item[$\bullet$] Lower values indicate data is less spread
+\end{description}
+\textbf{Dempster–Shafer:} \\ \\
+\textbf{Regression:} \\ \\
+\textbf{Process Noise:} The tendency for the sustem to change overtimec \\ \\
+\textbf{Compressed Sensing:} \\ \\
+\textbf{Monte Carlo Methods:} \\ \\
+\textbf{Metropolis–Hastings-within-Gibbs Markov chain Monte Carlo method:} \\ \\
+\textbf{Spline:} A function defined by piece wise polynomials, used to build smooth curves that go through certain points \\ \\
+\textbf{Spline Smoother:} function estimates of noisy data, controls for overfitting \\ \\
+\textbf{Particle Filtering:} Process of estimating internal state of dynamical systems given partial observations and system noise 
+\begin{description}[labelindent=1cm]
+   \item[$\bullet$] Better at Kalman filters in complex / high dimensional problems
+   \item[$\bullet$] Assumes data is non-Gaussian 
+   \item[$\bullet$] Unlike KF, it does not need to linearize / approximate any parameters
+\end{description}
+\textbf{Sampling theorem:} \\ \\
+\textbf{Identity State Transition Matrix:} matrix whose product with the state vector at a specific time $x_t$ and the system matrix $A$ gives the state vector at later time $x_{t + 1} = A x_t$\\ \\
+\textbf{Gaussian Processes:} \\ \\
+\textbf{Mean Squared Error:} \\ \\
+\textbf{Ultradian model:} \\ \\
+\textbf{Bayesian Inference:} Characterize posterior distribution
+\begin{description} [labelindent=1cm]
+  \item[$\bullet$] Bayes Formula: P(A $ | $ B) $\propto$ L(A $ | $ B) P(B)
+  \indent\item[$\bullet$] P(A $ | $ B) = Posterior Distribution 
+  \indent\item[$\bullet$]L  = likelihood function
+  \indent\item[$\bullet$]Likelihood function: 
+\end{description}
+\textbf{Posterior probability: }
+\begin{description} [labelindent=1cm]
+  \item[$\bullet$] Method of calculating the probability of an unknown event given information about related events 
+  \item[$\bullet$] Posterior probability = Likelihood x Prior probability.
+\end{description} 
+\textbf{Posterior distribution:}
+\begin{description} [labelindent=1cm]
+  \item[$\bullet$] Summarize knowledge of unknown parameters using Bayesian inference
+  \item[$\bullet$] Posterior Distribution = Prior Distribution + Likelihood Function (“new evidence”)
+\end{description}
+
+
+
+\section {Kalman Filters Overview }
+\begin{description}
+  \item[$\bullet$] Data prediction method commonly used for dynamic systems that estimates states / parameters recursively given observations / inputs from the system \cite{inbook} 
+  \item[$\bullet$] Useful when data is noisy \cite{inproceedings, article7}
+  \item[$\bullet$] Used when data is linear and Gaussian (normally distributed) \cite{article7}
+  \item[$\bullet$] Start with a known parameter and express it as the variance of the normal distribution 
+  \item[$\bullet$ State estimator] Goal is to minimize difference between estimated parameter and the actual parameter values by creating a feedback system
+  \item[$\bullet$ State observers] Use information from known parameters (the input and outputs of the system) to estimate the unknown / internal state of a system \cite{inbook} 
+  \item[$\bullet$] Every time the model outputs an estimate, it is compared with the actual value; the new variance / mean are calculated and fed into the model so a more accurate prediction can be generated.
+  \item[$\bullet$] Harder to use in high dimensional state spaces because you need to store and process covariance matrices \cite{inproceedings3}
+  \item[$\bullet$] Given a complex model, the goal is to simplify it 
+\end{description} 
+A Kalman Filter (KF), so named from its developer Rudolph Kalman, is a data prediction method that estimates the value of unknown parameters of linear dynamical systems \cite{inbook}. This is a recursive predictive / corrective process that assumes data is noisy and Gaussian \cite{inproceedings, article7}. The first predictive step is generated by adding the last estimate of state with the model. The next step involves calculating the Kalman Gain, which is a measure of how much the estimate should be changed given actual measurements of the system. The corrective step entails adding the predicted values to Kalman Gain, measured values, and the outputs. To address non-linear dynamical systems, alternate forms of the Klaman filter were developed; these include the Extended Kalman Filter, Unscented Kalman Filter, Dual Unscented Kalman Filter, and the Ensemble Filter. Many of these filters have specialized applications. Extended Kalman Filters are suited for navigation purposes, Unscented Kalman filters are used in the biomedical field, an Ensemble Kalman Filters are commonly used in weather modelling.
+
+\section{Unscented Kalman Filter:}
+\begin{description} 
+  \item[$\bullet$] More accurate than Kalman Filter and Extended Kalman Filter \cite{inbook, inproceedings}
+  \item[$\bullet$] Used for nonlinear and Gaussian dynamical systems \cite{inbook, inproceedings}
+  \item[$\bullet$] Frequent applications in medical signalling \cite{inbook}
+  \item[$\bullet$] Models system through small set of points (sigma points), one of the points is the mean of the distribution \cite{inbook} 
+  \item[$\bullet$] Deals with posterior distributions, a method of summarizing knowledge known about unknown parameters \cite{inbook} 
+  \item[$\bullet$] The initial points have the same mean covariance as the data distribution \cite{inproceedings, Wan01theunscented}
+  \item[$\bullet$] Transform (nonlinear transformation) these points by putting them in a model \cite{inbook, Wan01theunscented} 
+  \item[$\bullet$] Unscented Transform: Process of recalculating mean and covariance of transformed point to approximate new Gaussian distribution \cite{Wan01theunscented, article5}
+  \item[$\bullet$ Expected State]: average of transformed points
+  \item[$\bullet$] Number of sample points = dimension of system (2d + 1), sample points are chosen to represent mean and covariance \cite{article5}
+  \item[$\bullet$] Assigns different weights to sample points \cite{inproceedings3, article5}
+  \begin{description}
+    \item[$\bullet$] Weights can be pos / neg but will ultimately add up to 1 \cite{article6}
+  \end{description}
+  \item[$\bullet$] Process of implementing UKF \cite{article4, inbook, article5}
+        \begin{enumerate}
+            \item Initialize unknown parameter, scaling parameter, and covariance matrix
+            \item Control sigma point spread
+            \item Perform non-linear transformation on sigma points (make a prediction)
+            \item Calculate mean and covariance of transformed sigma points
+            \item Calculate covariance matrix
+            \item Update Kalman Gain, parameters, and covariance matrix
+        \end{enumerate}
+  \item[$\bullet $] Number of sample points is deterministic (based on dimension of the system) \cite{inproceedings}
+  \item[$\bullet$] Set parameters based on Mean Squared Error (MSE) \cite{inbook, Wan01theunscented}
+\end{description} 
+
+
+
+\section{Unscented Kalman Filter Equations:}
+Generate Prediction \cite{article4, article} : 
+\begin{description}[labelindent=1cm]
+    \item[$\bullet  x_{k}: $] Vector containing best estimate of state variables
+    \item[$\bullet  u_{k}: $] An input (known measurement of a state variable)
+    \item[$\bullet  w: $] Vector of unknown parameter(s) \textcolor{red}{stationary process with identity state transition matrix} 
+    \item[$\bullet  r_k: $] Process noise
+    \item[$\bullet  e_k: $] Measurement noise
+    \item[$\bullet  F: $] \textcolor{red}{Parameters by vector w} 
+\end{description}
+\begin{align*}
+    x_{k+1} &= F(x_k, u_k, w) + e_k \\
+    w_{k+1} &= w_k + r_k 
+\end{align*}
+
+
+
+\section{Dual unscented Kalman filters:}
+\begin{description}
+  \item[$\bullet$] Used for simultaneously estimating state and parameter in dynamical systems \cite{inbool, inproceedings, article5}
+  \item[$\bullet$] Assumes parameters are identifiable (true value can be obtained from a finite number of observations) \cite{article5}
+  \item[$\bullet$] Produces estimation with two state observation models \cite{inbook, inproceedings}
+  \item[$\bullet$] Has 2 distinct filters: one for state and the other for parameter \cite{inbook, inproceedings}
+  \item[$\bullet$] Consider physical constraints on parameters \cite{inbook}
+\end{description} 
+
+
+
+
+\section{Ensemble Kalman filters:}
+\begin{description}
+  \item[$\bullet$] Most frequently used in weather simulations, oceanography, and meteorology \cite{inproceedings2} 
+  \item[$\bullet$] Is less computationally intensive because it does not look at means and covariances \cite{inproceedings2}
+  \item[$\bullet$] Similar to UKF, but number of sample points is heuristic (usually much less than number of state variables)
+  \cite{inproceedings3}
+  \item[$\bullet$] Sample points randomly generated using Monte Carlo approach
+  \item[$\bullet$] Applicable to non-linear and non-Gaussian systems
+  \cite{inproceedings3}
+  \item[$\bullet$] Ideal for looking at states with many dimensions (up to millions) \cite{inproceedings3}
+  \item[$\bullet$] Does not assign weights to sample points \cite{inproceedings3}
+  \item[$\bullet$] Start with a set of sample points that reflects initial state probability distribution
+  \item[$\bullet$] Works with uncertain initial conditions
+  \item[$\bullet$] Requires large amount of measurements
+\end{description}
+
+
+
+
+
+\section{Applications of DA in type-2 diabetes}
+\begin{description}
+  \item[$\bullet$] Use DA to predict the impact of meals on glucose levels - highly accurate
+  \item[$\bullet$] Difficult to gauge nutritional impact of meals (some people eat the same meal, but react completely differently). DA solves partially for this, because it is personalized
+  \item[$\bullet$] Data is sparse, irregular, and noisy (highly bias)
+  \item[$\bullet$] This article has a sampling of 5 people
+  \item[$\bullet$] 8 step solution
+    \begin{enumerate}
+        \item Develop DA for diabetes
+        \item Show DA can make personalized forecasts
+        \item These forecasts are better than one's given by experts
+        \item DA quickly adapts to new data
+        \item Can choose the best model given a patient
+        \item Model averaging techniques can improve forecasts
+        \item Can tracks states / parameters than traditional machine learning
+        \item Ensure predictions are accurate for each patient
+    \end{enumerate}
+    \item[$\bullet$] Goal of DA is to predict the state of a system given noisy data
+\end{description} \cite{Albers2017PersonalizedGF}
+
+
+\section{Other Biomedical Applications of DA}
+\begin{description}
+\item[$\bullet$] Respiratory system Modelling \cite{inbook} 
+\end{description}
+
+
+
+
+\section{Links for simple explanations}
+Good intro videos for Kalman Filters: \text{https://www.mathworks.com/videos/understanding-kalman-filters-part-2-state-observers-1487694734527.html}
+
+
+
+
+
+\bibliographystyle{plain}
+\bibliography{bib.bib}
+
+\end{document}
+

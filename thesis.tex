@@ -1,0 +1,46 @@
+\ProvidesClass{pom_thesis}[1/16/15]
+\documentclass{pom_thesis}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage[english]{babel}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{cite}
+
+\title{An Exploration of Kalman Filters}
+\author{Lindsey Tam }
+\advisor{Blerta Shtylla}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+	Kalman Filters create predictions for linear systems by recursively generating and correcting predictions according to incoming data. This process enables estimates to become progressively more accurate without relying on large amounts of initial data. Nonlinear forms of the Kalman Filter exist and  include the Extended Kalman Filter, the Unscented Kalman Filter, and the Dual Unscented Kalman Filter. This paper explores the theory behind each of these filters and implements a few examples of the Unscented Kalman Filter.
+\end{abstract}
+
+\pagenumbering{roman}
+\tableofcontents
+
+\include{Introduction}
+
+\include{KF}
+
+\include{EKF}
+
+\include{UKF}
+
+\include{DUKF}
+
+\include{Meskin}
+
+\include{Albers}
+
+%\bibliographystyle{plain}
+%\bibliography{Thesis_draft.bib}
+
+\end{document}

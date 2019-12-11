@@ -1,0 +1,82 @@
+\chapter{Extended Kalman Filters}
+\label{Extended Kalman Filters}
+
+The Extended Kalman Filter (EKF) is the non-linear version of the Kalman Filter. For the most part, the EFK Algorithm is nearly identical to the KF algorithm. The critical difference is lies in defining the state function. The EKF uses the Jacobean to linearly approximate the non-linear function around the mean of the Gaussian distribution. While this is a functional method, it can become inefficient when dealing with complex, higher order systems. The Jacobian becomes harder to compute and using a singular point to make estimates of state is insufficient. Applications of the EKF include navigation. \\ \\
+
+\section{Extended Kalman Filter Algorithm}
+
+\begin{center}
+    
+\centering
+\begin{tabular}{ |p{2cm}||p{5cm}|p{2cm}| }
+    \hline
+    \multicolumn{3}{|c|}{Variables in the Extended Kalman Filter } \\ 
+    \hline
+    Variable & Description & Dimensions \\
+    \hline
+   x & State variables  & $d_x \times 1$ \\
+    y & Output Vector  & $d_y \times 1$ \\
+    u & System Inputs  & $d_u \times 1$\\
+    v & Measurement Noise & $d_y \times 1$\\
+    w & Process Noise & $d_x \times 1$\\
+    f & None linear state function  & $d_x \times d_x $  \\ 
+    F & State Function  & $d_x \times d_x $  \\ 
+    h & Non linear observation function & $d_y \times d_x$\\
+    H & Linearized observation function & $d_y \times d_x$\\
+    G & Input Matrix & $d_x \times d_u$\\
+    K & Kalman Gain  & $d_x \times d_y$\\
+    Q & Process noise covariance  & $d_x \times d_x$ \\
+    R & Measurement noise covariance &  $d_y \times d_y$\\
+    P & Covariance matrix & $d_x \times d_x $  \\ 
+    \hline
+\end{tabular}
+\end{center}
+\begin{enumerate}
+  \item Initialize the state estimate ($x_0$) and the initial covariance matrix ($P_0$) 
+  \begin{align*}
+        x_0 = \mathbb{E}[x_0]  = \begin{bmatrix}
+           x_1 \\
+           \vdots \\
+           x_n 
+         \end{bmatrix} 
+    \end{align*}
+  \begin{align*}
+      P_0 =
+      \begin{bmatrix}
+           var(x_1)  & \hdots & cov(x_1, x_n) \\
+           \vdots & \ddots & \vdots \\
+           cov(x_n, x_1)  & \hdots & var(x_n )
+         \end{bmatrix} 
+  \end{align*}
+  \item Calculate the Jacobean
+  \begin{align*}
+      F= \frac{\partial f}{\partial x}
+  \end{align*}
+  \begin{align*}
+      H = \frac{\partial h}{\partial x}
+  \end{align*}
+  Here, $f$ is the non-linear state function and $F$ is the linear approximation of $f$. On that same vein, $h$ is the non linear observation while $H$ is linearized observation.
+  \item Generate a prediction 
+  \begin{align*}
+      x_{k+1} = f( x_{k-1} , u_{k-1})  
+  \end{align*} 
+  \item Use the state covariance matrix ($P_{k | k - 1}$) to calculate Kalman Gain ($K_k$) 
+    \begin{align*} 
+        P_{k | k -1} = F P_{k - 1} F^T + Q_{k-1} 
+        \end{align*}
+         \begin{align*} 
+        K_k = P_{k | k - 1} H^T_K (H_k P_{k | k - 1} H^T_K + R_k)^{-1}
+    \end{align*}
+    Note that we are using F, not the linear approximation f.
+    \item  Correct the prediction
+    \begin{align*}
+        \hat y_k = H( x_k + v_k )
+    \end{align*}
+     \begin{align*} 
+        x_k = x_{k - 1} + K_k(y_k - \hat y_k)
+    \end{align*}
+    \item Update the covariance matrix
+    \begin{align*} 
+        P_k = (I - K_K H_k) P_{k | k-1}
+    \end{align*}
+\end{enumerate} 
