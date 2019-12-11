@@ -3,7 +3,7 @@
 
 The Unscented Kalman Filter (UKF) is another nonlinear version of the Kalman Filter. The UKF was designed to address the problems of the EKF. For instance, as opposed to using the Jacobean to linearly approximate around a single point, the UKF uses the Unscented Transform (UT) to approximate around multiple points, known as sigma points. The UT is a method of approximating probability distributions that have undergone a non linear transformation using limited statistics. The UT involves using these sigma points, which are represented in a Sigma Point Matrix, to represent the normal distribution of the data. The covariance and weights of these sigma points are calculated. These sigma points undergo a non-linear transformation, resulting in a posterior distribution that is not normal \cite{inbook, Wan01theunscented} . We are able to approximate the normal distribution of the posterior distribution using the weights and covariance that were calculated prior to the transformation. This process enables the Kalman Filter to be applied to more complex non linear problems. \\ \\
 Unlike the Kalman Filter and the Extended Kalman Filter, the UKF also has a set of parameters. Explanations of each parameter and their default values can be found in the chart below. For the UKF, parameters are necessary for controlling the spread of sigma points. This was not needed for the EKF, since the EKF was only linearizing around the mean.
-\textcolor{red} expand here on how to tune parameters.
+\textcolor{red}{expand here on how to tune parameters.}
 
 \section{Unscented Kalman Filter Algorithm}
 \begin{center}
@@ -48,19 +48,8 @@ Unlike the Kalman Filter and the Extended Kalman Filter, the UKF also has a set 
         \begin{align*}
         P_{x_{0}} &= \mathbb{E}[(x_{0}-\hat{x}_{0})(x_{0}-\hat{x}_{0})^{T}] 
     \end{align*}
-    \item Calculate sigma points
-    \begin{align*}
-        \chi_{\ 0,k-1} &= \hat{x}_{k-1} 
-     \end{align*}
-     \begin{align*}
-        \chi_{\ i,k-1} &= \hat{x}_{k-1} + (\sqrt{(n_{x}+\lambda)P_{x_{k-1}}})_{i} \quad \quad \quad i=1,\dots,d_{x} 
-        \end{align*}
-        \begin{align*}
-        \chi_{\ i,k-1} &= \hat{x}_{k-1} - (\sqrt{(n_{x}+\lambda)P_{x_{k-1}}})_{i} \quad \quad \quad  i=d_{x}+1,\dots,2n_{x},
-    \end{align*}
-    The number of sigma points is deterministic and depends on the dimensions of the system. 
-    In general, a UFK will have 2 $d_x$ + 1 sigma points, where $d_x$ represents the dimension of the state vector \cite{inbook, inproceedings, Wan01theunscented}. 
-    \item Calculate the weights for each sigma point 
+    This step is the exact same as the first step of the KF and the EKF. We need to initialize these values so the model can begin generating and correcting predictions.
+        \item Calculate the weights for each sigma point 
     \begin{align*}
         \lambda = \alpha^{2}(d_{x}+\kappa)-d_{x} 
          \end{align*}
@@ -88,6 +77,18 @@ Unlike the Kalman Filter and the Extended Kalman Filter, the UKF also has a set 
         W^{\text{aug}(m)}_{i} = W^{\text{aug,}(c)}_{i} = \frac{\lambda}{2(2d_{x}+ \lambda) } \quad \quad \quad i=1,\dots,4d_{x} 
     \end{align*}
     Augmented weights will be used later for measurement forecast and calculating Kalman Gain.
+    \item Calculate sigma points
+    \begin{align*}
+        \chi_{\ 0,k-1} &= \hat{x}_{k-1} 
+     \end{align*}
+     \begin{align*}
+        \chi_{\ i,k-1} &= \hat{x}_{k-1} + (\sqrt{(n_{x}+\lambda)P_{x_{k-1}}})_{i} \quad \quad \quad i=1,\dots,d_{x} 
+        \end{align*}
+        \begin{align*}
+        \chi_{\ i,k-1} &= \hat{x}_{k-1} - (\sqrt{(n_{x}+\lambda)P_{x_{k-1}}})_{i} \quad \quad \quad  i=d_{x}+1,\dots,2n_{x},
+    \end{align*}
+    Sigma points characterize the distribution of the data. The number of sigma points is deterministic and depends on the dimensions of the system. In general, a UFK will have 2 $d_x$ + 1 sigma points, where $d_x$ represents the dimension of the state vector \cite{inbook, inproceedings, Wan01theunscented}. One of these sigma points will be the mean. Half of the remaining points will be smaller than the mean and the other half will be larger than the mean. Determining how spread each of these points are from the mean depends on parameters $\alpha$ and $\kappa$.
+
     \item Perform a non-linear transformation on the sigma points
     \begin{align*}
         \hat{w}_{k} &= \hat{w}_{k-1} 
