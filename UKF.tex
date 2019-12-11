@@ -2,6 +2,8 @@
 \label{Unscented Kalman Filters}
 
 The Unscented Kalman Filter (UKF) does not require using Jacobians to linearize non-linear functions. Instead, the UKF uses the Unscented Transform (UT). This process involves using sigma points, which are represented in a Sigma Point Matrix and represent the normal distribution of the data. The number of sigma points is deterministic and depends on the dimensions of the system. In general, a UFK will have 2 $d_x$ + 1 sigma points, where $d_x$ represents the dimension of the state vector \cite{inbook, inproceedings, Wan01theunscented}. The covariance and weights of these sigma points are calculated. These sigma points undergo a non-linear transformation, resulting in a posterior distribution that is not normal \cite{inbook, Wan01theunscented} . We are able to approximate the normal distribution of the posterior distribution using the weights and covariance that were calculated prior to the transformation. \\ \\
+
+\section{Unscented Kalman Filter Algorithim}
 \begin{center}
     
 \centering
@@ -30,61 +32,97 @@ The Unscented Kalman Filter (UKF) does not require using Jacobians to linearize 
 
 \begin{enumerate}
     \item Initialize state vector and covariance
-    \begin{align}
-        \hat{x}_{0} &= \mathbb{E}[x_{0}] \\
+    \begin{align*}
+        \hat{x}_{0} &= \mathbb{E}[x_{0}] 
+       \end{align*}
+        \begin{align*}
         P_{x_{0}} &= \mathbb{E}[(x_{0}-\hat{x}_{0})(x_{0}-\hat{x}_{0})^{T}] 
-    \end{align}
+    \end{align*}
     \item Calculate sigma points
-    \begin{align}
-        \chi_{\ 0,k-1} &= \hat{x}_{k-1} \\
-        \chi_{\ i,k-1} &= \hat{x}_{k-1} + (\sqrt{(n_{x}+\lambda_{x})P_{x_{k-1}}})_{i}, &  i=1,\dots,n_{x} \\
+    \begin{align*}
+        \chi_{\ 0,k-1} &= \hat{x}_{k-1} 
+     \end{align*}
+     \begin{align*}
+        \chi_{\ i,k-1} &= \hat{x}_{k-1} + (\sqrt{(n_{x}+\lambda_{x})P_{x_{k-1}}})_{i}, &  i=1,\dots,n_{x} 
+        \end{align*}
+        \begin{align*}
         \chi_{\ i,k-1} &= \hat{x}_{k-1} - (\sqrt{(n_{x}+\lambda_{x})P_{x_{k-1}}})_{i},  &  i=n_{x}+1,\dots,2n_{x},
-    \end{align}
-    \item Calculate the weights for each sigma point \\ \\
-    Weights can have positive or negative values, but will ultimately sum to 1 \cite{article6}
-    \begin{align}
-        \lambda_{x} = \alpha_{x}^{2}(n_{x}+\kappa_{x})-n_{x} \\
-        W^{(m)}_{x,0} = \frac{\lambda_{x}}{n_{x}+ \lambda_{x} } \\
-        W^{(c)}_{x,0} = \frac{\lambda_{x}}{n_{x}+ \lambda_{x} } + (1 - \alpha^{2}_{x} + \beta_{x}) \\
+    \end{align*}
+    \item Calculate the weights for each sigma point 
+    \begin{align*}
+        \lambda_{x} = \alpha_{x}^{2}(n_{x}+\kappa_{x})-n_{x} 
+         \end{align*}
+        \begin{align*}
+        W^{(m)}_{x,0} = \frac{\lambda_{x}}{n_{x}+ \lambda_{x} } 
+         \end{align*}
+        \begin{align*}
+        W^{(c)}_{x,0} = \frac{\lambda_{x}}{n_{x}+ \lambda_{x} } + (1 - \alpha^{2}_{x} + \beta_{x}) 
+         \end{align*}
+        \begin{align*}
         W^{(m)}_{x,i} = W^{(c)}_{x,i} = \frac{\lambda_{x}}{2(n_{x}+ \lambda_{x}) }, & i=1,\dots,2n_{x} \\
-        W^{\text{aug,}(m)}_{x,0} = \frac{\lambda_{x}}{2n_{x}+ \lambda_{x} } \\
-        W^{\text{aug,}(c)}_{x,0} = \frac{\lambda_{x}}{2n_{x}+ \lambda_{x} } + (1 - \alpha^{2}_{x} + \beta_{x}) \\
-        W^{\text{aug,}(m)}_{x,i} = W^{\text{aug,}(c)}_{x,i} = \frac{\lambda_{x}}{2(2n_{x}+ \lambda_{x}) }, &  i=1,\dots,4n_{x} \\
-    \end{align}
+            \end{align*}
+    Weights can have positive or negative values, but will ultimately sum to 1 \cite{article6}
+    
+    \item Calculate the augmented weights for each sigma point 
+    \begin{align*}
+        W^{\text{aug,}(m)}_{x,0} = \frac{\lambda_{x}}{2n_{x}+ \lambda_{x} } 
+        \end{align*}
+         \begin{align*}
+        W^{\text{aug,}(c)}_{x,0} = \frac{\lambda_{x}}{2n_{x}+ \lambda_{x} } + (1 - \alpha^{2}_{x} + \beta_{x}) 
+        \end{align*}
+         \begin{align*}
+        W^{\text{aug,}(m)}_{x,i} = W^{\text{aug,}(c)}_{x,i} = \frac{\lambda_{x}}{2(2n_{x}+ \lambda_{x}) }, &  i=1,\dots,4n_{x} 
+    \end{align*}
     \item Perform a non-linear transformation on the sigma points
-    \begin{align}
-        \hat{w}_{k} &= \hat{w}_{k-1} \\
+    \begin{align*}
+        \hat{w}_{k} &= \hat{w}_{k-1} 
+        \end{align*}
+        \begin{align*}
         \chi^{*}_{\ i,k|k-1} &= f(\chi_{\ i,k-1},\hat{w}_{k-1})
-    \end{align}
+    \end{align*}
     \item Calculate the mean and covariance of the transformed sigma points
-    \begin{align}
-        \hat{x}^{*}_{\ k|k-1} &= \sum_{i=0}^{2n_{x}} W^{(m)}_{x,i} \chi^{*}_{\ i, k|k-1} \\
+    \begin{align*}
+        \hat{x}^{*}_{\ k|k-1} &= \sum_{i=0}^{2n_{x}} W^{(m)}_{x,i} \chi^{*}_{\ i, k|k-1} 
+        \end{align*}
+        \begin{align*}
         P_{x_{k|k-1}} &=  \sum_{i=0}^{2n_{x}} W^{(c)}_{x,i} (\chi^{*}_{\ i, k|k-1} - \hat{x}^{*}_{\ k|k-1})(\chi^{*}_{\ i, k|k-1} - \hat{x}^{*}_{\ k|k-1})^{T} + R_{v} % Q_k is same as R_{v} (Process Noise Covariance)
-    \end{align}
+    \end{align*}
     \item Re-calculate sigma points
-    \begin{align}
-        \chi_{\ i, k|k-1} = \chi^{*}_{\ i,k|k-1}, & i=0,...,2n_{x} \\
-        \chi_{\ i, k|k-1} = \chi^{*}_{\ 0,k|k-1} + (\sqrt{(n_{x}+\lambda_{x})P_{x_{k|k-1}}})_{i},  & i=2n_{x}+1,\dots,3n_{x} \\
+    \begin{align*}
+        \chi_{\ i, k|k-1} = \chi^{*}_{\ i,k|k-1}, & i=0,...,2n_{x} 
+         \end{align*}
+         \begin{align*}
+        \chi_{\ i, k|k-1} = \chi^{*}_{\ 0,k|k-1} + (\sqrt{(n_{x}+\lambda_{x})P_{x_{k|k-1}}})_{i},  & i=2n_{x}+1,\dots,3n_{x} 
+         \end{align*}
+         \begin{align*}
         \chi_{\ i, k|k-1} = \chi^{*}_{\ 0,k|k-1} - (\sqrt{(n_{x}+\lambda_{x})P_{x_{k|k-1}}})_{i}, &  i=3n_{x}+1,\dots,4n_{x}
-    \end{align}
+    \end{align*}
     \item Generate prediction
-    \begin{align}
-        \hat{x}_{k|k-1} = \sum_{i=0}^{4n_{x}} W^{\text{aug,}(m)}_{x,i} \chi_{\ i, k|k-1} \\
-        \mathcal{Y}_{k|k-1} = h(\chi_{k|k-1},\hat{w_{k}}) \\
+    \begin{align*}
+        \hat{x}_{k|k-1} = \sum_{i=0}^{4n_{x}} W^{\text{aug,}(m)}_{x,i} \chi_{\ i, k|k-1} 
+        \end{align*}
+         \begin{align*}
+        \mathcal{Y}_{k|k-1} = h(\chi_{k|k-1},\hat{w_{k}}) 
+        \end{align*}
+         \begin{align*}
         \hat{y}_{k|k-1} = \sum_{i=0}^{4n_{x}} W^{\text{aug,}(m)}_{x,i} \mathcal{Y}_{\ i, k|k-1}
-    \end{align}
+    \end{align*}
     \item Calculate Kalman Gain
-    \begin{align}
-        P_{y_{k}} = \sum_{i=0}^{4n_{x}} W^{\text{aug,}(c)}_{x,i} (\mathcal{Y}_{i, k|k-1} - \hat{y}_{k|k-1})(\mathcal{Y}_{i, k|k-1} - \hat{y}_{k|k-1})^{T} + R_{n}  \\ %R_k is the same as R_{n} (Measurement Noise Covariance)
-        P_{x_{k}y_{x}} = \sum_{i=0}^{4n_{x}} W^{\text{aug,}(c)}_{x,i} (\chi_{\ i, k|k-1} - \hat{x}^{*}_{\ k|k-1})(\mathcal{Y}_{i, k|k-1} - \hat{y}_{k|k-1})^{T} \\
+    \begin{align*}
+        P_{y_{k}} = \sum_{i=0}^{4n_{x}} W^{\text{aug,}(c)}_{x,i} (\mathcal{Y}_{i, k|k-1} - \hat{y}_{k|k-1})(\mathcal{Y}_{i, k|k-1} - \hat{y}_{k|k-1})^{T} + R_{n}   %R_k is the same as R_{n} (Measurement Noise Covariance)
+        \end{align*}
+        \begin{align*}
+        P_{x_{k}y_{x}} = \sum_{i=0}^{4n_{x}} W^{\text{aug,}(c)}_{x,i} (\chi_{\ i, k|k-1} - \hat{x}^{*}_{\ k|k-1})(\mathcal{Y}_{i, k|k-1} - \hat{y}_{k|k-1})^{T} 
+        \end{align*}
+        \begin{align*}
         K_{k} = P_{x_{k}y_{x}}P^{-1}_{y_{k}}
-    \end{align}
+    \end{align*}
     \item Update Estimate and state covariance
-    \begin{equation}
+   \begin{align*}
         P_{x_{k}} = P_{x_{k|k-1}} - K_{k}P_{y_{k}}K^{-1}_{k} 
-    \end{equation}
-    \begin{equation}
+   \end{align*}
+    \begin{align*}
         \hat{x}_{k} = \hat{x}_{k|k-1} + K_{k}(y_{k}-\hat{y}_{k|k-1}),
-    \end{equation}
+    \end{align*}
     
 \end{enumerate}

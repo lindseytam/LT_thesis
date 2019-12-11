@@ -9,6 +9,10 @@
 \usepackage[english]{babel}
 \usepackage{multicol}
 \usepackage{enumitem}
+\usepackage{listings}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
 \usepackage[toc,page]{appendix}
 
 
@@ -34,13 +38,12 @@
 \include{EKF}
 
 \include{UKF}
+\include{VDP}
+\include{Meskin}
+\include{Albers}
 
 \include{DUKF}
 
-\include{VDP}
-
-
-\include{Albers}
 
 \newpage
 
@@ -49,5 +52,7 @@
 
 \appendix
 \include{Appendix}
+
+
 
 \end{document}

@@ -4,9 +4,12 @@
 \BOOKMARK [0][-]{chapter.3}{Extended Kalman Filters}{}% 4
 \BOOKMARK [1][-]{section.3.1}{Extended Kalman Filter Algorithm}{chapter.3}% 5
 \BOOKMARK [0][-]{chapter.4}{Unscented Kalman Filters}{}% 6
-\BOOKMARK [0][-]{chapter.5}{Dual Unscented Kalman Filters}{}% 7
-\BOOKMARK [0][-]{chapter.6}{Van Der Pol Example}{}% 8
-\BOOKMARK [0][-]{chapter.7}{A Diabetes Example}{}% 9
-\BOOKMARK [0][-]{chapter.1}{Van Der Pol Code}{}% 10
-\BOOKMARK [0][-]{chapter.2}{Meskin Code}{}% 11
-\BOOKMARK [0][-]{chapter.3}{Albers Code}{}% 12
+\BOOKMARK [1][-]{section.4.1}{Unscented Kalman Filter Algorithim}{chapter.4}% 7
+\BOOKMARK [1][-]{section.4.2}{Van Der Pol Example}{chapter.4}% 8
+\BOOKMARK [1][-]{section.4.3}{A Metabolites Example}{chapter.4}% 9
+\BOOKMARK [1][-]{section.4.4}{A Diabetes Example}{chapter.4}% 10
+\BOOKMARK [0][-]{chapter.5}{Dual Unscented Kalman Filters}{}% 11
+\BOOKMARK [0][-]{chapter.1}{Van Der Pol Code}{}% 12
+\BOOKMARK [0][-]{chapter.2}{Meskin Code}{}% 13
+\BOOKMARK [1][-]{section.2.1}{Main function}{chapter.2}% 14
+\BOOKMARK [0][-]{chapter.3}{Albers Code}{}% 15
