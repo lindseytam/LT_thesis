@@ -1,7 +1,7 @@
 \chapter{Extended Kalman Filters}
 \label{Extended Kalman Filters}
 
-The Extended Kalman Filter (EKF) is the non-linear version of the Kalman Filter. For the most part, the EFK Algorithm is nearly identical to the KF algorithm. The critical difference is lies in defining the state function. The EKF uses the Jacobean to linearly approximate the non-linear function around the mean of the Gaussian distribution. While this is a functional method, it can become inefficient when dealing with complex, higher order systems. The Jacobian becomes harder to compute and using a singular point to make estimates of state is insufficient. Applications of the EKF include navigation. \\ \\
+The Extended Kalman Filter (EKF) is the non-linear version of the Kalman Filter. Though it can be used for non linear equations, it is important to note that it is not an optimal estimator. For the most part, the EKF Algorithm is nearly identical to the KF algorithm. The critical difference is in linearizing the state and observation function. The EKF uses the Jacobean to linearly approximate the non-linear function around the mean of the Gaussian distribution. Skipping this step would result in the transformed data being non-Gaussian; though taking the Jacobean enables the transformation to remain Gaussian, it is not exact, resulting in some generalization. Linear approximation through a single point also makes the EKF inefficient when dealing with complex, higher order systems. Because of this, the model is highly subject to error, which can be somewhat reduced by setting accurate initial values. Though these flaws exist, the EKF performs strongly with applications of real time spatial fields, including navigation and positioning systems.  \\ \\
 
 \section{Extended Kalman Filter Algorithm}
 
@@ -15,15 +15,14 @@ The Extended Kalman Filter (EKF) is the non-linear version of the Kalman Filter.
     Variable & Description & Dimensions \\
     \hline
    x & State variables  & $d_x \times 1$ \\
-    y & Output Vector  & $d_y \times 1$ \\
-    u & System Inputs  & $d_u \times 1$\\
-    v & Measurement Noise & $d_y \times 1$\\
-    w & Process Noise & $d_x \times 1$\\
+    y & Output vector  & $d_y \times 1$ \\
+    u & System inputs  & $d_u \times 1$\\
+    v & Measurement noise & $d_y \times 1$\\
+    w & Process noise & $d_x \times 1$\\
     f & None linear state function  & $d_x \times d_x $  \\ 
-    F & State Function  & $d_x \times d_x $  \\ 
+    F & State function  & $d_x \times d_x $  \\ 
     h & Non linear observation function & $d_y \times d_x$\\
     H & Linearized observation function & $d_y \times d_x$\\
-    G & Input Matrix & $d_x \times d_u$\\
     K & Kalman Gain  & $d_x \times d_y$\\
     Q & Process noise covariance  & $d_x \times d_x$ \\
     R & Measurement noise covariance &  $d_y \times d_y$\\
@@ -34,11 +33,11 @@ The Extended Kalman Filter (EKF) is the non-linear version of the Kalman Filter.
 \begin{enumerate}
   \item Initialize the state estimate ($x_0$) and the initial covariance matrix ($P_0$) 
   \begin{align*}
-        x_0 = \mathbb{E}[x_0]  = \begin{bmatrix}
+        \hat x_0 = \mathbb{E}[x_0]  = \begin{bmatrix}
            x_1 \\
            \vdots \\
            x_n 
-         \end{bmatrix} 
+         \end{bmatrix}  
     \end{align*}
   \begin{align*}
       P_0 =
@@ -46,20 +45,32 @@ The Extended Kalman Filter (EKF) is the non-linear version of the Kalman Filter.
            var(x_1)  & \hdots & cov(x_1, x_n) \\
            \vdots & \ddots & \vdots \\
            cov(x_n, x_1)  & \hdots & var(x_n )
-         \end{bmatrix} 
+         \end{bmatrix}  
   \end{align*}
+  Often, $P_0 $ will be initialized as a diagonal matrix with the diaganals being the variance of each state variance and every other value being set to 0.
   \item Calculate the Jacobean
   \begin{align*}
-      F= \frac{\partial f}{\partial x}
+      F= \frac{\partial f}{\partial x} =
+      \begin{bmatrix}
+           \frac{\partial f_1}{\partial x_1} & \hdots & \frac{\partial f_n}{\partial x_n} \\
+           \vdots & \ddots & \vdots \\
+           \frac{\partial f_n}{\partial x_1}  & \hdots & \frac{\partial f_n}{\partial x_n}
+         \end{bmatrix}  
   \end{align*}
   \begin{align*}
-      H = \frac{\partial h}{\partial x}
+      H = \frac{\partial h}{\partial x} =
+     \begin{bmatrix}
+           \frac{\partial h_1}{\partial x_1} & \hdots & \frac{\partial h_m}{\partial x_n} \\
+           \vdots & \ddots & \vdots \\
+           \frac{\partial h_m}{\partial x_1}  & \hdots & \frac{\partial h_{d_y}}{\partial x_n}
+         \end{bmatrix}  
   \end{align*}
-  Here, $f$ is the non-linear state function and $F$ is the linear approximation of $f$. On that same vein, $h$ is the non linear observation while $H$ is linearized observation.
+   Here, both $f$ and $h$ have no closed form solution. $f$ is the non-linear state function and $F$ is the linear approximation of $f$ with dimension $d_x$. Similarly, $h$ is the non linear observation while $H$ is linearized observation with dimension $d_y$. 
   \item Generate a prediction 
   \begin{align*}
       x_{k+1} = f( x_{k-1} , u_{k-1})  
   \end{align*} 
+  This equation is different from the one used in the Kalman filter 
   \item Use the state covariance matrix ($P_{k | k - 1}$) to calculate Kalman Gain ($K_k$) 
     \begin{align*} 
         P_{k | k -1} = F P_{k - 1} F^T + Q_{k-1} 
@@ -67,7 +78,8 @@ The Extended Kalman Filter (EKF) is the non-linear version of the Kalman Filter.
          \begin{align*} 
         K_k = P_{k | k - 1} H^T_K (H_k P_{k | k - 1} H^T_K + R_k)^{-1}
     \end{align*}
-    Note that we are using F, not the linear approximation f.
+    Recall that $H$ and $F$ are linear approximations of $f$ and $h$. Therefore, it is assumed that there is some amount of error when calculating the Kalman Gain.
+    
     \item  Correct the prediction
     \begin{align*}
         \hat y_k = H( x_k + v_k )

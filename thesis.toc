@@ -1,11 +1,13 @@
 \babel@toc {english}{}
 \contentsline {chapter}{\numberline {1}Introduction}{ii}{chapter.1}
 \contentsline {chapter}{\numberline {2}Kalman Filters}{iii}{chapter.2}
-\contentsline {section}{\numberline {2.1}Kalman Filter Algorithm}{iii}{section.2.1}
-\contentsline {chapter}{\numberline {3}Extended Kalman Filters}{vi}{chapter.3}
-\contentsline {section}{\numberline {3.1}Extended Kalman Filter Algorithm}{vi}{section.3.1}
-\contentsline {chapter}{\numberline {4}Unscented Kalman Filters}{viii}{chapter.4}
-\contentsline {chapter}{\numberline {5}Dual Unscented Kalman Filters}{xi}{chapter.5}
-\contentsline {chapter}{\numberline {6}A Metabolites Example}{xiv}{chapter.6}
-\contentsline {section}{\numberline {6.1}Foo section}{xiv}{section.6.1}
+\contentsline {section}{\numberline {2.1}Kalman Filter Algorithm}{iv}{section.2.1}
+\contentsline {chapter}{\numberline {3}Extended Kalman Filters}{vii}{chapter.3}
+\contentsline {section}{\numberline {3.1}Extended Kalman Filter Algorithm}{viii}{section.3.1}
+\contentsline {chapter}{\numberline {4}Unscented Kalman Filters}{x}{chapter.4}
+\contentsline {chapter}{\numberline {5}Dual Unscented Kalman Filters}{xiii}{chapter.5}
+\contentsline {chapter}{\numberline {6}Van Der Pol Example}{xvi}{chapter.6}
 \contentsline {chapter}{\numberline {7}A Diabetes Example}{xvii}{chapter.7}
+\contentsline {chapter}{\numberline {A}Van Der Pol Code}{xix}{chapter.1}
+\contentsline {chapter}{\numberline {B}Meskin Code}{xx}{chapter.2}
+\contentsline {chapter}{\numberline {C}Albers Code}{xxi}{chapter.3}

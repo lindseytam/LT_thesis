@@ -3,7 +3,7 @@
 
 The Kalman Filter (KF) generates predictions for linear dynamical systems \cite{inbook}. Assuming the given data is noisy and Gaussian \cite{inproceedings, article7}, the first predictive step assumes knowledge of initial states and the model process, which takes the form of matrix $F$. The next step involves calculating the covariance in order to calculate the Kalman Gain, which is a measure of how much the estimate should be changed given actual measurements of the system. The corrective step utilizes the Kalman Gain and the measured system outputs to gauge whether to depend more on the model or on the data.  \\ \\
 This process can be done recursively, allowing the model to become progressively more accurate as more data is added. Therefore, overtime, it is expected that the model will converge with the actual system measurements.
-
+\\ \\ \\
 
 \section{Kalman Filter Algorithm}
 \begin{center}
@@ -15,10 +15,10 @@ This process can be done recursively, allowing the model to become progressively
     Variable & Description & Dimensions \\
     \hline
     x & State variables  & $d_x \times 1$ \\
-    y & Output Vector  & $d_y \times 1$ \\
-    u & System Inputs  & $d_u \times 1$\\
-    v & Measurement Noise & $d_y \times 1$\\
-    w & Process Noise & $d_x \times 1$\\
+    y & Output vector  & $d_y \times 1$ \\
+    u & System inputs  & $d_u \times 1$\\
+    v & Measurement noise & $d_y \times 1$\\
+    w & Process noise & $d_x \times 1$\\
     F & State function  & $d_x \times d_x $  \\ 
     H & Observation function & $d_y \times d_x$\\
     G & Input function & $d_x \times d_u$\\
@@ -34,7 +34,7 @@ This process can be done recursively, allowing the model to become progressively
 \begin{enumerate}
   \item Initialize the state estimate ($x_0$) and the initial state covariance matrix ($P_0$) 
     \begin{align*}
-        x_0 = \mathbb{E}[x_0]  = \begin{bmatrix}
+       \hat x_0 = \mathbb{E}[x_0]  = \begin{bmatrix}
            x_1 \\
            \vdots \\
            x_n 
@@ -48,7 +48,7 @@ This process can be done recursively, allowing the model to become progressively
            cov(x_n, x_1)  & \hdots & var(x_n )
          \end{bmatrix} 
   \end{align*}
-  Enough should be known about the modeled system to generate these values. In general, $x_k$ denotes the model's estimate of the state variables, but when initializing these values, it is acceptable to use actual measurements of the system. \\ \\
+  Enough should be known about the modeled system to generate these values. In general, $\hat x_k$ denotes the model's estimate of the state variables. When initializing these values, we use $x_0$, which is the actual initial measurements of the system. \\ \\
    A state covariance matrix is a symmetrical positive semi-definite square matrix whose diagonals correspond to the variance of a variable at location i and elsewhere is the covariance of the pairwise elements. In practice, covariance matrices help us better understand the spread of data. For the case of the KF, calculating the state covariance is necessary for computing Kalman Gain. 
   \item Generate a prediction ($x_{k+1}$)
   \begin{align*}

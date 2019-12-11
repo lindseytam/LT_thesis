@@ -9,7 +9,8 @@
 \usepackage[english]{babel}
 \usepackage{multicol}
 \usepackage{enumitem}
-\usepackage{cite}
+\usepackage[toc,page]{appendix}
+
 
 \title{An Exploration of Kalman Filters}
 \author{Lindsey Tam }
@@ -36,11 +37,17 @@
 
 \include{DUKF}
 
-\include{Meskin}
+\include{VDP}
+
 
 \include{Albers}
 
-%\bibliographystyle{plain}
-%\bibliography{Thesis_draft.bib}
+\newpage
+
+\bibliographystyle{plain}
+\bibliography{Thesis_draft.bib}
+
+\appendix
+\include{Appendix}
 
 \end{document}
