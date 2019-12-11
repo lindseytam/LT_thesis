@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  11 DEC 2019 00:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  11 DEC 2019 09:45
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -637,32 +637,12 @@ Chapter 4.
 LaTeX Warning: Citation `inbook' on page x undefined on input line 4.
 
 
-LaTeX Warning: Citation `inproceedings' on page x undefined on input line 4.
-
-
 LaTeX Warning: Citation `Wan01theunscented' on page x undefined on input line 4
 .
 
 
-LaTeX Warning: Citation `inbook' on page x undefined on input line 4.
+Underfull \hbox (badness 10000) in paragraph at lines 4--7
 
-
-LaTeX Warning: Citation `Wan01theunscented' on page x undefined on input line 4
-.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 4--5
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 4--5
-
- []
-
-
-Underfull \hbox (badness 6032) in paragraph at lines 28--28
-[]\OT1/cmr/m/n/10 Scaling pa-ram-e-ter for sigma
  []
 
 [10
@@ -670,10 +650,35 @@ Underfull \hbox (badness 6032) in paragraph at lines 28--28
 
 
 ]
+Overfull \hbox (3.90845pt too wide) in paragraph at lines 34--35
+[]\OT1/cmr/m/n/10 Default| 
+ []
 
-LaTeX Warning: Citation `article6' on page xi undefined on input line 64.
 
-[11] [12]) [13]
+LaTeX Warning: Citation `inbook' on page xi undefined on input line 62.
+
+
+LaTeX Warning: Citation `inproceedings' on page xi undefined on input line 62.
+
+
+LaTeX Warning: Citation `Wan01theunscented' on page xi undefined on input line 
+62.
+
+[11]
+
+LaTeX Warning: Citation `article6' on page xii undefined on input line 78.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 75--79
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 75--79
+
+ []
+
+[12]) [13]
 \openout2 = `VDP.aux'.
 
  (./VDP.tex) [14
@@ -793,7 +798,7 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 58.
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 58.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 58.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 093EF94738FAF7DE99E2C9B7D5254178;908.
+(rerunfilecheck)             Checksum: C8BCC5E4369ABA8D0661509FDE890E0D;907.
 
 
 LaTeX Warning: There were undefined references.
@@ -824,7 +829,7 @@ ve/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive
 /2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2
 018/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/20
 18/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (30 pages, 236019 bytes).
+Output written on thesis.pdf (30 pages, 237624 bytes).
 PDF statistics:
  538 PDF objects out of 1000 (max. 8388607)
  484 compressed objects within 5 object streams
