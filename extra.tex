@@ -1,0 +1,65 @@
+\item Calculate the augmented weights for each sigma point \\ \\
+    Augmented weights will be used later for measurement forecast and calculating Kalman Gain.
+   \textcolor{red}{expand on the theory}
+    \begin{align*}
+        W^{\text{aug}(m)}_{0} = \frac{\lambda}{2d_{x}+ \lambda } 
+        \end{align*}
+         \begin{align*}
+        W^{\text{aug}(c)}_{0} = \frac{\lambda}{2d_{x}+ \lambda} + (1 - \alpha^{2} + \beta) 
+        \end{align*}
+         \begin{align*}
+        W^{\text{aug}(m)}_{i} = W^{\text{aug,}(c)}_{i} = \frac{\lambda}{2(2d_{x}+ \lambda) } \quad \quad \quad i=1,\dots,4d_{x} 
+    \end{align*}
+    Note that we are calculating $4d_x + 1$ augmented weights.
+
+    \item Perform a non-linear transformation on the sigma points
+    \begin{align*}
+        \hat{w}_{k} &= \hat{w}_{k-1} 
+        \end{align*}
+        \begin{align*}
+        \chi^{*}_{\ i,k|k-1} &= f(\chi_{\ i,k-1},\hat{w}_{k-1})
+    \end{align*}
+    \item Calculate the mean and covariance of the transformed sigma points
+    \begin{align*}
+        \hat{x}^{*}_{\ k|k-1} &= \sum_{i=0}^{2n_{x}} W^{(m)}_{x,i} \chi^{*}_{\ i, k|k-1} 
+        \end{align*}
+        \begin{align*}
+        P_{x_{k|k-1}} &=  \sum_{i=0}^{2n_{x}} W^{(c)}_{x,i} (\chi^{*}_{\ i, k|k-1} - \hat{x}^{*}_{\ k|k-1})(\chi^{*}_{\ i, k|k-1} - \hat{x}^{*}_{\ k|k-1})^{T} + R_{v} % Q_k is same as R_{v} (Process Noise Covariance)
+    \end{align*}
+    \item Re-calculate sigma points
+    \begin{align*}
+        \chi_{\ i, k|k-1} = \chi^{*}_{\ i,k|k-1} \quad \quad \quad  i=0,...,2d_{x} 
+         \end{align*}
+         \begin{align*}
+        \chi_{\ i, k|k-1} = \chi^{*}_{\ 0,k|k-1} + (\sqrt{(n_{x}+\lambda_{x})P_{x_{k|k-1}}})_{i}  \quad \quad \quad i=2d_{x}+1,\dots,3d_{x} 
+         \end{align*}
+         \begin{align*}
+        \chi_{\ i, k|k-1} = \chi^{*}_{\ 0,k|k-1} - (\sqrt{(n_{x}+\lambda_{x})P_{x_{k|k-1}}})_{i}  \quad \quad \quad  i=3d_{x}+1,\dots,4n_{x}
+    \end{align*}
+    \item Generate prediction
+    \begin{align*}
+        \hat{x}_{k|k-1} = \sum_{i=0}^{4n_{x}} W^{\text{aug,}(m)}_{x,i} \chi_{\ i, k|k-1} 
+        \end{align*}
+         \begin{align*}
+        \mathcal{Y}_{k|k-1} = h(\chi_{k|k-1},\hat{w_{k}}) 
+        \end{align*}
+         \begin{align*}
+        \hat{y}_{k|k-1} = \sum_{i=0}^{4n_{x}} W^{\text{aug,}(m)}_{x,i} \mathcal{Y}_{\ i, k|k-1}
+    \end{align*}
+    \item Calculate Kalman Gain
+    \begin{align*}
+        P_{y_{k}} = \sum_{i=0}^{4n_{x}} W^{\text{aug,}(c)}_{x,i} (\mathcal{Y}_{i, k|k-1} - \hat{y}_{k|k-1})(\mathcal{Y}_{i, k|k-1} - \hat{y}_{k|k-1})^{T} + R_{n}   %R_k is the same as R_{n} (Measurement Noise Covariance)
+        \end{align*}
+        \begin{align*}
+        P_{x_{k}y_{x}} = \sum_{i=0}^{4n_{x}} W^{\text{aug,}(c)}_{x,i} (\chi_{\ i, k|k-1} - \hat{x}^{*}_{\ k|k-1})(\mathcal{Y}_{i, k|k-1} - \hat{y}_{k|k-1})^{T} 
+        \end{align*}
+        \begin{align*}
+        K_{k} = P_{x_{k}y_{x}}P^{-1}_{y_{k}}
+    \end{align*}
+    \item Update Estimate and state covariance
+   \begin{align*}
+        P_{x_{k}} = P_{x_{k|k-1}} - K_{k}P_{y_{k}}K^{-1}_{k} 
+   \end{align*}
+    \begin{align*}
+        \hat{x}_{k} = \hat{x}_{k|k-1} + K_{k}(y_{k}-\hat{y}_{k|k-1}),
+    \end{align*}

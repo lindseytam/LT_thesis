@@ -6,11 +6,10 @@
 \contentsline {section}{\numberline {3.1}Extended Kalman Filter Algorithm}{viii}{section.3.1}
 \contentsline {chapter}{\numberline {4}Unscented Kalman Filters}{x}{chapter.4}
 \contentsline {section}{\numberline {4.1}Unscented Kalman Filter Algorithm}{xi}{section.4.1}
-\contentsline {section}{\numberline {4.2}Van Der Pol Example}{xiv}{section.4.2}
-\contentsline {section}{\numberline {4.3}A Metabolites Example}{xv}{section.4.3}
-\contentsline {section}{\numberline {4.4}A Diabetes Example}{xviii}{section.4.4}
-\contentsline {chapter}{\numberline {5}Dual Unscented Kalman Filters}{xix}{chapter.5}
-\contentsline {chapter}{\numberline {A}Van Der Pol Code}{xxii}{chapter.1}
-\contentsline {chapter}{\numberline {B}Meskin Code}{xxiii}{chapter.2}
-\contentsline {section}{\numberline {B.1}Main function}{xxiii}{section.2.1}
-\contentsline {chapter}{\numberline {C}Albers Code}{xxvii}{chapter.3}
+\contentsline {section}{\numberline {4.2}Van Der Pol Example}{xv}{section.4.2}
+\contentsline {section}{\numberline {4.3}A Metabolites Example}{xvi}{section.4.3}
+\contentsline {section}{\numberline {4.4}A Diabetes Example}{xix}{section.4.4}
+\contentsline {chapter}{\numberline {A}Van Der Pol Code}{xx}{chapter.1}
+\contentsline {chapter}{\numberline {B}Meskin Code}{xxi}{chapter.2}
+\contentsline {section}{\numberline {B.1}Main function}{xxi}{section.2.1}
+\contentsline {chapter}{\numberline {C}Albers Code}{xxv}{chapter.3}
