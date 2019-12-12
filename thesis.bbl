@@ -1,0 +1,33 @@
+\begin{thebibliography}{1}
+
+\bibitem{article6}
+J.~Gove and DY~Hollinger.
+\newblock Application of a dual unscented kalman filter for simultaneous state
+  and parameter estimation in problems of surface-atmosphere exchange.
+\newblock {\em Journal of Geophysical Research}, 111:21 PP.--21 PP., 04 2006.
+
+\bibitem{article7}
+Matthew Rhudy, Roger Salguero, and Keaton Holappa.
+\newblock A kalman filtering tutorial for undergraduate students.
+\newblock {\em International Journal of Computer Science \& Engineering
+  Survey}, 08:01--18, 02 2017.
+
+\bibitem{inbook}
+Esra Saatci and Aydin Akan.
+\newblock {\em Dual Unscented Kalman Filter and Its Applications to Respiratory
+  System Modeling}, page~4.
+\newblock intechopen, 04 2009.
+
+\bibitem{inproceedings}
+Eric Wan and Ronell Merwe.
+\newblock The unscented kalman filter for nonlinear estimation.
+\newblock In {\em The Unscented Kalman Filter for Nonlinear Estimation}, volume
+  153-158, pages 153 -- 158, 02 2000.
+
+\bibitem{Wan01theunscented}
+Eric~A. Wan and Rudolph Van~Der Merwe.
+\newblock The unscented kalman filter.
+\newblock In {\em Kalman Filtering and Neural Networks}, pages 221--280. Wiley,
+  2001.
+
+\end{thebibliography}
