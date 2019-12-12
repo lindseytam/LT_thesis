@@ -69,15 +69,10 @@ The term 'unscented' was arbitrarily coined by the developer of the UKF, Jeffrey
      \end{align*}
              Since the goal is to characterize the distribution, set one of these sigma points to the mean. Half of the remaining points will be smaller than the mean and the other half will be larger than the mean.
      \begin{align*}
-        \chi_{\ i,k-1} &= \hat{x}_{k-1} + \bigg(\sqrt{(d_{x}+\lambda )P_{x_{k-1}}}\bigg)_{i} \quad \quad \quad i=1,\dots,d_{x} 
+        \chi_{\ i,k-1} &= \hat{x}_{k-1} \pm \bigg(\sqrt{(d_{x}+\lambda )P_{x_{k-1}}}\bigg)_{i} \quad \quad \quad i=1,\dots,2 d_x + 1
         \end{align*}
-        The above equation calculates half of the sigma points that are above the mean. Note that $(\sqrt{(d_{x}+\lambda)P_{x_{k-1}}})$ is a matrix, and the $i$ subscript is the $i^{th}$ column of the matrix. Also note that $\chi_{\ i,k-1}$ is the $i^{th}$ column of the sigma point matrix at time $k-1$.
-        \begin{align*}
-        \chi_{\ i,k-1} &= \hat{x}_{k-1} - \bigg(\sqrt{(d_{x}+\lambda)P_{x_{k-1}}} \bigg)_{i} \quad \quad \quad  i=d_{x}+1,\dots,2d_{x}
-    \end{align*}
-    The above equation calculates half of the sigma points that are below the mean. \\ \\
-Therefore, in total we achieve ($2 \cdot d_x + 1$) sigma points that characterize the Gaussian distribution of the data.
-
+        The square root of a matrix, call it $A$ satisfies the following condition: $A = B^2$. Note that $(\sqrt{(d_{x}+\lambda)P_{x_{k-1}}})$ is a matrix, and the $i$ subscript is the $i^{th}$ column of the matrix. Also note that $\chi_{\ i,k-1}$ is the $i^{th}$ column of the sigma point matrix at time $k-1$.
+       
 
         \item Calculate the weights for each sigma point \\ \\
         Weights are scalars used to calculate posterior sigma points after they have undergone a nonlinear transformation. The weights are later used to approximate Gaussian mean and covariance. Weights can have positive or negative values, but will ultimately sum to 1 \cite{article6}. The subscript of the weight indicates which sigma point the weight is for. 
@@ -92,45 +87,48 @@ Therefore, in total we achieve ($2 \cdot d_x + 1$) sigma points that characteriz
         \begin{align*}
         W^{(m)}_{i} = W^{(c)}_{i} = \frac{\lambda}{2(d_{x}+ \lambda) } \quad \quad \quad i=1,\dots,2d_{x}
             \end{align*}
-           The rest of the weights for the means and covariances of the other $2 \cdot d_x$ sigma points is calculated above.
+           The rest of the weights for the means and covariances of the other $2 d_x$ sigma points is calculated above.
+      
            
-           
-           
-        \item Perform nonlinear transformation on sigma points
+        \item Generate a prediction
         \begin{align*}
         \chi_{k | k - 1} = f(\chi)
         \end{align*}
-        Though $\chi$ has a Gaussian distribution,  $ \chi_{k | k - 1} $ does not because it has been transformed by the nonlinear state function $f$.
+        The equation above performs nonlinear transformation $f$ on the sigma points. Though $\chi$ has a Gaussian distribution,  $ \chi_{k | k - 1} $ does not because it has been transformed by the nonlinear state function $f$.
         \begin{align*}
         \hat x_{k | k-1} = \sum^{2d_x}_{i = 0} W_i^{(m)} \chi_{i, k | k - 1}
         \end{align*}
+        Now, the new estimate of the state variables is conditioned on the last estimate. The weights are included in this step in order to approximate the Gaussian distribution.
         \begin{align*}
         P_{x, k | k-1} = \sum^{2d_x}_{i = 0} W_i^{(c)} (\chi_{i, k | k - 1} -  \hat x_{i, k | k - 1} )(\chi_{i, k | k - 1} -  \hat x_{i, k | k - 1} )^T + Q
         \end{align*} 
-        The posterioir covariance matrix for the state variable is necessary for updating the state covariance later on (step 9)Recall that Q is process noise, which provides the error in our model $f$.
+        The posterior covariance matrix for the state variable is necessary for updating the state covariance later on (step 9). Recall that Q is process noise, which provides the error in our model $f$.
         \item Calculate posterior sigma points \\ \\
-        This process is necessary for interpreting the distribution. From the non linear transformation above, the outputs are not Gaussian. Using the weights calculated in step 3, we are able to approximate the Gaussian distribution of the transformed sigma points.
+        By now, the prediction step has concluded and the model begins the process of correction. Calculation of the posterior (also called augmented) sigma points is necessary for interpreting the distribution. From the non linear transformation above, the outputs are not Gaussian. Using the weights calculated in step 3, we are able to approximate the Gaussian distribution of the transformed sigma points.
          \begin{align*}
-        \chi_{0, k|k-1} = \hat x_{k|k-1}
+        \chi^{(aug)}_{0, k|k-1} = \hat x_{k|k-1}
         \end{align*}
          \begin{align*}
-        \chi_{ i,k |k-1} &= \hat{x}_{k |k-1} \pm \bigg(\sqrt{(d_{x}+\lambda)P_{x_{k |k-1}}} \bigg)_{i} \quad \quad \quad  i=1,\dots,2d_{x}
+        \chi^{(aug)}_{ i,k |k-1} &= \hat{x}_{k |k-1} \pm \bigg(\sqrt{(d_{x}+\lambda)P_{x_{k |k-1}}} \bigg)_{i} \quad \quad \quad  i=1,\dots,2d_{x}
         \end{align*}
+        The calculation is the same process as in step 2. Recall that $\lambda$ was calculated in step 2. Since it is not time dependent, we can use the same $\lambda$ value used earlier.
         
         \item Calculate transformed output 
          \begin{align*}
-       \mathcal{Y}_{k|k-1} = h(\chi_{k|k-1}, u) 
+       \mathcal{Y}_{k|k-1} = h(\chi^{(aug)}_{k|k-1}) 
        \end{align*}
        \begin{align*}
        y_{k|k-1} = \sum^{2d_x}_{i = 0} W_i^{(m)}  \mathcal{Y}_{i, k | k - 1}
        \end{align*}
+       Similar to the KF and EKF, use observation function $h$ to convert the sigma point matrix into ta form that can be compared to the actual measurements of the system $y_k$. Since this form is not Gaussian, use weights to interpret the results.
        
-       \item Calculate Kalman Gain
+       \item Calculate Kalman Gain \\ \\
+       Unlike previous versions of the KF, in addition to calculating the covariance of the state variables, calculations is also done for the covariance of observations  $P_{y}$ and for state variables with observations $P_{xy}$. When generating the covariance matrix for y the covariance of measurement noise is added. 
         \begin{align*}
-       P_{y, k | k-1} = \sum^{2d_x}_{i = 0} W_i^{(c)} (\mathcal{Y}_{i, k | k - 1} -  \hat y_{i, k | k - 1} )(\mathcal{Y}_{i, k | k - 1} -  y_{i, k | k - 1} )^T + R
+       P_{y, k | k-1} = \sum^{2d_x}_{i = 0} W_i^{(c)} (\mathcal{Y}_{i, k | k - 1} -   y_{i, k | k - 1} )(\mathcal{Y}_{i, k | k - 1} -  y_{i, k | k - 1} )^T + R
        \end{align*}
         \begin{align*}
-       P_{x,y, k | k-1} = \sum^{2d_x}_{i = 0} W_i^{(c)} (\chi_{i, k | k - 1} -  \hat x_{i, k | k - 1} )(\mathcal{Y}_{i, k | k - 1} -  y_{i, k | k - 1} )^T 
+       P_{xy, k | k-1} = \sum^{2d_x}_{i = 0} W_i^{(c)} (\chi^{(aug)}_{i, k | k - 1} -  \hat x_{i, k | k - 1} )(\mathcal{Y}_{i, k | k - 1} -  y_{i, k | k - 1} )^T 
        \end{align*}
        \begin{align*}
        K_k = P_{xy, k | k-1} (P_{y, k | k-1}) ^{-1}
@@ -138,8 +136,9 @@ Therefore, in total we achieve ($2 \cdot d_x + 1$) sigma points that characteriz
         
       \item Correct the prediction      
       \begin{align*}
-       \hat x_{k} = \hat x_{k|k-1} + K_k(y_k -y_{k|k-1})
+       \hat x_{k} = \hat x_{k|k-1} + K_k(y_k - y_{k|k-1})
         \end{align*}
+        Similar to the KF and EKF, the correction step follows the same equation. 
       
       
       \item Update the covariance matrix 

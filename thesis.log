@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  11 DEC 2019 15:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  12 DEC 2019 10:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -454,47 +454,96 @@ Package csquotes Info: ... configuration file loaded successfully.
 (/usr/local/texlive/2018/texmf-dist/tex/latex/csquotes/csquotes.cfg
 File: csquotes.cfg 
 ))
+(/usr/local/texlive/2018/texmf-dist/tex/latex/subfig/subfig.sty
+Package: subfig 2005/06/28 ver: 1.3 subfig package
+
+(/usr/local/texlive/2018/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
+
+(/usr/local/texlive/2018/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 67.
+\captionmargin=\dimen142
+\captionmargin@=\dimen143
+\captionwidth=\dimen144
+\caption@tempdima=\dimen145
+\caption@indent=\dimen146
+\caption@parindent=\dimen147
+\caption@hangindent=\dimen148
+)
+\c@ContinuedFloat=\count142
+Package caption Info: hyperref package is loaded.
+Package caption Info: listings package is loaded.
+)
+\c@KVtest=\count143
+\sf@farskip=\skip57
+\sf@captopadj=\dimen149
+\sf@capskip=\skip58
+\sf@nearskip=\skip59
+\c@subfigure=\count144
+\c@subfigure@save=\count145
+\c@lofdepth=\count146
+\c@subtable=\count147
+\c@subtable@save=\count148
+\c@lotdepth=\count149
+\sf@top=\skip60
+\sf@bottom=\skip61
+)
 (/usr/local/texlive/2018/texmf-dist/tex/latex/appendix/appendix.sty
 Package: appendix 2009/09/02 v1.2b extra appendix facilities
-\c@@pps=\count142
-\c@@ppsavesec=\count143
-\c@@ppsaveapp=\count144
+\c@@pps=\count150
+\c@@ppsavesec=\count151
+\c@@ppsaveapp=\count152
 )
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'english'.
 
-(./thesis.aux)
+(./thesis.aux (./Introduction.aux) (./KF.aux) (./EKF.aux) (./UKF.aux)
+(./VDP.aux
+
+LaTeX Warning: Label `fig:f1' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:f1' multiply defined.
+
+
+LaTeX Warning: Label `fig:f2' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:f2' multiply defined.
+
+) (./Meskin.aux) (./Appendix.aux))
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 25.
-LaTeX Font Info:    ... okay on input line 25.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 26.
+LaTeX Font Info:    ... okay on input line 26.
 
 (/usr/local/texlive/2018/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count145
-\scratchdimen=\dimen142
+\scratchcounter=\count153
+\scratchdimen=\dimen150
 \scratchbox=\box57
-\nofMPsegments=\count146
-\nofMParguments=\count147
+\nofMPsegments=\count154
+\nofMParguments=\count155
 \everyMPshowfont=\toks27
-\MPscratchCnt=\count148
-\MPscratchDim=\dimen143
-\MPnumerator=\count149
-\makeMPintoPDFobject=\count150
+\MPscratchCnt=\count156
+\MPscratchDim=\dimen151
+\MPnumerator=\count157
+\makeMPintoPDFobject=\count158
 \everyMPtoPDFconversion=\toks28
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -514,7 +563,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 \AtBeginShipoutBox=\box58
-Package hyperref Info: Link coloring OFF on input line 25.
+Package hyperref Info: Link coloring OFF on input line 26.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -522,28 +571,31 @@ Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 (/usr/local/texlive/2018/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count151
+\c@section@level=\count159
 )
-LaTeX Info: Redefining \ref on input line 25.
-LaTeX Info: Redefining \pageref on input line 25.
-LaTeX Info: Redefining \nameref on input line 25.
+LaTeX Info: Redefining \ref on input line 26.
+LaTeX Info: Redefining \pageref on input line 26.
+LaTeX Info: Redefining \nameref on input line 26.
 
 (./thesis.out) (./thesis.out)
 \@outlinefile=\write3
 \openout3 = `thesis.out'.
 
-\c@lstlisting=\count152
-<pomonalogo.pdf, id=4, 464.73625pt x 194.7275pt>
+\c@lstlisting=\count160
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: subfig package v1.3 is loaded.
+Package caption Info: End \AtBeginDocument code.
+<pomonalogo.pdf, id=52, 464.73625pt x 194.7275pt>
 File: pomonalogo.pdf Graphic file (type pdf)
 <use pomonalogo.pdf>
-Package pdftex.def Info: pomonalogo.pdf  used on input line 27.
+Package pdftex.def Info: pomonalogo.pdf  used on input line 28.
 (pdftex.def)             Requested size: 172.5pt x 72.27682pt.
-LaTeX Font Info:    Try loading font information for U+msa on input line 27.
+LaTeX Font Info:    Try loading font information for U+msa on input line 28.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 27.
+LaTeX Font Info:    Try loading font information for U+msb on input line 28.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -554,15 +606,22 @@ alogo.pdf>]pdfTeX warning (ext4): destination with the same identifier (name{pa
 ge.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.31 \end{abstract}
-                    [1]
+l.32 \end{abstract}
+                    [1] (./thesis.toc
+Overfull \hbox (0.61113pt too wide) detected at line 10
+ []\OT1/cmr/m/n/10 xvii
+ []
 
-Package hyperref Warning: old toc file detected, not used; run LaTeX again.
 
+Overfull \hbox (0.61113pt too wide) detected at line 13
+ []\OT1/cmr/m/n/10 xxii
+ []
+
+)
 \tf@toc=\write4
 \openout4 = `thesis.toc'.
 
-[1
+ [1
 
 ]
 \openout2 = `Introduction.aux'.
@@ -577,15 +636,6 @@ Chapter 1.
 
  (./KF.tex
 Chapter 2.
-
-LaTeX Warning: Citation `inbook' on page iii undefined on input line 4.
-
-
-LaTeX Warning: Citation `inproceedings' on page iii undefined on input line 4.
-
-
-LaTeX Warning: Citation `article7' on page iii undefined on input line 4.
-
 
 Underfull \hbox (badness 10000) in paragraph at lines 4--7
 
@@ -660,13 +710,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--5
  (./UKF.tex
 Chapter 4.
 
-LaTeX Warning: Citation `inbook' on page x undefined on input line 4.
-
-
-LaTeX Warning: Citation `Wan01theunscented' on page x undefined on input line 4
-.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 4--9
 
  []
@@ -686,16 +729,6 @@ Overfull \hbox (3.90845pt too wide) in paragraph at lines 40--41
  []
 
 
-LaTeX Warning: Citation `inbook' on page xi undefined on input line 61.
-
-
-LaTeX Warning: Citation `inproceedings' on page xi undefined on input line 61.
-
-
-LaTeX Warning: Citation `Wan01theunscented' on page xi undefined on input line 
-61.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 60--62
 
  []
@@ -706,51 +739,65 @@ Underfull \hbox (badness 10000) in paragraph at lines 64--67
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 77--80
-
- []
-
-
-LaTeX Warning: Citation `article6' on page xii undefined on input line 83.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 82--84
+Underfull \hbox (badness 10000) in paragraph at lines 77--79
 
  []
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 111--113
+Underfull \hbox (badness 10000) in paragraph at lines 106--108
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 125--127
 
  []
 
 [13]) [14]
 \openout2 = `VDP.aux'.
 
- (./VDP.tex) [15
+ (./VDP.tex
+<VDP.png, id=187, 562.2606pt x 421.575pt>
+File: VDP.png Graphic file (type png)
+<use VDP.png>
+Package pdftex.def Info: VDP.png  used on input line 9.
+(pdftex.def)             Requested size: 337.35896pt x 252.94695pt.
+<VDP_highMN.png, id=188, 562.2606pt x 421.575pt>
+File: VDP_highMN.png Graphic file (type png)
+<use VDP_highMN.png>
+Package pdftex.def Info: VDP_highMN.png  used on input line 16.
+(pdftex.def)             Requested size: 172.5pt x 129.33603pt.
+<VDP_lowMN.png, id=189, 562.2606pt x 421.575pt>
+File: VDP_lowMN.png Graphic file (type png)
+<use VDP_lowMN.png>
+Package pdftex.def Info: VDP_lowMN.png  used on input line 18.
+(pdftex.def)             Requested size: 172.5pt x 129.33603pt.
+<VDP_highPN.png, id=190, 562.2606pt x 421.575pt>
+File: VDP_highPN.png Graphic file (type png)
+<use VDP_highPN.png>
+Package pdftex.def Info: VDP_highPN.png  used on input line 24.
+(pdftex.def)             Requested size: 172.5pt x 129.33603pt.
+<VDP_lowPN.png, id=191, 562.2606pt x 421.575pt>
+File: VDP_lowPN.png Graphic file (type png)
+<use VDP_lowPN.png>
+Package pdftex.def Info: VDP_lowPN.png  used on input line 26.
+(pdftex.def)             Requested size: 172.5pt x 129.33603pt.
+) [15
 
 
-]
+ <./VDP.png (PNG copy)> <./VDP_highMN.png (PNG copy)> <./VDP_lowMN.png (PNG cop
+y)>] [16 <./VDP_highPN.png (PNG copy)> <./VDP_lowPN.png (PNG copy)>]
 \openout2 = `Meskin.aux'.
 
  (./Meskin.tex
-
-LaTeX Warning: Citation `article6' on page xvi undefined on input line 57.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 56--58
 
  []
 
-[16
+[17
 
 
-] [17]) [18]
-\openout2 = `Albers.aux'.
-
- (./Albers.tex) [19
-
-
-] (./thesis.bbl) [20
+] [18]) [19] (./thesis.bbl) [20
 
 
 ]
@@ -808,34 +855,25 @@ Appendix C.
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 61.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 61.
  (./thesis.aux (./Introduction.aux) (./KF.aux) (./EKF.aux) (./UKF.aux)
-(./VDP.aux) (./Meskin.aux) (./Albers.aux) (./Appendix.aux))
+(./VDP.aux) (./Meskin.aux) (./Appendix.aux))
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 61.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 61.
+Package rerunfilecheck Info: File `thesis.out' has not changed.
+(rerunfilecheck)             Checksum: 38BBBC3EC5EFB48ADBE4C7725874F043;777.
 
 
-Package rerunfilecheck Warning: File `thesis.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `thesis.out':
-(rerunfilecheck)             Before: D41D8CD98F00B204E9800998ECF8427E;0
-(rerunfilecheck)             After:  F1BB948E2164E37B18525A075E4800E9;842.
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 61.
  ) 
 Here is how much of TeX's memory you used:
- 11356 strings out of 492649
- 160536 string characters out of 6129622
- 430853 words of memory out of 5000000
- 14838 multiletter control sequences out of 15000+600000
- 9057 words of font info for 34 fonts, out of 8000000 for 9000
+ 12597 strings out of 492649
+ 182642 string characters out of 6129622
+ 449536 words of memory out of 5000000
+ 16046 multiletter control sequences out of 15000+600000
+ 9356 words of font info for 35 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 35i,16n,42p,1265b,2382s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,16n,51p,1265b,2382s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb>
@@ -847,16 +885,17 @@ local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/lo
 cal/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/loca
 l/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/t
 exlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texl
-ive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texli
-ve/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive
-/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2
-018/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/20
-18/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/201
-8/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (28 pages, 245568 bytes).
+ive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive
+/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/
+2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/20
+18/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2018
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2018/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2018/t
+exmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on thesis.pdf (28 pages, 607329 bytes).
 PDF statistics:
- 431 PDF objects out of 1000 (max. 8388607)
- 379 compressed objects within 4 object streams
- 215 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 513 PDF objects out of 1000 (max. 8388607)
+ 454 compressed objects within 5 object streams
+ 221 named destinations out of 1000 (max. 500000)
+ 135 words of extra memory for PDF output out of 10000 (max. 10000000)
 
