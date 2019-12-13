@@ -1,103 +1,37 @@
-\section{A Metabolites Example}
-\label{A Metabolites Example}
+\section{Modeling a Biological System }
+\label{Modeling a Biological System }
 
-A metabolite is small structure that is the byproduct of the body's metabolism. To better understand the path of metabolites, an UKF was utilized for biomedical pathway modeling. Data regarding metabolites is highly influenced by noise, which is an UKF can handle while other approaches, such as regression and annealing, fail. Since the model is complex, considering that there are many unknown parameters and many metabolites in the system, utilizing an UKF is more effective than an EKF. Initial data contained information about metabolites at various time steps.
-\begin{center}
-    
-\centering
-\begin{tabular}{ |p{2cm}||p{5cm}|p{3cm}| }
-    \hline
-    \multicolumn{3}{|c|}{Variables in the Unscented Kalman Filter } \\ 
-    \hline
-    Variable & Description & Dimensions \\
-    \hline
-    x & Vector containing state variables & $d_x \times 1 $\\ 
-    $\chi $& Sigma Point Matrix &$ d_x \times (2 d_x + 1) $\\
-    F & State Transition Matrix  & $d_x \times d_x $  \\ 
-    H & Observation Matrix & $d_y \times d_x$\\
-    G & Input Matrix & $d_x \times d_u$\\
-    u & Input Vector  & $d_u \times 1$\\
-    P & Covariance matrix & $d_x \times d_x $  \\
-    k & Time step  & $1 \times 1$\\
-    w & Parameter vector & $d_q \times 1$\\
-    v & Process Noise Vector & $d_x \times 1$\\
-    $\alpha$ & Controls spread of sigma points & 1 \\
-    $\beta$ & Adjust sigma point weight & $0 \leq  \beta$ \\
-    $\kappa $ & Sigma point weighting constant & $3 - d_q = -14 $ \\
-    $\lambda $ & Scaling parameter for weights & 1 \\
-    \hline
-\end{tabular}
-\end{center}
+This example was inspired by a paper that uses the UKF to model the biological pathway of metabolites. A metabolite is small bodily structure that is the byproduct of the metabolism. Data regarding metabolites is highly influenced by noise, which is a factor that makes other approaches, such as regression and annealing, fail. The system in the model is complex, containing 18 unknown parameters and four state variables. Initial data contained information about metabolites at various time steps \cite{article5} . \\
 
-\begin{enumerate}
-    \item Initialize state vector and covariance
-    \begin{align}
-        \hat{x}_{0} = \mathbb{E}[x_{0}] = \begin{bmatrix}
-           4 \\
-           1 \\
-           3 \\
-           4
-         \end{bmatrix} 
-    \end{align}
-    \begin{align}
-        P_{x_{0}} = \mathbb{E}[(x_{0}-\hat{x}_{0})(x_{0}-\hat{x}_{0})^{T}] = \begin{bmatrix}
-           .1 & 0 & 0 & 0 \\
-           0 & .1 & 0 & 0 \\
-           0 & 0 & .1 & 0 \\
-           0 & 0 & 0 & .1
-         \end{bmatrix} 
-    \end{align}
-    \item Calculate sigma points
-    \begin{align}
-        \chi_{\ 0,k-1} &= \hat{x}_{k-1} \\
-        \chi_{\ i,k-1} &= \hat{x}_{k-1} + (\sqrt{(n_{x}+\lambda_{x})P_{x_{k-1}}})_{i}, &  i=1,\dots,n_{x} \\
-        \chi_{\ i,k-1} &= \hat{x}_{k-1} - (\sqrt{(n_{x}+\lambda_{x})P_{x_{k-1}}})_{i},  &  i=n_{x}+1,\dots,2n_{x},
-    \end{align}
-    \item Calculate the weights for each sigma point \\ \\
-    Weights can have positive or negative values, but will ultimately sum to 1 \cite{article6}
-    \begin{align}
-        \lambda_{x} = \alpha_{x}^{2}(n_{x}+\kappa_{x})-n_{x} \\
-        W^{(m)}_{x,0} = \frac{\lambda_{x}}{n_{x}+ \lambda_{x} } \\
-        W^{(c)}_{x,0} = \frac{\lambda_{x}}{n_{x}+ \lambda_{x} } + (1 - \alpha^{2}_{x} + \beta_{x}) \\
-        W^{(m)}_{x,i} = W^{(c)}_{x,i} = \frac{\lambda_{x}}{2(n_{x}+ \lambda_{x}) }, & i=1,\dots,2n_{x} \\
-        W^{\text{aug,}(m)}_{x,0} = \frac{\lambda_{x}}{2n_{x}+ \lambda_{x} } \\
-        W^{\text{aug,}(c)}_{x,0} = \frac{\lambda_{x}}{2n_{x}+ \lambda_{x} } + (1 - \alpha^{2}_{x} + \beta_{x}) \\
-        W^{\text{aug,}(m)}_{x,i} = W^{\text{aug,}(c)}_{x,i} = \frac{\lambda_{x}}{2(2n_{x}+ \lambda_{x}) }, &  i=1,\dots,4n_{x} \\
-    \end{align}
-    \item Perform a non-linear transformation on the sigma points
-    \begin{align}
-        \hat{w}_{k} &= \hat{w}_{k-1} \\
-        \chi^{*}_{\ i,k|k-1} &= f(\chi_{\ i,k-1},\hat{w}_{k-1})
-    \end{align}
-    \item Calculate the mean and covariance of the transformed sigma points
-    \begin{align}
-        \hat{x}^{*}_{\ k|k-1} &= \sum_{i=0}^{2n_{x}} W^{(m)}_{x,i} \chi^{*}_{\ i, k|k-1} \\
-        P_{x_{k|k-1}} &=  \sum_{i=0}^{2n_{x}} W^{(c)}_{x,i} (\chi^{*}_{\ i, k|k-1} - \hat{x}^{*}_{\ k|k-1})(\chi^{*}_{\ i, k|k-1} - \hat{x}^{*}_{\ k|k-1})^{T} + R_{v} % Q_k is same as R_{v} (Process Noise Covariance)
-    \end{align}
-    \item Re-calculate sigma points
-    \begin{align}
-        \chi_{\ i, k|k-1} = \chi^{*}_{\ i,k|k-1}, & i=0,...,2n_{x} \\
-        \chi_{\ i, k|k-1} = \chi^{*}_{\ 0,k|k-1} + (\sqrt{(n_{x}+\lambda_{x})P_{x_{k|k-1}}})_{i},  & i=2n_{x}+1,\dots,3n_{x} \\
-        \chi_{\ i, k|k-1} = \chi^{*}_{\ 0,k|k-1} - (\sqrt{(n_{x}+\lambda_{x})P_{x_{k|k-1}}})_{i}, &  i=3n_{x}+1,\dots,4n_{x}
-    \end{align}
-    \item Generate prediction
-    \begin{align}
-        \hat{x}_{k|k-1} = \sum_{i=0}^{4n_{x}} W^{\text{aug,}(m)}_{x,i} \chi_{\ i, k|k-1} \\
-        \mathcal{Y}_{k|k-1} = h(\chi_{k|k-1},\hat{w_{k}}) \\
-        \hat{y}_{k|k-1} = \sum_{i=0}^{4n_{x}} W^{\text{aug,}(m)}_{x,i} \mathcal{Y}_{\ i, k|k-1}
-    \end{align}
-    \item Calculate Kalman Gain
-    \begin{align}
-        P_{y_{k}} = \sum_{i=0}^{4n_{x}} W^{\text{aug,}(c)}_{x,i} (\mathcal{Y}_{i, k|k-1} - \hat{y}_{k|k-1})(\mathcal{Y}_{i, k|k-1} - \hat{y}_{k|k-1})^{T} + R_{n}  \\ %R_k is the same as R_{n} (Measurement Noise Covariance)
-        P_{x_{k}y_{x}} = \sum_{i=0}^{4n_{x}} W^{\text{aug,}(c)}_{x,i} (\chi_{\ i, k|k-1} - \hat{x}^{*}_{\ k|k-1})(\mathcal{Y}_{i, k|k-1} - \hat{y}_{k|k-1})^{T} \\
-        K_{k} = P_{x_{k}y_{x}}P^{-1}_{y_{k}}
-    \end{align}
-    \item Update Estimate and state covariance
-    \begin{equation}
-        P_{x_{k}} = P_{x_{k|k-1}} - K_{k}P_{y_{k}}K^{-1}_{k} 
-    \end{equation}
-    \begin{equation}
-        \hat{x}_{k} = \hat{x}_{k|k-1} + K_{k}(y_{k}-\hat{y}_{k|k-1}),
-    \end{equation}
-    
-\end{enumerate}
+\noindent In the paper, researchers had access to their own data sources and used an approach that was adapted from the UKF. Though we are not using their exact dataset, we will be simulating data using the same approach as the previous example. Unlike the paper, this example will be following UKF algorithm and then comparing the result of both methods. Ultimately, the goal of this example is to demonstrate how an UKF works on higher dimensional and more complex systems, how an UKF corrects for multiple variables, and how parameters can be adjusted to fit the model. \\
+
+\newpage
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale = 0.6]{Meskin_overall.png}
+    \caption{Performance of all state variables with the following conditions: R = 0.001, Q = (0.02 0.01 .03 .04) and initial values = (4, 1, 3, 4).
+    Paramaters included:  }% $, \alpha = 1, \kappa = 0  }
+    \label{map}
+\end{figure}
+
+\noindent Similar to the previous example, the system's true output is simulated using an ODE solver. We are given the differential equation for the four state variables. \\
+
+\noindent The paper was able to make the model converge faster by resetting the covariance to re-excite the model. By skipping this step, the three state variables without measurements converge significantly slower.
+
+\newpage
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale = 0.6]{Meskin_states.png}
+    \caption{Performance of all four state variables with one corrected state. The first state variable (blue) is the only one that is receiving measurements from the system. This explains why it is more accurate and converges better with the system, as compared with the other three states.}
+    \label{map}
+\end{figure}
+
+
+
+
+\noindent \textcolor{red}{Expand here on tweaking parameters}.In theory, values of $\kappa$ can be negative, but cannot be used on MATLAB. \\
+
+
+\noindent \textcolor{red}{Expand here on correcting for 1+ states}

@@ -55,8 +55,8 @@ The term 'unscented' was arbitrarily coined by the developer of the UKF, Jeffrey
         \begin{align*}
         P_{x_{0}} &= \mathbb{E}[(x_{0}-\hat{x}_{0})(x_{0}-\hat{x}_{0})^{T}] 
     \end{align*}
-    This step is the exact same as the first step of the KF and the EKF. We need to initialize these values so the model can begin generating and correcting predictions.
-    
+    This step is the exact same as the first step of the KF and the EKF. We need to initialize these values so the model can begin generating and correcting predictions. \\ \\
+    It is critical to choose initial values that are close to the actual values of the data. Failure to do causes the model to converge slowly.
         \item Calculate sigma points \\ \\
         Sigma points characterize the distribution of the data. The number of sigma points is deterministic and depends on the dimensions of the system. In general, a UFK will have  $2 \cdot d_x$ + 1 sigma points, where $d_x$ represents the dimension of the state vector \cite{inbook, inproceedings, Wan01theunscented}.  We use the equation below to generate a scalar value that determines how spread out the sigma points are from the mean. 
          \begin{align*}

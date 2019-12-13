@@ -6,6 +6,17 @@ J.~Gove and DY~Hollinger.
   and parameter estimation in problems of surface-atmosphere exchange.
 \newblock {\em Journal of Geophysical Research}, 111:21 PP.--21 PP., 04 2006.
 
+\bibitem{kinoshita_2013}
+Shuichi Kinoshita.
+\newblock Van der pol oscillator, 2013.
+
+\bibitem{article5}
+Nader Meskin, Hazem Nounou, Mohamed Nounou, and Aniruddha Datta.
+\newblock Parameter estimation of biological phenomena: An unscented kalman
+  filter approach.
+\newblock {\em IEEE/ACM transactions on computational biology and
+  bioinformatics / IEEE, ACM}, 10:537--43, 03 2013.
+
 \bibitem{article7}
 Matthew Rhudy, Roger Salguero, and Keaton Holappa.
 \newblock A kalman filtering tutorial for undergraduate students.
@@ -29,5 +40,9 @@ Eric~A. Wan and Rudolph Van~Der Merwe.
 \newblock The unscented kalman filter.
 \newblock In {\em Kalman Filtering and Neural Networks}, pages 221--280. Wiley,
   2001.
+
+\bibitem{weisstein_2019}
+Eric~W Weisstein.
+\newblock Van der pol equation, Dec 2019.
 
 \end{thebibliography}
