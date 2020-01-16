@@ -2,60 +2,48 @@
 \label{Van der Pol Example}
 
 
-Applying the UKF to the Van der Pol oscillator will be used as a simple example to demonstrate the impacts of measurement and process noise. The Van der Pol equation, so named after its developer Balthasar van der Pol, describes a self sustaining oscillator that create energy at small amplitudes and remove energy from large amplitudes. The Van der Pol equation describes a nonconservative oscillator (also known as a relaxation oscillator). Applications of the Van der Pol oscillators include circuits, vacuums, and modeling certain biological systems. 
- \cite{weisstein_2019}. The Van der Pol oscillator is represented by a nonlinear second order differential equation: \\
+Applying the UKF to the Van der Pol oscillator will be used as a simple example to demonstrate the impacts of measurement and process noise. The Van der Pol equation, so named after its developer Balthasar Van der Pol, describes a self sustaining oscillator that create energy at small amplitudes and remove energy from large amplitudes. The Van der Pol equation describes a nonconservative oscillator (also known as a relaxation oscillator). Applications of the Van der Pol oscillators include circuits, vacuums, and modeling biological systems
+ \cite{weisstein_2019}. The Van der Pol oscillator is represented by a nonlinear second order differential equation: 
 \begin{align*}
 \frac{d^2y}{dt^2} + \mu(y^2-1)\frac{dy}{dt} = 0
 \end{align*}   \\
-Here, $\mu$ is a damping coefficient. Therefore, for all $\mu < 0$, dampening occurs and the system tends to 0. The rate at which the system converges to zero is dependent on the size of $\mu$, with larger values taking longer to converge and smaller values converging much faster. If $\mu = 0$, the system becomes a simple harmonic oscillator, where motion is periodic. Lastly, if $\mu > 0$, the system enters a limit cycle.     \cite{kinoshita_2013}. \\ 
+where $\mu$ is a damping coefficient, $\frac{d^2y}{dt^2}$ is acceleration, $\frac{dy}{dt}$ is velocity, and $y$ is position. Therefore, for all $\mu < 0$, dampening occurs and the system tends to 0. The rate at which the system converges to zero is dependent on the size of $\mu$, with larger values taking longer to converge and smaller values converging faster. If $\mu = 0$, the system becomes a simple harmonic oscillator, where motion is periodic. Lastly, if $\mu > 0$, the system enters a limit cycle, which is an isolated closed trajectory. \cite{kinoshita_2013}. \\ 
 
-\noindent The UKF can be applied to this nonlinear system to determine where the system will be at a point in time. To do so, relevant state variables include position and velocity. Using the equation above, we are able to isolate the differential equations of these two state variables. In this case, we are assuming $\mu = 1$:\\ 
-
-\noindent From basic differential equations, we know that: 
-\begin{align*}
-   y = \text{position }
-  \end{align*}
- \begin{align*}
-  \frac{dy}{dt}  = v = \text{velocity}
-  \end{align*}
-  \begin{align*}
-  \frac{d^2y}{dt^2}  =  \frac{dv}{dt}  = -\mu (y^2 - 1)v - y =\text{acceleration}
-  \end{align*}
-  \begin{align*}
- 	\frac{dv}{dt}  +\mu(y ^2-1)v + y  = \text{rewritten Van der Pol equation}
- \end{align*}
- 
-\newpage
-
-\noindent State variable: let 1 and 2 be the placeholders of position and velocity
+\noindent The UKF can be applied to this nonlinear system to determine where the system will be at a point in time. To do so, relevant state variables include position and velocity.  \footnote{In Matlab, x(1) and x(2) represent position and velocity, respectively}
 \begin{align*}
 x_k = \begin{bmatrix}
           y\\ 
           v
-           \end{bmatrix}  =
-           \begin{bmatrix}
-           1 \\
-           2
-           \end{bmatrix}
+           \end{bmatrix}  
 \end{align*}
-We can use knowledge of differential equations associated with the state variables to generate the nonlinear transformation function $f$. 
+
+
+\noindent Transforming the Van der Pol equation from a second order differential equation to a first order differential equation makes it easier to define $f$, the state function of the system. By substituting $v$ for $\frac{dy}{dt}$, and $ \frac{dv}{dt} $ for  $\frac{d^2y}{dt^2}$ one can rewrite the Van der Pol equation as 
+  \begin{align*}
+ 	\frac{dv}{dt}  +\mu(y ^2-1)v + y = 0.
+ \end{align*}
+
+\noindent From this, we get the differential equations associated with the state variables to generate the nonlinear transformation function $f$. For the sake of simplicity, assuming $\mu = 1$, we get
 \begin{align*}
-f = \dot x_k  = \begin{bmatrix}
-          \dot y \\
-           \dot v
+\dot x_k  = 
+	\begin{bmatrix}
+           \frac{dy}{dt}  \\ \\
+           \frac{d^2y}{dt^2} 
+           \end{bmatrix} = 
+           \begin{bmatrix}
+          v \\ \\
+           \frac{dv}{dt} 
            \end{bmatrix}  =
            \begin{bmatrix}
-           v \\
-           -\mu (y^2 - 1)v - y 
+           v \\ \\
+           -1 (y^2 - 1)v - y 
            \end{bmatrix}=
            \begin{bmatrix}
-           v \\
-           a
-           \end{bmatrix} =
-           \begin{bmatrix}
-           x(2) \\
-          ( 1-x(2^2))x(2) - x(1)
-           \end{bmatrix}
+           1 & 0 \\ \\
+           1- y^2 - 1 - y 
+           \end{bmatrix} x_k 
+           =
+           f.
 \end{align*}
 
 

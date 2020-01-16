@@ -10,6 +10,11 @@ J.~Gove and DY~Hollinger.
 Shuichi Kinoshita.
 \newblock Van der pol oscillator, 2013.
 
+\bibitem{kohanbash_2014}
+David Kohanbash.
+\newblock Kalman filtering – a practical implementation guide (with code!),
+  Jan 2014.
+
 \bibitem{article5}
 Nader Meskin, Hazem Nounou, Mohamed Nounou, and Aniruddha Datta.
 \newblock Parameter estimation of biological phenomena: An unscented kalman
