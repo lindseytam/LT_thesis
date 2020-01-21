@@ -30,14 +30,35 @@ The Kalman Filter had many aeronautical applications, which include long-distanc
 
 \section{Kalman Filter Algorithm}
 
+The Kalman Filter predicts the system's state variable at the next time step given knowledge of the system. This is modeled by the formula.  
+
+\begin{align*}
+       x_{k+1} = F x_k + w_k,
+    \end{align*}
+    where $x_{k+1}$ is the state system at the next time step, $F$ is the state function, and $w_k$ is process noise. Here, measurement noise is normally distributed with a mean of 0.
+
+To initialize the model, it is assumed that the state system at step 0 is normally distributed, or
+\begin{align*}
+	x_0 = N(m_0, c_0),
+\end{align*}
+	where $m_0$ is the mean of the data and $c_0$ is the covariance.
+The estimate of the the system measurement, $y_k$, is given by 
+\begin{align*}
+	y_k = H x_k + v_k,
+\end{align*}
+where $H_k$ is the observation function and $v_k$ is measurement noise, Here, $v_k$ is normally distributed with a mean of 0. The initial assumption, measurement noise, and process noise are all independent of one another.
+	
+	
+
 \begin{enumerate}
-  \item Begin by initializing the state estimate and the initial state covariance matrix. The state estimate, $x_0$, can be found by taking the expected value of the data where data is normally distributed which is denoted by:  
+  \item Begin by initializing the state estimate and the initial state covariance matrix. The state estimate, $x_0$, can be found by taking the expected value of the data where data is normally distributed. If the system states are finite, the expectation is denoted by
     \begin{align*}
-       \hat x_0 = \mathbb{E}[x_0]  = \begin{bmatrix}
+        x_0 = \mathbb{E}[x_0]  = \begin{bmatrix}
            x_1 \\
            \vdots \\
            x_n 
-         \end{bmatrix} .
+         \end{bmatrix}.
+      
     \end{align*}
     The state covariance matrix, $P_0$, is a square matrix whose contents are the covariance of the pairwise elements
     \footnote{Recall that the covariance of a variable with itself is the variance of the variable}
@@ -56,26 +77,26 @@ The Kalman Filter had many aeronautical applications, which include long-distanc
    
   \item After initializing the state estimate and state covariance, a prediction can be generated. The estimate of the system at the next time step, $x_{k+1}$,  is given by
   \begin{align*}
-      x_{k+1} = F x_{k-1} +  G u_{k-1} + w_{k-1} ,
+      x_{k+1} = F x_{k} +  G u_{k} + w_{k} ,
   \end{align*} 
-  where state matrix F and input matrix G is how the system is defined. Every state variable contained in $x_k$ is defined by a linear differential equation. These linear differential equations can be used to generate the F and G matrices. Therefore, F should be a square matrix whose dimension is equal to the number of states variables and G can be a matrix (or in some cases a vector), depending on the dimension of input vector u. \\ \\
+  where $F$ is the state matrix, $G$ is the F and input matrix, $u_k$ is an input vector and $w_k$ is the process noise vector. Every state variable contained in $x_k$ is defined by a linear differential equation. These linear differential equations can be used to generate the F and G matrices. Therefore, F should be a square matrix whose dimension is equal to the number of states variables and G can be a matrix (or in some cases a vector), depending on the dimension of input vector u. \\ \\
   $u_k$  is an input vector, which is a measurable value that helps define the system, but is not contained in the state vector. Depending on how the system is defined, $u_k$  can be a constant value or it can be a value dependent on time step k. \\ \\
   $w_k$ is the process noise vector at time k. Process noise can be thought of as the model's accuracy. When process noise is 0, it implies that the model is perfectly accurate and does not have to correct for incoming system measurements. On the other hand, high process noise will essentially restate the system based on incoming measurements. $w_k$ has the same dimensions as $x_k$, allowing us to identify whether or not to adjust the equations for the state variables. When all values of  $w_k$ equal 0, it implies that the linear differential equations we are using to define the state variables have no error. 
   
   
   
-  \item Use the state covariance matrix to calculate Kalman Gain ($K_k$) . The state covariance matrix at time step $k$ given the last time step, $k-1$, is 
+  \item Next, the state covariance matrix to calculate Kalman Gain. The state covariance matrix at time step $k$ given the last time step, is 
     \begin{align*} 
         P_{k | k -1} = F P_{k - 1} F^T + Q_{k-1}, 
     \end{align*}
     where $F^T$ is the transpose of $F$, and $Q_{k}$ is the process noise covariance of $w_k$.
-    The Kalman Gain at time step $k$, is given by:
+    The Kalman Gain at time step $k$, is given by
     \begin{align*} 
         K_k = P_{k | k - 1} H^T_K (H_k P_{k | k - 1} H^T_K + R_k)^{-1},
     \end{align*}
       where $H$ is the observation matrix and $R$ is measurement noise covariance. 
       $H$ enables the state variables to be linearly transformed to match the outputs of the system. The dimensions of $H$ reflects which state variables have measurable values in the system. It is not assumed that every state variable is measurable, so $H$ allows us to compare the measurable state variables to $x_k$. Simple applications of $H$ include creating matrices with 0's and 1's, with 1's denoting that a state variable is measurable and a 0's representing non-measurable states. In other cases, $H$ is an integer used as a scaling factor. \\ \\
-     The Kalman Gain is the main component of the corrective aspect of the KF. The Kalman Gain is a measure of how much to change the model based on incoming data. Low values of the Kalman Gain imply the model is accurate while higher values indicate the model should adjust based on the incoming data.  \\ \\c
+     The Kalman Gain is the main component of the corrective aspect of the KF. The Kalman Gain is a measure of how much to change the model based on incoming data. Low values of the Kalman Gain imply the model is accurate while higher values indicate the model should adjust based on the incoming data.  \\ \\
      From this equation, one can see that balancing $Q$ and $R$ is critical for model performance. Larger values of $Q$ indicate higher modeling error, which leads to a higher Kalman Gain and increased model correction. On the other hand, large values of $R$ imply high measurement error, leading to a lower Kalman Gain and less model correction. 
      
    
