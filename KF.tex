@@ -30,54 +30,51 @@ The Kalman Filter had many aeronautical applications, which include long-distanc
 
 \section{Kalman Filter Algorithm}
 
-The Kalman Filter works by generating predictions and making correction at various time steps. Let these time steps be denoted as $k$, such that $ k $ is a nonnegative interger. 
+Before  delving into the formal steps of the Kalman Filter, it is important to understand the underlying foundation of this method. The Kalman Filter works by generating predictions and making correction at various time steps. Let these time steps be denoted as $k$, such that $ k $ is a nonnegative integer and let $x_k$ be the estimate of the state variables at time $k$ with initial assumptions of the state variables beginning at $x_0$. 
 
 \begin{figure}[h]
     \centering
     \includegraphics[scale = 0.3]{kgraph.png}
-    \caption{An diagram showing discretized time steps of a system.}
-    \label{coffee}
+    \caption{A diagram showing discretized time steps of a system. Though this diagram depicts time steps that are equal, this should not be assumed for all cases.}
 \end{figure}
 
-\noindent The Kalman Filter predicts the system's state variable at the next time step given knowledge of the system. This is modeled by the formula
-\begin{align*}
-       x_{k+1} = F x_k + w_k,
-    \end{align*}
-    where $x_{k+1}$ is the state system at the next time step, $F$ is the state function, and $w_k$ is process noise.  \\
-
-The estimate of the the system measurement at the next time step, call it $y_{k+1}$, is given by 
-\begin{align*}
-	y_{k+1} \approx H x_{k+1} + v_{k+1}
-\end{align*}
-where $H_k$ is the observation function and $v_k$ is measurement noise, Here, $v_k$ is normally distributed with a mean of 0. The initial assumption, measurement noise, and process noise are all independent of one another.
-
+\noindent Another important aspect of the KF is the incorporation of state measurements. The estimate of the the system measurement at the next time step, call it $y_{k+1}$, is given by 
 \begin{align*}
 	y_{k+1} \approx H x_{k+1} + v_{k+1},
 \end{align*}
+where $H_k$ is the observation function and $v_k$ is measurement noise. \\
 
-\noindent To initialize the model, the following probabilistic structures are assumed:
-\begin{enumerate}
-\item $x_0 = \mathcal{N}(m_0, c_0) $
-\item $w_k = \mathcal{N}(0, c_1)$
-\item $v_k = \mathcal{N}(0, c_2)$
-
-\end{enumerate} 
-
-
-Approximate $\frac{dx}{dt}$ using the limit definition of derivative:
+\noindent The goal of the Kalman Filter is to predict the new state of a system, after it undergoes some transformation. Let this be represented by 
+\begin{align*}
+	\frac{dx}{dt} = f(x) + \varepsilon ',
+\end{align*}
+where $\frac{dx}{dt}$ is the prediction of the states, $f(x)$ is a function that transforms the states, and $ \varepsilon '$ is internal system noise. Assuming we have some understanding of the system, we can represent this transformation using matrix $M$ to approximate the equation above as
+\begin{align*}
+	\frac{dx}{dt} \approx M'x + \varepsilon '.
+\end{align*}
+Next, approximate $\frac{dx}{dt}$ using the limit definition of derivative:
 \begin{align*}
 	\frac{x_{k+1} - x_k}{\Delta t} \approx M'x_k + \varepsilon '_k \\
 	x_{k+1} - x_k \approx M'x_k \Delta t + \varepsilon '_k  \Delta t \\
 	x_{k+1} \approx M'x_k \Delta t + \varepsilon '_k  \Delta t + x_k \\
 	x_{k+1} \approx (M' \Delta t + I)x_k + \varepsilon '_k  \Delta t
-\end{align*}.
-
-From here, we can substitute $M$ for $M' \Delta t + I$ and $\varepsilon_k$ for  $\varepsilon '_k  \Delta t $ to get
-\begin{align*}
-	x_{k+1} \approx M x_k + \varepsilon_k   k \in \mathbb{Z}.
 \end{align*}
 
-\\ \\ 
+\noindent From here, substitute $M$ for $M' \Delta t + I$ and $\varepsilon_k$ for  $\varepsilon '_k  \Delta t $ to get
+\begin{align*}
+	x_{k+1} \approx M x_k + \varepsilon_k,
+\end{align*}
+which relies on the assumption of the following probabilistic structures:
+\begin{enumerate}
+\item $x_0 = \mathcal{N}(m_0, c_0) $
+\item $\varepsilon_k = \mathcal{N}(0, c_1)$
+\item $v_k = \mathcal{N}(0, c_2)$
+\item $x_0, \varepsilon_k$, and $ v_k $ are all independent of one another.
+\end{enumerate} 
+
+\noindent This equation is significant to the generation of predictions and will continue to be used in different versions of the Kalman Filter. \\ 
+
+
 
 \begin{enumerate}
   \item Begin by initializing the state estimate and the initial state covariance matrix. The state estimate, $x_0$, can be found by taking the expected value of the data where data is normally distributed. If the system states are finite, the expectation is denoted by
@@ -135,13 +132,13 @@ From here, we can substitute $M$ for $M' \Delta t + I$ and $\varepsilon_k$ for  
     \end{align*}
     
     where $v_k$ is measurement noise, which is added to account for measurement error.
-    The corrected prediction, $x_k$, is given by:
+    The corrected prediction, $x_k$, is given by
     \begin{align*} 
         x_k = x_{k - 1} + K_k(y_k - \hat y_{k}),
     \end{align*}
    where  $y_k$ is the actual measurements of the system, $K_k$ is the Kalman Gain, and $x_{k-1}$ are the values of the state variable at the last time step. $\hat y_k$ is a way of transforming the prediction (using $H$) into a format that can be compared with $y_k$. Subtracting the actual measurements from the predicted measurements is necessary, because $y_k$ does not always contain measurements for all variables in state vector $x_k$. The quantity $y_k - \hat y_{k}$ is also known as measurement residual or innovation.  \\
    
-     \item The final step is to update the state covariance matrix, $P_k $, through the equation:
+     \item The final step is to update the state covariance matrix, $P_k $, through the equation
     \begin{align*} 
         P_k = (I - K_k H_k) P_{k | k-1},
     \end{align*}
