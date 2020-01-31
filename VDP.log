@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  12 DEC 2019 10:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  12 DEC 2019 18:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -9,11 +9,11 @@ LaTeX2e <2018-04-01> patch level 2
 Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
 ./VDP.tex:1: Undefined control sequence.
 l.1 \section
-            {Van Der Pol Example}
+            {Van der Pol Example}
 ? 
 ./VDP.tex:1: Emergency stop.
 l.1 \section
-            {Van Der Pol Example}
+            {Van der Pol Example}
 End of file on the terminal!
 
  

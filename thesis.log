@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  20 JAN 2020 10:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  30 JAN 2020 20:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -500,28 +500,7 @@ Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'english'.
 
-(./thesis.aux (./Introduction.aux) (./KF.aux
-
-LaTeX Warning: Label `coffee' multiply defined.
-
-) (./EKF.aux) (./UKF.aux) (./VDP.aux
-
-LaTeX Warning: Label `fig:f1' multiply defined.
-
-
-LaTeX Warning: Label `sub@fig:f1' multiply defined.
-
-
-LaTeX Warning: Label `fig:f2' multiply defined.
-
-
-LaTeX Warning: Label `sub@fig:f2' multiply defined.
-
-) (./Meskin.aux
-
-LaTeX Warning: Label `map' multiply defined.
-
-) (./Appendix.aux))
+(./thesis.aux)
 \openout1 = `thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
@@ -592,7 +571,7 @@ LaTeX Info: Redefining \nameref on input line 26.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
-<pomonalogo.pdf, id=73, 464.73625pt x 194.7275pt>
+<pomonalogo.pdf, id=4, 464.73625pt x 194.7275pt>
 File: pomonalogo.pdf Graphic file (type pdf)
 <use pomonalogo.pdf>
 Package pdftex.def Info: pomonalogo.pdf  used on input line 28.
@@ -614,51 +593,14 @@ ge.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.32 \end{abstract}
-                    [1] (./thesis.toc
-Overfull \hbox (0.61113pt too wide) detected at line 9
- []\OT1/cmr/m/n/10 xvii
- []
+                    [1]
 
+Package hyperref Warning: old toc file detected, not used; run LaTeX again.
 
-Overfull \hbox (0.33336pt too wide) detected at line 12
- []\OT1/cmr/m/n/10 xxv
- []
-
-
-Overfull \hbox (5.88893pt too wide) detected at line 13
- []\OT1/cmr/m/n/10 xxvii
- []
-
-
-Overfull \hbox (8.66672pt too wide) detected at line 14
- []\OT1/cmr/m/n/10 xxviii
- []
-
-
-Overfull \hbox (8.66672pt too wide) detected at line 16
- []\OT1/cmr/m/n/10 xxxiii
- []
-
-
-Overfull \hbox (11.16673pt too wide) detected at line 17
- []\OT1/cmr/m/n/10 xxxvii
- []
-
-
-Overfull \hbox (13.94452pt too wide) detected at line 18
- []\OT1/cmr/m/n/10 xxxviii
- []
-
-
-Overfull \hbox (13.94452pt too wide) detected at line 19
- []\OT1/cmr/m/n/10 xxxviii
- []
-
-)
 \tf@toc=\write4
 \openout4 = `thesis.toc'.
 
- [1
+[1
 
 ]
 \openout2 = `Introduction.aux'.
@@ -679,6 +621,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--6
  (./KF.tex
 Chapter 2.
 
+LaTeX Warning: Citation `inbook' on page iii undefined on input line 4.
+
+
+LaTeX Warning: Citation `inproceedings' on page iii undefined on input line 4.
+
+
+LaTeX Warning: Citation `article7' on page iii undefined on input line 4.
+
+
 LaTeX Warning: Citation `kalmanbio' on page iii undefined on input line 6.
 
 
@@ -686,11 +637,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--7
 
  []
 
-<coffee.png, id=122, 749.80125pt x 646.415pt>
+<coffee.png, id=33, 749.80125pt x 646.415pt>
 File: coffee.png Graphic file (type png)
 <use coffee.png>
 Package pdftex.def Info: coffee.png  used on input line 10.
 (pdftex.def)             Requested size: 299.91519pt x 258.56142pt.
+
+LaTeX Warning: Citation `article7' on page iii undefined on input line 11.
+
+
+LaTeX Warning: Citation `article7' on page iii undefined on input line 11.
+
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -699,11 +656,19 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 ]
-<diagram.png, id=133, 956.57375pt x 478.78876pt>
+<diagram.png, id=40, 956.57375pt x 478.78876pt>
 File: diagram.png Graphic file (type png)
 <use diagram.png>
 Package pdftex.def Info: diagram.png  used on input line 19.
 (pdftex.def)             Requested size: 286.97433pt x 143.63773pt.
+
+
+LaTeX Warning: Citation `kohanbash_2014' on page iv undefined on input line 20.
+
+
+
+LaTeX Warning: Citation `kohanbash_2014' on page iv undefined on input line 20.
+
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -715,36 +680,62 @@ LaTeX Warning: Citation `kalmanbio' on page iv undefined on input line 26.
 LaTeX Warning: Citation `Kalman_bio' on page iv undefined on input line 26.
 
 [4 <./coffee.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 65--68
+<kgraph.png, id=47, 1032.85875pt x 237.88875pt>
+File: kgraph.png Graphic file (type png)
+<use kgraph.png>
+Package pdftex.def Info: kgraph.png  used on input line 37.
+(pdftex.def)             Requested size: 309.86002pt x 71.36716pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 45--47
 
  []
 
-[5 <./diagram.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 73--77
+[5 <./diagram.png> <./kgraph.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 78--81
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 73--77
+Underfull \hbox (badness 10000) in paragraph at lines 78--81
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 78--81
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 104--107
 
  []
 
 [6]
-Underfull \hbox (badness 10000) in paragraph at lines 88--93
+Underfull \hbox (badness 10000) in paragraph at lines 112--116
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 88--93
+Underfull \hbox (badness 10000) in paragraph at lines 112--116
+
+ []
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 127--132
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 104--106
+Underfull \hbox (badness 10000) in paragraph at lines 127--132
 
  []
 
-[7] [8]) [9]
+
+Underfull \hbox (badness 10000) in paragraph at lines 143--145
+
+ []
+
+[8] [9]) [10]
 \openout2 = `EKF.aux'.
 
  (./EKF.tex
@@ -759,16 +750,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--5
 
  []
 
-[10
+[11
 
 
 
-] [11]) [12]
+] [12]) [13]
 \openout2 = `UKF.aux'.
 
  (./UKF.tex
 Chapter 4.
 
+LaTeX Warning: Citation `inbook' on page xiv undefined on input line 4.
+
+
+LaTeX Warning: Citation `Wan01theunscented' on page xiv undefined on input line
+ 4.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 4--9
 
  []
@@ -778,7 +776,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--9
 
  []
 
-[13
+[14
 
 
 
@@ -793,21 +791,34 @@ Underfull \hbox (badness 10000) in paragraph at lines 57--60
  []
 
 
+LaTeX Warning: Citation `inbook' on page xv undefined on input line 61.
+
+
+LaTeX Warning: Citation `inproceedings' on page xv undefined on input line 61.
+
+
+LaTeX Warning: Citation `Wan01theunscented' on page xv undefined on input line 
+61.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 60--62
 
  []
 
-[14]
+[15]
 Underfull \hbox (badness 10000) in paragraph at lines 64--67
 
  []
+
+
+LaTeX Warning: Citation `article6' on page xvi undefined on input line 78.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 77--79
 
  []
 
-[15]
+[16]
 Underfull \hbox (badness 10000) in paragraph at lines 106--108
 
  []
@@ -817,10 +828,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 125--127
 
  []
 
-[16]) [17]
+[17]) [18]
 \openout2 = `VDP.aux'.
 
  (./VDP.tex
+
+LaTeX Warning: Citation `weisstein_2019' on page xix undefined on input line 6.
+
+
+
+LaTeX Warning: Citation `kinoshita_2013' on page xix undefined on input line 10
+.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 9--11
 
  []
@@ -830,7 +850,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 50--51
 
  []
 
-[18
+[19
 
 
 ]
@@ -839,15 +859,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 52--53
  []
 
 
-LaTeX Warning: Citation `matlab /& simulink' on page xix undefined on input lin
-e 54.
+LaTeX Warning: Citation `matlab /& simulink' on page xx undefined on input line
+ 54.
 
-<VDP.png, id=253, 562.2606pt x 421.575pt>
+<VDP.png, id=162, 562.2606pt x 421.575pt>
 File: VDP.png Graphic file (type png)
 <use VDP.png>
 Package pdftex.def Info: VDP.png  used on input line 58.
 (pdftex.def)             Requested size: 337.35896pt x 252.94695pt.
-<VDP_badinitial.png, id=254, 562.2606pt x 421.575pt>
+<VDP_badinitial.png, id=163, 562.2606pt x 421.575pt>
 File: VDP_badinitial.png Graphic file (type png)
 <use VDP_badinitial.png>
 Package pdftex.def Info: VDP_badinitial.png  used on input line 64.
@@ -855,32 +875,36 @@ Package pdftex.def Info: VDP_badinitial.png  used on input line 64.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<VDP_highMN.png, id=255, 562.2606pt x 421.575pt>
+<VDP_highMN.png, id=164, 562.2606pt x 421.575pt>
 File: VDP_highMN.png Graphic file (type png)
 <use VDP_highMN.png>
 Package pdftex.def Info: VDP_highMN.png  used on input line 71.
 (pdftex.def)             Requested size: 172.5pt x 129.33603pt.
-<VDP_lowMN.png, id=256, 562.2606pt x 421.575pt>
+<VDP_lowMN.png, id=165, 562.2606pt x 421.575pt>
 File: VDP_lowMN.png Graphic file (type png)
 <use VDP_lowMN.png>
 Package pdftex.def Info: VDP_lowMN.png  used on input line 73.
 (pdftex.def)             Requested size: 172.5pt x 129.33603pt.
-<VDP_highPN.png, id=257, 562.2606pt x 421.575pt>
+<VDP_highPN.png, id=166, 562.2606pt x 421.575pt>
 File: VDP_highPN.png Graphic file (type png)
 <use VDP_highPN.png>
 Package pdftex.def Info: VDP_highPN.png  used on input line 81.
 (pdftex.def)             Requested size: 172.5pt x 129.33603pt.
-<VDP_lowPN.png, id=258, 562.2606pt x 421.575pt>
+<VDP_lowPN.png, id=167, 562.2606pt x 421.575pt>
 File: VDP_lowPN.png Graphic file (type png)
 <use VDP_lowPN.png>
 Package pdftex.def Info: VDP_lowPN.png  used on input line 83.
 (pdftex.def)             Requested size: 172.5pt x 129.33603pt.
-) [19 <./VDP.png (PNG copy)>] [20 <./VDP_badinitial.png (PNG copy)>] [21 <./VDP
+) [20 <./VDP.png (PNG copy)>] [21 <./VDP_badinitial.png (PNG copy)>] [22 <./VDP
 _highMN.png (PNG copy)> <./VDP_lowMN.png (PNG copy)> <./VDP_highPN.png (PNG cop
 y)> <./VDP_lowPN.png (PNG copy)>]
 \openout2 = `Meskin.aux'.
 
  (./Meskin.tex
+
+LaTeX Warning: Citation `article5' on page xxiii undefined on input line 4.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 4--5
 
  []
@@ -890,11 +914,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 6--7
 
  []
 
-[22
+[23
 
 
 ]
-<Meskin_overall.png, id=285, 562.2606pt x 421.575pt>
+<Meskin_overall.png, id=194, 562.2606pt x 421.575pt>
 File: Meskin_overall.png Graphic file (type png)
 <use Meskin_overall.png>
 Package pdftex.def Info: Meskin_overall.png  used on input line 12.
@@ -904,8 +928,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 18--19
 
  []
 
-[23 <./Meskin_overall.png (PNG copy)>]
-<Meskin_states.png, id=292, 562.2606pt x 421.575pt>
+[24 <./Meskin_overall.png (PNG copy)>]
+<Meskin_states.png, id=200, 562.2606pt x 421.575pt>
 File: Meskin_states.png Graphic file (type png)
 <use Meskin_states.png>
 Package pdftex.def Info: Meskin_states.png  used on input line 26.
@@ -915,7 +939,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 34--35
 
  []
 
-) [24 <./Meskin_states.png (PNG copy)>] (./thesis.bbl) [25
+) [25 <./Meskin_states.png (PNG copy)>] (./thesis.bbl) [26
 
 
 ]
@@ -940,11 +964,11 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 3.
- [26
+ [27
 
 
 ]
-[27]) (./vdpStateFcn.m [28]) (./Meskin.m [29] [30] [31] [32]) [33]pdfTeX warnin
+[28]) (./vdpStateFcn.m [29]) (./Meskin.m [30] [31] [32] [33]) [34]pdfTeX warnin
 g (ext4): destination with the same identifier (name{chapter.2}) has been alrea
 dy used, duplicate ignored
 <to be read again> 
@@ -957,33 +981,39 @@ pdfTeX warning (ext4): destination with the same identifier (name{section.2.1})
 <to be read again> 
                    \relax 
 l.33 \section{Main function}
-                             (./Meskin.m [34
+                             (./Meskin.m [35
 
-] [35] [36] [37])
-(./MeskinStateFcn.m) [38] (./MeskinMeasurementNonAddFcn.m)
-(./parameter_values.m [39]) [40])
+] [36] [37] [38])
+(./MeskinStateFcn.m) [39] (./MeskinMeasurementNonAddFcn.m)
+(./parameter_values.m [40]) [41])
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 59.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 59.
  (./thesis.aux (./Introduction.aux) (./KF.aux) (./EKF.aux) (./UKF.aux) (./VDP.a
 ux) (./Meskin.aux) (./Appendix.aux))
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 59.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 59.
-Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: E8DD9DFA91B08F8ED1A7BA4CF52F0640;1118.
 
+
+Package rerunfilecheck Warning: File `thesis.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `thesis.out':
+(rerunfilecheck)             Before: D41D8CD98F00B204E9800998ECF8427E;0
+(rerunfilecheck)             After:  E8DD9DFA91B08F8ED1A7BA4CF52F0640;1118.
 
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: There were multiply-defined labels.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 59.
  ) 
 Here is how much of TeX's memory you used:
- 13206 strings out of 492649
- 191232 string characters out of 6129622
- 445315 words of memory out of 5000000
- 16247 multiletter control sequences out of 15000+600000
+ 13177 strings out of 492649
+ 190934 string characters out of 6129622
+ 440078 words of memory out of 5000000
+ 16228 multiletter control sequences out of 15000+600000
  12157 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  44i,16n,51p,1361b,2382s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1006,10 +1036,10 @@ texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2018/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2018/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2018/texm
 f-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (42 pages, 1195144 bytes).
+Output written on thesis.pdf (43 pages, 1215779 bytes).
 PDF statistics:
- 1060 PDF objects out of 1200 (max. 8388607)
- 972 compressed objects within 10 object streams
- 602 named destinations out of 1000 (max. 500000)
- 200 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 983 PDF objects out of 1000 (max. 8388607)
+ 895 compressed objects within 9 object streams
+ 607 named destinations out of 1000 (max. 500000)
+ 61 words of extra memory for PDF output out of 10000 (max. 10000000)
 

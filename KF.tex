@@ -30,25 +30,54 @@ The Kalman Filter had many aeronautical applications, which include long-distanc
 
 \section{Kalman Filter Algorithm}
 
-The Kalman Filter predicts the system's state variable at the next time step given knowledge of the system. This is modeled by the formula.  
+The Kalman Filter works by generating predictions and making correction at various time steps. Let these time steps be denoted as $k$, such that $ k $ is a nonnegative interger. 
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale = 0.3]{kgraph.png}
+    \caption{An diagram showing discretized time steps of a system.}
+    \label{coffee}
+\end{figure}
+
+\noindent The Kalman Filter predicts the system's state variable at the next time step given knowledge of the system. This is modeled by the formula
 \begin{align*}
        x_{k+1} = F x_k + w_k,
     \end{align*}
-    where $x_{k+1}$ is the state system at the next time step, $F$ is the state function, and $w_k$ is process noise. Here, measurement noise is normally distributed with a mean of 0.
+    where $x_{k+1}$ is the state system at the next time step, $F$ is the state function, and $w_k$ is process noise.  \\
 
-To initialize the model, it is assumed that the state system at step 0 is normally distributed, or
+The estimate of the the system measurement at the next time step, call it $y_{k+1}$, is given by 
 \begin{align*}
-	x_0 = N(m_0, c_0),
-\end{align*}
-	where $m_0$ is the mean of the data and $c_0$ is the covariance.
-The estimate of the the system measurement, $y_k$, is given by 
-\begin{align*}
-	y_k = H x_k + v_k,
+	y_{k+1} \approx H x_{k+1} + v_{k+1}
 \end{align*}
 where $H_k$ is the observation function and $v_k$ is measurement noise, Here, $v_k$ is normally distributed with a mean of 0. The initial assumption, measurement noise, and process noise are all independent of one another.
-	
-	
+
+\begin{align*}
+	y_{k+1} \approx H x_{k+1} + v_{k+1},
+\end{align*}
+
+\noindent To initialize the model, the following probabilistic structures are assumed:
+\begin{enumerate}
+\item $x_0 = \mathcal{N}(m_0, c_0) $
+\item $w_k = \mathcal{N}(0, c_1)$
+\item $v_k = \mathcal{N}(0, c_2)$
+
+\end{enumerate} 
+
+
+Approximate $\frac{dx}{dt}$ using the limit definition of derivative:
+\begin{align*}
+	\frac{x_{k+1} - x_k}{\Delta t} \approx M'x_k + \varepsilon '_k \\
+	x_{k+1} - x_k \approx M'x_k \Delta t + \varepsilon '_k  \Delta t \\
+	x_{k+1} \approx M'x_k \Delta t + \varepsilon '_k  \Delta t + x_k \\
+	x_{k+1} \approx (M' \Delta t + I)x_k + \varepsilon '_k  \Delta t
+\end{align*}.
+
+From here, we can substitute $M$ for $M' \Delta t + I$ and $\varepsilon_k$ for  $\varepsilon '_k  \Delta t $ to get
+\begin{align*}
+	x_{k+1} \approx M x_k + \varepsilon_k   k \in \mathbb{Z}.
+\end{align*}
+
+\\ \\ 
 
 \begin{enumerate}
   \item Begin by initializing the state estimate and the initial state covariance matrix. The state estimate, $x_0$, can be found by taking the expected value of the data where data is normally distributed. If the system states are finite, the expectation is denoted by
@@ -58,8 +87,8 @@ where $H_k$ is the observation function and $v_k$ is measurement noise, Here, $v
            \vdots \\
            x_n 
          \end{bmatrix}.
-      
     \end{align*}
+    
     The state covariance matrix, $P_0$, is a square matrix whose contents are the covariance of the pairwise elements
     \footnote{Recall that the covariance of a variable with itself is the variance of the variable}
     , or
