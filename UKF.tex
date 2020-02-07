@@ -10,9 +10,128 @@ The term 'unscented' was arbitrarily coined by the developer of the UKF, Jeffrey
 \end{displayquote}
 
 \section{Unscented Kalman Filter Algorithm}
-\begin{center}
+
+\begin{enumerate}
+    \item The first step is to initialize state vector, $x_0$, and covariance, $P_{x_0}$, which is exactly similar to both the KF and the EKF. Since we know that the $x_0$ is normally distributed, the expectation can be calculated by
+    \begin{align*}
+    	x_0 = \mathbb{E}[x_0]   = \sum^n_{i = a} x_i p_i = [x_a p_a + x_b p_b + \hdots + x_n p_n]^T,
+        %\hat{x}_{0} &= \mathbb{E}[x_{0}] 
+    \end{align*}
+   where $x_0= [x_a, x_b, \hdots, x_n]^T$, $p_a, p_b, \hdots, p_n$  is the respective probability of obtaining each state variable and $T$ is the transpose. Next initialize the state covariance, by
+    \begin{align*}
+        P_{x_{0}} &= \mathbb{E}[(x_{0}-\hat{x}_{0})(x_{0}-\hat{x}_{0})^{T}].
+    \end{align*}
+\noindent We need to initialize these values so the model can begin generating and correcting predictions. \\ \\
+    It is critical to choose initial values that are close to the actual values of the data. Failure to do causes the model to converge slowly.
     
+        \item Unlike the KF and EKF, the UKF requires the calculation of sigma points, which is a way characterizing the distribution of the data. The number of sigma points is deterministic and depends on the dimensions of the system. In general, a UFK will have  $2 \cdot d_x$ + 1 sigma points, where $d_x$ represents the dimension of the state vector \cite{inbook, inproceedings, Wan01theunscented}.  All sigma points are stored in a sigma point matrix, called $\chi$. To get a general idea about the distribution of the data, we use $\lambda$, which is a scalar value that determines how spread out the sigma points are from the mean. $\lambda$ can be calculated by
+         \begin{align*}
+        \lambda = \alpha^{2}(d_{x}+\kappa)-d_{x},
+         \end{align*}
+         where  $\alpha$ and $\kappa$ are both parameters that control for the spread of sigma points around the mean value of the state. The spread of the sigma points is proportional to $\alpha$ . For both $\alpha$ and $\kappa $,  the smaller the values are, the closer the sigma points are to the mean.\\ \\
+       Another parameter of the UKF is $\beta$, which uses information regarding state distribution to adjust sigma points. $\beta$ has a default value of 2 if the data is Gaussian (which is an assumption we will make throughout this paper).  \\ \\
+       Since the goal of this step is to characterize the distribution, set one of these sigma points to the mean, $\chi_{\ 0,k-1}$ which can be expressed as 
+    \begin{align*}
+        \chi_{\ 0,k-1} &= x_{k-1} ,
+     \end{align*}
+     where 0 is a row on $\chi$ and $k-1$ is the time step. Then allocate half of the remaining points will be smaller than the mean and the other half will be larger than the mean by
+         \begin{align*}
+        \chi_{\ i,k-1} &= \hat{x}_{k-1} +  \bigg(\sqrt{(d_{x}+\lambda )P_{x_{k-1}}}\bigg)_{i} \quad \quad \quad i=1,\dots, d_x, 
+        \end{align*}
+         \begin{align*}
+        \chi_{\ i,k-1} &= \hat{x}_{k-1} - \bigg(\sqrt{(d_{x}+\lambda )P_{x_{k-1}}}\bigg)_{i} \quad \quad \quad i=d_x + 1,\dots,2 d_x + 1,
+        \end{align*}
+        where $(\sqrt{(d_{x}+\lambda)P_{x_{k-1}}})$ is a matrix, and the $i$ subscript is the $i^{th}$ column of the matrix. 
+        Recall that the square root of a matrix, satisfies the following condition: $A = B^2$, where $A$ and $B$ are both matrices. 
+        
+        
+        \item Next, we must calculate a weight for each sigma point. Weights are scalars used to calculate posterior sigma points after they have undergone a nonlinear transformation. One set of weights,  $W^{(m)}$, will be used to calculate the posterior mean while another set of weights $W^{(c)}$ will be used to calculate the posterior covariance. Weights can have positive or negative values, but will ultimately sum to 1 \cite{article6}.
+        
+        Calculations of the weights at the initial time step follow a formula distinct from the other time steps
+         \textcolor{red}{because........}. $W^{(m)}_{0} $ can be found by
+            \begin{align*}
+        W^{(m)}_{0} = \frac{\lambda}{d_{x}+ \lambda} ,
+         \end{align*}
+         where the 0 is the time step. Similarly, the weight for the covariance in the initial time step, $W^{(c)}_{0}$, is given by
+        \begin{align*}
+        W^{(c)}_{0} = \frac{\lambda}{d_{x}+ \lambda} + (1 - \alpha^{2} + \beta) ,
+         \end{align*}
+          \textcolor{red}{expand why parameters come in here........}. In later time steps, $W^{(m)}_{i} $ and$ W^{(c)}_{i}$ follow the same equation, given by
+               \begin{align*}
+        W^{(m)}_{i} = W^{(c)}_{i} = \frac{\lambda}{2(d_{x}+ \lambda) } \quad \quad \quad i=1,\dots,2d_{x}.
+            \end{align*}
+           
+          
+           
+        \item This step performs a nonlinear transformation on the sigma point matrix, $\chi$, in order to generate a prediction and provide an update on the covariance matrix. After $\chi$ undergoes a nonlinear transformation, $f$, the result is a transformed sigma point matrix at time step $k$ given the last time step, $k-1$, which will is called $\chi_{k | k - 1}$ and is given by
+        \begin{align*}
+        \chi_{k | k - 1} = f(\chi).
+        \end{align*}
+        
+        
+        Though $\chi$ has a Gaussian distribution,  $ \chi_{k | k - 1} $ does not because it has been transformed by the nonlinear state function $f$. The sum of the columns in $ \chi_{k | k - 1} $ and the weights calculated in step 3 will then be used to generate a prediction of the state variables, $x_k$, by 
+        \textcolor{red}{expand on why this works....}
+        \begin{align*}
+         x_{k} = \sum^{2d_x}_{i = 0} W_i^{(m)} \chi_{i, k | k - 1}.
+        \end{align*}
+       Adding the weights help approximate the Gaussian distribution of the state variables after they undergo a transformation. Next, calculate the posterior covariance matrix for the state variable, which is necessary for updating the state covariance later on by
+
+        \begin{align*}
+        P_{x, k | k-1} = \sum^{2d_x}_{i = 0} W_i^{(c)} (\chi_{i, k | k - 1} -   x_{k} )(\chi_{i, k | k - 1} - x_{k} )^T + Q,
+        \end{align*} 
+        where $Q$ is process noise that provides the error in our model $f$, $T$ is the transpose, and $W_i^{(c)}$ are the weights calculated earlier. \\ \\
+        Steps 2 through 4 are part of a function known as the Unscented Transform.
+        
+        
+                \item Now that the prediction component of the filter is completed, we move on to the correction step, which begins by transforming our predictions into a format that can be compared with system measurements. Calculation of the posterior (also called augmented) sigma points is necessary for converting system measurements into a format that can be compared with the state variables. System measurements must undergo a non linear transformation, $h$, resulting in a non Gaussian distribution. Therefore, the Unscented Transform is used again. Begin by calculating sigma points, $\chi^{(aug)}$, by
+      \begin{align*}
+        \chi^{(aug)}_{0, k|k-1} =  x_{k}
+        \end{align*}
+         \begin{align*}
+        \chi^{(aug)}_{ i,k |k-1} &= x_k  \pm \bigg(\sqrt{(d_{x}+\lambda)P_{x_k}} \bigg)_{i} \quad \quad \quad  i=1,\dots,2d_{x}
+        \end{align*}
+        Recall that $\lambda$ was calculated in step 2. Since $\lambda$ is not time dependent, we can use the same value used earlier. \\ \\
+        Now we calculate a sigma point matrix that represents the transformation of the prediction so that it can be compared with the states. This is necessary, especially in cases where measurements are not being obtained for all state variables. This sigma point matrix, $\mathcal{Y}_{k|k-1}$, can be obtained by having the $\chi_{k|k-1}$ undergo nonlinear transformation $h$, by
+         \begin{align*}
+       \mathcal{Y}_{k|k-1} = h(\chi_{k|k-1}).
+       \end{align*}
+       $\mathcal{Y}_{k|k-1} $ is a transformed sigma point matrix. While in this format, it cannot be compared with the state variables. However, $\mathcal{Y}_{k|k-1}$ can be used to convert the system measurements into a format, $y_{k} $, which can be found by 
+       \begin{align*}
+       y_{k} = \sum^{2d_x}_{i = 0} W_i^{(m)}  \mathcal{Y}_{i, k | k - 1}.
+       \end{align*}
+       Now, the prediction can be compared with actual system measurements.
+       
+              
+       \item The next step is to calculate Kalman Gain in order to determine how much to fix the model. \\ \\
+       Unlike previous versions of the KF, in addition to calculating the covariance of the state variables, calculations is also done for the covariance of observations  $P_{y}$ and for state variables with observations $P_{xy}$. When generating the covariance matrix for y the covariance of measurement noise is added. 
+        \begin{align*}
+       P_{y, k | k-1} = \sum^{2d_x}_{i = 0} W_i^{(c)} (\mathcal{Y}_{i, k | k - 1} -   y_{i, k | k - 1} )(\mathcal{Y}_{i, k | k - 1} -  y_{i, k | k - 1} )^T + R
+       \end{align*}
+        \begin{align*}
+       P_{xy, k | k-1} = \sum^{2d_x}_{i = 0} W_i^{(c)} (\chi^{(aug)}_{i, k | k - 1} -  \hat x_{i, k | k - 1} )(\mathcal{Y}_{i, k | k - 1} -  y_{i, k | k - 1} )^T 
+       \end{align*}
+       \begin{align*}
+       K_k = P_{xy, k | k-1} (P_{y, k | k-1}) ^{-1}
+       \end{align*}
+        
+        
+        
+      \item The final step includes correcting the prediction and updating the covariance matrix, which are both used in the next iteration.
+      \begin{align*}
+        x_{k+1} = x_{k} + K_k(\hat y_k - y_{k}),
+        \end{align*}
+        where $\hat{y}_k$ is system measurements.
+        Similar to the KF and EKF, the correction step follows the same equation. 
+      
+       \begin{align*}
+       P_{x, k} = P_{x, k|k-1} -K_k (P_{y, k | k-1} ) {K_k}^T     
+       \end{align*}     
+  
+            
+            
+\newpage            
 \centering
+\begin{center}
 \begin{tabular}{ |p{2cm}||p{5cm}|p{2cm}| }
     \hline
     \multicolumn{3}{|c|}{Variables in the Unscented Kalman Filter } \\ 
@@ -21,7 +140,7 @@ The term 'unscented' was arbitrarily coined by the developer of the UKF, Jeffrey
     \hline
     x & Vector containing state variables & $d_x \times 1 $\\ 
     $\chi $& Sigma Point Matrix &$ d_x \times (2 d_x + 1) $\\
-    f & Nonlinear tate function & $d_x \times d_x $  \\ 
+    f & Nonlinear state function & $d_x \times d_x $  \\ 
     h & Nonlinear observation function & $d_u \times d_x$\\
     u & Input vector  & $d_u \times 1$\\
     P & Covariance matrix & $d_x \times d_x $  \\
@@ -32,6 +151,7 @@ The term 'unscented' was arbitrarily coined by the developer of the UKF, Jeffrey
     \hline
 \end{tabular} 
 \end{center}
+
 \begin{center}
 \begin{tabular}{ |p{1cm}||p{5cm}|p{2cm}| p{1cm}| }
     \hline
@@ -45,117 +165,7 @@ The term 'unscented' was arbitrarily coined by the developer of the UKF, Jeffrey
     \hline
 \end{tabular}
 \end{center}
-* Others use $\kappa  = 3 - d_x$ 
-
-\begin{enumerate}
-    \item Initialize state vector and covariance
-    \begin{align*}
-        \hat{x}_{0} &= \mathbb{E}[x_{0}] 
-       \end{align*}
-        \begin{align*}
-        P_{x_{0}} &= \mathbb{E}[(x_{0}-\hat{x}_{0})(x_{0}-\hat{x}_{0})^{T}] 
-    \end{align*}
-    This step is the exact same as the first step of the KF and the EKF. We need to initialize these values so the model can begin generating and correcting predictions. \\ \\
-    It is critical to choose initial values that are close to the actual values of the data. Failure to do causes the model to converge slowly.
-        \item Calculate sigma points \\ \\
-        Sigma points characterize the distribution of the data. The number of sigma points is deterministic and depends on the dimensions of the system. In general, a UFK will have  $2 \cdot d_x$ + 1 sigma points, where $d_x$ represents the dimension of the state vector \cite{inbook, inproceedings, Wan01theunscented}.  We use the equation below to generate a scalar value that determines how spread out the sigma points are from the mean. 
-         \begin{align*}
-        \lambda = \alpha^{2}(d_{x}+\kappa)-d_{x} 
-         \end{align*}
-         $\alpha$ and $\kappa$ are both parameters that control for the spread of sigma points around the mean value of the state. The spread of the sigma points is proportional to $\alpha$ . For both $\alpha$ and $\kappa $,  the smaller the values are, the closer the sigma points are to the mean.\\ \\
-       $\beta$ is a parameter that uses information regarding state distribution to adjust sigma points. $\beta$ has a default value of 2 if the data is Gaussian. 
-    \begin{align*}
-        \chi_{\ 0,k-1} &= \hat{x}_{k-1} 
-     \end{align*}
-             Since the goal is to characterize the distribution, set one of these sigma points to the mean. Half of the remaining points will be smaller than the mean and the other half will be larger than the mean.
-     \begin{align*}
-        \chi_{\ i,k-1} &= \hat{x}_{k-1} \pm \bigg(\sqrt{(d_{x}+\lambda )P_{x_{k-1}}}\bigg)_{i} \quad \quad \quad i=1,\dots,2 d_x + 1
-        \end{align*}
-        The square root of a matrix, call it $A$ satisfies the following condition: $A = B^2$. Note that $(\sqrt{(d_{x}+\lambda)P_{x_{k-1}}})$ is a matrix, and the $i$ subscript is the $i^{th}$ column of the matrix. Also note that $\chi_{\ i,k-1}$ is the $i^{th}$ column of the sigma point matrix at time $k-1$.
-       
-
-        \item Calculate the weights for each sigma point \\ \\
-        Weights are scalars used to calculate posterior sigma points after they have undergone a nonlinear transformation. The weights are later used to approximate Gaussian mean and covariance. Weights can have positive or negative values, but will ultimately sum to 1 \cite{article6}. The subscript of the weight indicates which sigma point the weight is for. 
-        \begin{align*}
-        W^{(m)}_{0} = \frac{\lambda}{d_{x}+ \lambda} 
-         \end{align*}
-         This is the weight for the mean of the 0th sigma point. 
-        \begin{align*}
-        W^{(c)}_{0} = \frac{\lambda}{d_{x}+ \lambda} + (1 - \alpha^{2} + \beta) 
-         \end{align*}
-         This is the weight for the covariance of the 0th sigma point. 
-        \begin{align*}
-        W^{(m)}_{i} = W^{(c)}_{i} = \frac{\lambda}{2(d_{x}+ \lambda) } \quad \quad \quad i=1,\dots,2d_{x}
-            \end{align*}
-           The rest of the weights for the means and covariances of the other $2 d_x$ sigma points is calculated above.
-      
-           
-        \item Generate a prediction
-        \begin{align*}
-        \chi_{k | k - 1} = f(\chi)
-        \end{align*}
-        The equation above performs nonlinear transformation $f$ on the sigma points. Though $\chi$ has a Gaussian distribution,  $ \chi_{k | k - 1} $ does not because it has been transformed by the nonlinear state function $f$.
-        \begin{align*}
-        \hat x_{k | k-1} = \sum^{2d_x}_{i = 0} W_i^{(m)} \chi_{i, k | k - 1}
-        \end{align*}
-        Now, the new estimate of the state variables is conditioned on the last estimate. The weights are included in this step in order to approximate the Gaussian distribution.
-        \begin{align*}
-        P_{x, k | k-1} = \sum^{2d_x}_{i = 0} W_i^{(c)} (\chi_{i, k | k - 1} -  \hat x_{i, k | k - 1} )(\chi_{i, k | k - 1} -  \hat x_{i, k | k - 1} )^T + Q
-        \end{align*} 
-        The posterior covariance matrix for the state variable is necessary for updating the state covariance later on (step 9). Recall that Q is process noise, which provides the error in our model $f$.
-        \item Calculate posterior sigma points \\ \\
-        By now, the prediction step has concluded and the model begins the process of correction. Calculation of the posterior (also called augmented) sigma points is necessary for interpreting the distribution. From the non linear transformation above, the outputs are not Gaussian. Using the weights calculated in step 3, we are able to approximate the Gaussian distribution of the transformed sigma points.
-         \begin{align*}
-        \chi^{(aug)}_{0, k|k-1} = \hat x_{k|k-1}
-        \end{align*}
-         \begin{align*}
-        \chi^{(aug)}_{ i,k |k-1} &= \hat{x}_{k |k-1} \pm \bigg(\sqrt{(d_{x}+\lambda)P_{x_{k |k-1}}} \bigg)_{i} \quad \quad \quad  i=1,\dots,2d_{x}
-        \end{align*}
-        The calculation is the same process as in step 2. Recall that $\lambda$ was calculated in step 2. Since it is not time dependent, we can use the same $\lambda$ value used earlier.
-        
-        \item Calculate transformed output 
-         \begin{align*}
-       \mathcal{Y}_{k|k-1} = h(\chi^{(aug)}_{k|k-1}) 
-       \end{align*}
-       \begin{align*}
-       y_{k|k-1} = \sum^{2d_x}_{i = 0} W_i^{(m)}  \mathcal{Y}_{i, k | k - 1}
-       \end{align*}
-       Similar to the KF and EKF, use observation function $h$ to convert the sigma point matrix into ta form that can be compared to the actual measurements of the system $y_k$. Since this form is not Gaussian, use weights to interpret the results.
-       
-       \item Calculate Kalman Gain \\ \\
-       Unlike previous versions of the KF, in addition to calculating the covariance of the state variables, calculations is also done for the covariance of observations  $P_{y}$ and for state variables with observations $P_{xy}$. When generating the covariance matrix for y the covariance of measurement noise is added. 
-        \begin{align*}
-       P_{y, k | k-1} = \sum^{2d_x}_{i = 0} W_i^{(c)} (\mathcal{Y}_{i, k | k - 1} -   y_{i, k | k - 1} )(\mathcal{Y}_{i, k | k - 1} -  y_{i, k | k - 1} )^T + R
-       \end{align*}
-        \begin{align*}
-       P_{xy, k | k-1} = \sum^{2d_x}_{i = 0} W_i^{(c)} (\chi^{(aug)}_{i, k | k - 1} -  \hat x_{i, k | k - 1} )(\mathcal{Y}_{i, k | k - 1} -  y_{i, k | k - 1} )^T 
-       \end{align*}
-       \begin{align*}
-       K_k = P_{xy, k | k-1} (P_{y, k | k-1}) ^{-1}
-       \end{align*}
-        
-      \item Correct the prediction      
-      \begin{align*}
-       \hat x_{k} = \hat x_{k|k-1} + K_k(y_k - y_{k|k-1})
-        \end{align*}
-        Similar to the KF and EKF, the correction step follows the same equation. 
-      
-      
-      \item Update the covariance matrix 
-       \begin{align*}
-       P_{x, k} = P_{x, k|k-1} -K_k (P_{y, k | k-1} ) {K_k}^T     
-       \end{align*}     
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+* Some use $\kappa  = 3 - d_x$             
             
             
             
