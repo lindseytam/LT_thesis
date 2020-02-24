@@ -39,7 +39,7 @@ The term 'unscented' was arbitrarily coined by the developer of the UKF, Jeffrey
         \chi_{\ i,k-1} &= \hat{x}_{k-1} +  \bigg(\sqrt{(d_{x}+\lambda )P_{x_{k-1}}}\bigg)_{i} \quad \quad \quad i=1,\dots, d_x, 
         \end{align*}
          \begin{align*}
-        \chi_{\ i,k-1} &= \hat{x}_{k-1} - \bigg(\sqrt{(d_{x}+\lambda )P_{x_{k-1}}}\bigg)_{i} \quad \quad \quad i=d_x + 1,\dots,2 d_x + 1,
+        \chi_{\ i,k-1} &= \hat{x}_{k-1} - \bigg(\sqrt{(d_{x}+\lambda )P_{x_{k-1}}}\bigg)_{i-n} \quad \quad \quad i=d_x + 1,\dots,2 d_x + 1,
         \end{align*}
         where $(\sqrt{(d_{x}+\lambda)P_{x_{k-1}}})$ is a matrix, and the $i$ subscript is the $i^{th}$ column of the matrix. 
         Recall that the square root of a matrix, satisfies the following condition: $A = B^2$, where $A$ and $B$ are both matrices. 
@@ -93,7 +93,7 @@ The term 'unscented' was arbitrarily coined by the developer of the UKF, Jeffrey
         Recall that $\lambda$ was calculated in step 2. Since $\lambda$ is not time dependent, we can use the same value used earlier. \\ \\
         Now we calculate a sigma point matrix that represents the transformation of the prediction so that it can be compared with the states. This is necessary, especially in cases where measurements are not being obtained for all state variables. This sigma point matrix, $\mathcal{Y}_{k|k-1}$, can be obtained by having the $\chi_{k|k-1}$ undergo nonlinear transformation $h$, by
          \begin{align*}
-       \mathcal{Y}_{k|k-1} = h(\chi_{k|k-1}).
+       \mathcal{Y}_{k|k-1} = h(\chi^{(aug)}_{k|k-1}).
        \end{align*}
        $\mathcal{Y}_{k|k-1} $ is a transformed sigma point matrix. While in this format, it cannot be compared with the state variables. However, $\mathcal{Y}_{k|k-1}$ can be used to convert the system measurements into a format, $y_{k} $, which can be found by 
        \begin{align*}
@@ -102,29 +102,29 @@ The term 'unscented' was arbitrarily coined by the developer of the UKF, Jeffrey
        Now, the prediction can be compared with actual system measurements.
        
               
-       \item The next step is to calculate Kalman Gain in order to determine how much to fix the model. \\ \\
-       Unlike previous versions of the KF, in addition to calculating the covariance of the state variables, calculations is also done for the covariance of observations  $P_{y}$ and for state variables with observations $P_{xy}$. When generating the covariance matrix for y the covariance of measurement noise is added. 
+       \item The next step is to calculate Kalman Gain in order to determine how much to correct the model. \\ \\
+       Unlike previous versions of the KF, in addition to calculating the covariance of the state variables, calculations is also done for the covariance of observations, $P_{y}$, and for state variables with observations, $P_{xy}$. When generating the covariance matrix for $P_{y}$ the covariance of measurement noise is added. $P_{y}$ can be found by
         \begin{align*}
-       P_{y, k | k-1} = \sum^{2d_x}_{i = 0} W_i^{(c)} (\mathcal{Y}_{i, k | k - 1} -   y_{i, k | k - 1} )(\mathcal{Y}_{i, k | k - 1} -  y_{i, k | k - 1} )^T + R
+       P_{y, k | k-1} = \sum^{2d_x}_{i = 0} W_i^{(c)} (\mathcal{Y}_{i, k | k - 1} -   y_{k} )(\mathcal{Y}_{i, k | k - 1} -  y_{k} )^T + R,
        \end{align*}
+       where $R$ is the covariance of measurement noise and $W_i^{(c)} $ are the weights calculated in step 3. Next, calculate $P_{xy}$ by
         \begin{align*}
-       P_{xy, k | k-1} = \sum^{2d_x}_{i = 0} W_i^{(c)} (\chi^{(aug)}_{i, k | k - 1} -  \hat x_{i, k | k - 1} )(\mathcal{Y}_{i, k | k - 1} -  y_{i, k | k - 1} )^T 
+       P_{xy, k | k-1} = \sum^{2d_x}_{i = 0} W_i^{(c)} (\chi^{(aug)}_{i, k | k - 1} -   x_{k } )(\mathcal{Y}_{i, k | k - 1} -  y_{ k } )^T .
        \end{align*}
+       Finally, using $P_{y}$ and $P_{xy}$, calculate the Kalman Gain, by
        \begin{align*}
-       K_k = P_{xy, k | k-1} (P_{y, k | k-1}) ^{-1}
+       K_k = P_{xy, k | k-1} (P_{y, k | k-1}) ^{-1}.
        \end{align*}
         
         
         
-      \item The final step includes correcting the prediction and updating the covariance matrix, which are both used in the next iteration.
+      \item The final step includes correcting the prediction and updating the covariance matrix, which will both be used in the next iteration. Similar to the UKF and the KF, the prediction of the state variables at the next time step, $x_{k+1}$, is given by 
       \begin{align*}
         x_{k+1} = x_{k} + K_k(\hat y_k - y_{k}),
         \end{align*}
-        where $\hat{y}_k$ is system measurements.
-        Similar to the KF and EKF, the correction step follows the same equation. 
-      
+        where $\hat{y}_k$ is system measurements. Conclude this iteration of the filter by preparing $ P_{x, k} $ for the next iteration.  $P_{x, k} $ can be found by
        \begin{align*}
-       P_{x, k} = P_{x, k|k-1} -K_k (P_{y, k | k-1} ) {K_k}^T     
+       P_{x, k} = P_{x, k|k-1} -K_k (P_{y, k | k-1} ) {K_k}^T.
        \end{align*}     
   
             
@@ -138,16 +138,20 @@ The term 'unscented' was arbitrarily coined by the developer of the UKF, Jeffrey
     \hline
     Variable & Description & Dimensions \\
     \hline
-    x & Vector containing state variables & $d_x \times 1 $\\ 
-    $\chi $& Sigma Point Matrix &$ d_x \times (2 d_x + 1) $\\
+    x & State variables & $d_x \times 1 $\\ 
+    y & Transformed prediction & $d_y \times 1 $\\ 
+    $\hat y$ & Sytem measurements & $d_y \times 1 $\\ 
+    $\chi $ & Sigma point matrix for states&$ d_x \times (2 d_x + 1) $\\
+    $\mathcal{Y}$ & Sigma point matrix for obs &$ d_y \times (2 d_x + 1) $\\
     f & Nonlinear state function & $d_x \times d_x $  \\ 
     h & Nonlinear observation function & $d_u \times d_x$\\
-    u & Input vector  & $d_u \times 1$\\
-    P & Covariance matrix & $d_x \times d_x $  \\
+    $P_x$ & Covariance of states & $d_x \times d_x $  \\
+    $P_y$ & Covariance of observations& $d_y \times d_y $  \\
+    $P_{xy}$ & Covariance of states/obs& $d_x \times d_y $  \\
     Q & Process noise covariance & $d_x \times d_x $  \\
     R & Measurement noise covariance & $d_y \times d_y $  \\
-     $W^{(m)}$ & Weight for state variable (mean) & scalar \\
-    $W^{(c)}$ & Weight for covariance & scalar \\
+     $W^{(m)}$ & Weight for posterior mean & scalar \\
+    $W^{(c)}$ & Weight for posterior covariance & scalar \\
     \hline
 \end{tabular} 
 \end{center}
