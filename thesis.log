@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  7 FEB 2020 09:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  26 FEB 2020 11:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -400,6 +400,16 @@ Package: enumitem 2011/09/28 v3.5.2 Customized lists
 \enit@inbox=\box54
 \enitdp@description=\count126
 )
+(/usr/local/texlive/2018/texmf-dist/tex/latex/tools/array.sty
+Package: array 2018/04/07 v2.4g Tabular extension package (FMi)
+\col@sep=\dimen138
+\ar@mcellbox=\box55
+\extrarowheight=\dimen139
+\NC@list=\toks25
+\extratabsurround=\skip57
+\backup@length=\skip58
+\ar@cellbox=\box56
+)
 (/usr/local/texlive/2018/texmf-dist/tex/latex/cite/cite.sty
 LaTeX Info: Redefining \cite on input line 302.
 LaTeX Info: Redefining \nocite on input line 332.
@@ -407,23 +417,23 @@ Package: cite 2015/02/27  v 5.5
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/listings/listings.sty
 \lst@mode=\count127
-\lst@gtempboxa=\box55
-\lst@token=\toks25
+\lst@gtempboxa=\box57
+\lst@token=\toks26
 \lst@length=\count128
-\lst@currlwidth=\dimen138
+\lst@currlwidth=\dimen140
 \lst@column=\count129
 \lst@pos=\count130
-\lst@lostspace=\dimen139
-\lst@width=\dimen140
+\lst@lostspace=\dimen141
+\lst@width=\dimen142
 \lst@newlines=\count131
 \lst@lineno=\count132
-\lst@maxwidth=\dimen141
+\lst@maxwidth=\dimen143
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
 \c@lstnumber=\count133
 \lst@skipnumbers=\count134
-\lst@framebox=\box56
+\lst@framebox=\box58
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2015/06/04 1.6 listings configuration
@@ -443,7 +453,7 @@ Package: etoolbox 2018/02/11 v2.5e e-TeX tools for LaTeX (JAW)
 \csq@qlevel=\count139
 \csq@maxlvl=\count140
 \csq@tshold=\count141
-\csq@ltx@everypar=\toks26
+\csq@ltx@everypar=\toks27
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/csquotes/csquotes.def
 File: csquotes.def 2018/02/11 v5.2c csquotes generic definitions (JAW)
@@ -463,31 +473,31 @@ Package: caption 2016/02/21 v3.3-144 Customizing captions (AR)
 (/usr/local/texlive/2018/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2016/05/22 v1.7-166 caption3 kernel (AR)
 Package caption3 Info: TeX engine: e-TeX on input line 67.
-\captionmargin=\dimen142
-\captionmargin@=\dimen143
-\captionwidth=\dimen144
-\caption@tempdima=\dimen145
-\caption@indent=\dimen146
-\caption@parindent=\dimen147
-\caption@hangindent=\dimen148
+\captionmargin=\dimen144
+\captionmargin@=\dimen145
+\captionwidth=\dimen146
+\caption@tempdima=\dimen147
+\caption@indent=\dimen148
+\caption@parindent=\dimen149
+\caption@hangindent=\dimen150
 )
 \c@ContinuedFloat=\count142
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 )
 \c@KVtest=\count143
-\sf@farskip=\skip57
-\sf@captopadj=\dimen149
-\sf@capskip=\skip58
-\sf@nearskip=\skip59
+\sf@farskip=\skip59
+\sf@captopadj=\dimen151
+\sf@capskip=\skip60
+\sf@nearskip=\skip61
 \c@subfigure=\count144
 \c@subfigure@save=\count145
 \c@lofdepth=\count146
 \c@subtable=\count147
 \c@subtable@save=\count148
 \c@lotdepth=\count149
-\sf@top=\skip60
-\sf@bottom=\skip61
+\sf@top=\skip62
+\sf@bottom=\skip63
 )
 (/usr/local/texlive/2018/texmf-dist/tex/latex/appendix/appendix.sty
 Package: appendix 2009/09/02 v1.2b extra appendix facilities
@@ -516,39 +526,39 @@ LaTeX Warning: Label `sub@fig:f2' multiply defined.
 
 ) (./Meskin.aux
 
-LaTeX Warning: Label `map' multiply defined.
+LaTeX Warning: Label `tab:sometab' multiply defined.
 
 ) (./Appendix.aux))
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 26.
-LaTeX Font Info:    ... okay on input line 26.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 29.
+LaTeX Font Info:    ... okay on input line 29.
 
 (/usr/local/texlive/2018/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count153
-\scratchdimen=\dimen150
-\scratchbox=\box57
+\scratchdimen=\dimen152
+\scratchbox=\box59
 \nofMPsegments=\count154
 \nofMParguments=\count155
-\everyMPshowfont=\toks27
+\everyMPshowfont=\toks28
 \MPscratchCnt=\count156
-\MPscratchDim=\dimen151
+\MPscratchDim=\dimen153
 \MPnumerator=\count157
 \makeMPintoPDFobject=\count158
-\everyMPtoPDFconversion=\toks28
+\everyMPtoPDFconversion=\toks29
 ) (/usr/local/texlive/2018/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -566,8 +576,8 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\AtBeginShipoutBox=\box58
-Package hyperref Info: Link coloring OFF on input line 26.
+\AtBeginShipoutBox=\box60
+Package hyperref Info: Link coloring OFF on input line 29.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
@@ -577,9 +587,9 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count159
 )
-LaTeX Info: Redefining \ref on input line 26.
-LaTeX Info: Redefining \pageref on input line 26.
-LaTeX Info: Redefining \nameref on input line 26.
+LaTeX Info: Redefining \ref on input line 29.
+LaTeX Info: Redefining \pageref on input line 29.
+LaTeX Info: Redefining \nameref on input line 29.
 
 (./thesis.out) (./thesis.out)
 \@outlinefile=\write3
@@ -592,14 +602,14 @@ Package caption Info: End \AtBeginDocument code.
 <pomonalogo.pdf, id=76, 464.73625pt x 194.7275pt>
 File: pomonalogo.pdf Graphic file (type pdf)
 <use pomonalogo.pdf>
-Package pdftex.def Info: pomonalogo.pdf  used on input line 28.
+Package pdftex.def Info: pomonalogo.pdf  used on input line 31.
 (pdftex.def)             Requested size: 172.5pt x 72.27682pt.
-LaTeX Font Info:    Try loading font information for U+msa on input line 28.
+LaTeX Font Info:    Try loading font information for U+msa on input line 31.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 28.
+LaTeX Font Info:    Try loading font information for U+msb on input line 31.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -610,7 +620,7 @@ alogo.pdf>]pdfTeX warning (ext4): destination with the same identifier (name{pa
 ge.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.32 \end{abstract}
+l.35 \end{abstract}
                     [1] (./thesis.toc
 Overfull \hbox (0.61113pt too wide) detected at line 9
  []\OT1/cmr/m/n/10 xvii
@@ -853,7 +863,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 105--107
 
 [20] [21]
 Overfull \hbox (3.90845pt too wide) in paragraph at lines 164--165
-[]\OT1/cmr/m/n/10 Default| 
+[]|\OT1/cmr/m/n/10 Default| 
  []
 
 ) [22]
@@ -925,7 +935,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--5
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 4--5
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 6--7
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 6--7
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 14--16
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 14--16
 
  []
 
@@ -933,24 +963,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 6--7
 
 
 ]
+Overfull \hbox (103.58015pt too wide) in paragraph at lines 25--38
+[][] 
+ []
+
 <Meskin_overall.png, id=312, 562.2606pt x 421.575pt>
 File: Meskin_overall.png Graphic file (type png)
 <use Meskin_overall.png>
-Package pdftex.def Info: Meskin_overall.png  used on input line 12.
+Package pdftex.def Info: Meskin_overall.png  used on input line 45.
 (pdftex.def)             Requested size: 337.35896pt x 252.94695pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 18--19
-
- []
-
 [28 <./Meskin_overall.png (PNG copy)>]
-<Meskin_states.png, id=318, 562.2606pt x 421.575pt>
+<Meskin_states.png, id=319, 562.2606pt x 421.575pt>
 File: Meskin_states.png Graphic file (type png)
 <use Meskin_states.png>
-Package pdftex.def Info: Meskin_states.png  used on input line 26.
+Package pdftex.def Info: Meskin_states.png  used on input line 57.
 (pdftex.def)             Requested size: 337.35896pt x 252.94695pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 34--35
+Underfull \hbox (badness 10000) in paragraph at lines 65--66
 
  []
 
@@ -1005,13 +1034,13 @@ ame{section.2.2}) has been already used, duplicate ignored
 l.35 \section{State function}
                               (./MeskinStateFcn.m) [43]
 (./MeskinMeasurementNonAddFcn.m) (./parameter_values.m [44]) [45])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 59.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 59.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 62.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 62.
 
 (./thesis.aux (./Introduction.aux) (./KF.aux) (./EKF.aux) (./UKF.aux)
 (./VDP.aux) (./Meskin.aux) (./Appendix.aux))
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 59.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 59.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 62.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 62.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
 (rerunfilecheck)             Checksum: A12D60EE6F4AD85D0DFCCE4CAC771EBE;1192.
 
@@ -1021,13 +1050,13 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 59.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 62.
  ) 
 Here is how much of TeX's memory you used:
- 13215 strings out of 492649
- 191362 string characters out of 6129622
- 445293 words of memory out of 5000000
- 16251 multiletter control sequences out of 15000+600000
+ 13270 strings out of 492649
+ 192010 string characters out of 6129622
+ 446277 words of memory out of 5000000
+ 16303 multiletter control sequences out of 15000+600000
  12157 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  44i,16n,51p,1542b,2382s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1050,10 +1079,10 @@ texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2018/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2018/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2018/texm
 f-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (47 pages, 1236299 bytes).
+Output written on thesis.pdf (47 pages, 1255909 bytes).
 PDF statistics:
- 1086 PDF objects out of 1200 (max. 8388607)
- 991 compressed objects within 10 object streams
- 606 named destinations out of 1000 (max. 500000)
+ 1088 PDF objects out of 1200 (max. 8388607)
+ 993 compressed objects within 10 object streams
+ 607 named destinations out of 1000 (max. 500000)
  213 words of extra memory for PDF output out of 10000 (max. 10000000)
 

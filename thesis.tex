@@ -9,6 +9,9 @@
 \usepackage[english]{babel}
 \usepackage{multicol}
 \usepackage{enumitem}
+\usepackage{array}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}}
 \usepackage{cite}
 \usepackage{listings}
 \usepackage{csquotes}
@@ -44,6 +47,7 @@
 \include{UKF}
 \include{VDP}
 \include{Meskin}
+\include{Diabetes_model}
 
 \newpage
 \bibliographystyle{plain}
