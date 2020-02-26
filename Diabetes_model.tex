@@ -1,2 +1,29 @@
-\chapter{Diabetes Model}
+\section{Diabetes Model}
 \label{Diabetes Model}
+
+
+
+In one application of the Kalman Filter, researchers were able to forecast glucose in real time of patients with Type 2 Diabetes \cite{article1}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale = 0.5]{t1d_model.png}
+    \caption{ADD IMAGE CITATION.}
+\end{figure}
+
+Our type1 diabetes model has 12 states, given by 
+\begin{align*}
+    &\frac{d}{dt} G = R_0 - (G_0 + S_I I)G \\ 
+    &\frac{d}{dt}  I = \sigma_1 K_1 (G, G_1) B - \delta_1 I \\
+    &\frac{d}{dt} M = J +(k+b)M_a -cM - f_M MB_a - f_M MB_n - e_1M(M+M_a) \\
+    & \frac{d}{dt} M_a = f_M MB_a +f_M MB_n - kM_a - e_2M_a(M + M_a) \\
+    &\frac{d}{dt} B = \alpha_B K_1(G)B - \delta_B B - \eta_e(t)K_2(E,R)B - W(B, t)\\
+    & \frac{d}{dt} B_a = \Tilde{\delta_B} + \Tilde{\eta_e} (t)K_2(E,R)B + \Tilde{W}(B, t) \\
+    & \quad \quad  \quad \quad - dB_a - f_M MB_a - f_{M_a} B_a - f^{tD}(D_{SS} - D)B_a - f_D DB_a \\
+    &\frac{d}{dt} B_n = dB_a - f_M MB_n - f_{M_a} M_a B_n - F_{Td}(D_{SS} - D)B_n - f_D DB_n \\
+    & \frac{d}{dt} D = f_{tD}B_n(D_{SS} - D - tD) + f_{tD}B_n tD - b_{DE} ED - \mu_D D \\
+    & \frac{d}{dt} tD = f_{tD}B_a(D_{SS} - D - tD) - f_{tD}B_n tD - b_{IR}RtD - \mu_D tD \\
+    & \frac{d}{dt} E = a_E (T_{naive} - E) + b_p \frac{DE}{\theta_D + D} - r_{am}E + b_EDE_m - \mu_E ER \\
+    & \frac{d}{dt} R = a_R (T_{naive} - R) + b_p \frac{tDR}{\theta_D + tD} - r_{am}R + b_R tDEm - \mu_R ER, \\
+    & \frac{d}{dt} Em = r_{am}(E + R) - (a_{Em} + b_E D + b_R tD)eM
+\end{align*}
