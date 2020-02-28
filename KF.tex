@@ -37,7 +37,7 @@ Before  delving into the formal steps of the Kalman Filter, it is important to u
 \begin{align*}
 	\frac{dx}{dt} = f(x) + \varepsilon ',
 \end{align*}
-where $\frac{dx}{dt}$ is the prediction of the states, $f(x)$ is a function that transforms the states, and $ \varepsilon '$ is internal system noise. Assuming we have some understanding of the system, we can represent this transformation using matrix $M'$ to approximate the equation above as
+where $\frac{dx}{dt}$ is the prediction of the states, $f(x)$ is a function that transforms the states, and $ \varepsilon '$ is internal system noise. Since the system we are considering is linear, we can represent this transformation using matrix multiplication. Let matrix $M'$ be used to represent transformation, f, to approximate the equation above as
 \begin{align*}
 	\frac{dx}{dt} \approx M'x + \varepsilon '.
 \end{align*}
@@ -71,6 +71,14 @@ where $\frac{dx}{dt}$ is the prediction of the states, $f(x)$ is a function that
 \end{align*}
 where $H_k$ is the observation function and $v_k$ is measurement noise such that $v_k = \mathcal{N}(0, c_2)$. \\
 
+\noindent The algorithm consists of three major components:
+\begin{enumerate}
+  \item Initialize model by state variables
+  \item Generate a preediction
+  \item Update prediction with measurements from the system.
+\end{enumerate}
+The recursive component of the filter consists of repeating steps 2 and 3 repeatedly, while step 1 only needs to be done once. Details about each step are explored further below.
+
 
 \begin{enumerate}
   \item Begin by initializing the state estimate and the initial state covariance matrix. The state estimate, $x_0$,  is a  column vector containing state variables, call them $x_a, x_b, \hdots, x_n$, such that $x_0= [x_a, x_b, \hdots, x_n]^T$, where $T$ is the transpose. The stat estimate can be found by taking the expected value of the data where data is normally distributed. If the system states are finite, the expectation is denoted by
@@ -100,15 +108,14 @@ where $H_k$ is the observation function and $v_k$ is measurement noise such that
    
   \item After initializing the state estimate and state covariance, a prediction can be generated. The estimate of the system at the next time step, $x_{k+1}$,  is given by
   \begin{align*}
-      x_{k+1} = F x_{k} +  G u_{k} + w_{k} ,
+      x_{k+1} = F x_{k} + w_{k} ,
   \end{align*} 
-  where $F$ is the state matrix, $G$ is the F and input matrix, $u_k$ is an input vector and $w_k$ is the process noise vector. Every state variable contained in $x_k$ is defined by a linear differential equation. These linear differential equations can be used to generate the F and G matrices. Therefore, F should be a square matrix whose dimension is equal to the number of states variables and G can be a matrix (or in some cases a vector), depending on the dimension of input vector u. \\ \\
-  $u_k$  is an input vector, which is a measurable value that helps define the system, but is not contained in the state vector. Depending on how the system is defined, $u_k$  can be a constant value or it can be a value dependent on time step k. \\ \\
+  where $F$ is the state matrix and $w_k$ is the process noise vector. Every state variable contained in $x_k$ is defined by a linear differential equation. These linear differential equations can be used to generate the F matrices. Therefore, F should be a square matrix whose dimension is equal to the number of states variables. \\ \\
   $w_k$ is the process noise vector at time k. Process noise can be thought of as the model's accuracy. When process noise is 0, it implies that the model is perfectly accurate and does not have to correct for incoming system measurements. On the other hand, high process noise will essentially restate the system based on incoming measurements. $w_k$ has the same dimensions as $x_k$, allowing us to identify whether or not to adjust the equations for the state variables. When all values of  $w_k$ equal 0, it implies that the linear differential equations we are using to define the state variables have no error. 
   
   
   
-  \item Next, the state covariance matrix to calculate Kalman Gain. The state covariance matrix at time step $k$ given the last time step, is 
+  \item Next, correct the prediction with incoming measurements from the system. Begin by calculating the state covariance matrix in order to calculate Kalman Gain. The state covariance matrix at time step $k$ given the last time step, is 
     \begin{align*} 
         P_{k | k -1} = F P_{k - 1} F^T + Q_{k-1}, 
     \end{align*}
@@ -123,7 +130,7 @@ where $H_k$ is the observation function and $v_k$ is measurement noise such that
      From this equation, one can see that balancing $Q$ and $R$ is critical for model performance. Larger values of $Q$ indicate higher modeling error, which leads to a higher Kalman Gain and increased model correction. On the other hand, large values of $R$ imply high measurement error, leading to a lower Kalman Gain and less model correction. 
      
    
-    \item Next, calculate the transformed output vector and correct the prediction. The transformed output vector, $\hat y_k$, is given by
+     Next, calculate the transformed output vector and correct the prediction. The transformed output vector, $\hat y_k$, is given by
     \begin{align*}
         \hat y_k = H_k x_k + v_k,
     \end{align*}
@@ -135,7 +142,7 @@ where $H_k$ is the observation function and $v_k$ is measurement noise such that
     \end{align*}
    where  $y_k$ is the actual measurements of the system, $K_k$ is the Kalman Gain, and $x_{k-1}$ are the values of the state variable at the last time step. $\hat y_k$ is a way of transforming the prediction (using $H$) into a format that can be compared with $y_k$. Subtracting the actual measurements from the predicted measurements is necessary, because $y_k$ does not always contain measurements for all variables in state vector $x_k$. The quantity $y_k - \hat y_{k}$ is also known as measurement residual or innovation.  \\
    
-     \item The final step is to update the state covariance matrix, $P_k $, through the equation
+      The final step is to update the state covariance matrix, $P_k $, through the equation
     \begin{align*} 
         P_k = (I - K_k H_k) P_{k | k-1},
     \end{align*}
@@ -157,12 +164,10 @@ where $H_k$ is the observation function and $v_k$ is measurement noise such that
     \hline
     x & State variables  & $d_x \times 1$ \\
     y & Output vector  & $d_y \times 1$ \\
-    u & System inputs  & $d_u \times 1$\\
     v & Measurement noise & $d_y \times 1$\\
     w & Process noise & $d_x \times 1$\\
     F & State function  & $d_x \times d_x $  \\ 
     H & Observation function & $d_y \times d_x$\\
-    G & Input function & $d_x \times d_u$\\
     K & Kalman Gain  & $d_x \times d_y$\\
     Q & Process noise covariance  & $d_x \times d_x$ \\
     R & Measurement noise covariance &  $d_y \times d_y$\\

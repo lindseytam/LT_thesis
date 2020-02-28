@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  26 FEB 2020 15:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  28 FEB 2020 09:21
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -759,32 +759,32 @@ Underfull \hbox (badness 10000) in paragraph at lines 71--73
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 96--99
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 104--108
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 104--108
+Underfull \hbox (badness 10000) in paragraph at lines 104--107
 
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 119--124
+Underfull \hbox (badness 10000) in paragraph at lines 112--116
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 119--124
+Underfull \hbox (badness 10000) in paragraph at lines 112--116
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 127--132
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 127--132
 
  []
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 135--137
+Underfull \hbox (badness 10000) in paragraph at lines 143--145
 
  []
 
@@ -886,12 +886,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 52--53
 LaTeX Warning: Citation `matlab /& simulink' on page xxiv undefined on input li
 ne 54.
 
-<VDP.png, id=284, 562.2606pt x 421.575pt>
+<VDP.png, id=285, 562.2606pt x 421.575pt>
 File: VDP.png Graphic file (type png)
 <use VDP.png>
 Package pdftex.def Info: VDP.png  used on input line 58.
 (pdftex.def)             Requested size: 337.35896pt x 252.94695pt.
-<VDP_badinitial.png, id=285, 562.2606pt x 421.575pt>
+<VDP_badinitial.png, id=286, 562.2606pt x 421.575pt>
 File: VDP_badinitial.png Graphic file (type png)
 <use VDP_badinitial.png>
 Package pdftex.def Info: VDP_badinitial.png  used on input line 64.
@@ -899,22 +899,22 @@ Package pdftex.def Info: VDP_badinitial.png  used on input line 64.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<VDP_highMN.png, id=286, 562.2606pt x 421.575pt>
+<VDP_highMN.png, id=287, 562.2606pt x 421.575pt>
 File: VDP_highMN.png Graphic file (type png)
 <use VDP_highMN.png>
 Package pdftex.def Info: VDP_highMN.png  used on input line 71.
 (pdftex.def)             Requested size: 172.5pt x 129.33603pt.
-<VDP_lowMN.png, id=287, 562.2606pt x 421.575pt>
+<VDP_lowMN.png, id=288, 562.2606pt x 421.575pt>
 File: VDP_lowMN.png Graphic file (type png)
 <use VDP_lowMN.png>
 Package pdftex.def Info: VDP_lowMN.png  used on input line 73.
 (pdftex.def)             Requested size: 172.5pt x 129.33603pt.
-<VDP_highPN.png, id=288, 562.2606pt x 421.575pt>
+<VDP_highPN.png, id=289, 562.2606pt x 421.575pt>
 File: VDP_highPN.png Graphic file (type png)
 <use VDP_highPN.png>
 Package pdftex.def Info: VDP_highPN.png  used on input line 81.
 (pdftex.def)             Requested size: 172.5pt x 129.33603pt.
-<VDP_lowPN.png, id=289, 562.2606pt x 421.575pt>
+<VDP_lowPN.png, id=290, 562.2606pt x 421.575pt>
 File: VDP_lowPN.png Graphic file (type png)
 <use VDP_lowPN.png>
 Package pdftex.def Info: VDP_lowPN.png  used on input line 83.
@@ -962,13 +962,13 @@ Overfull \hbox (103.58015pt too wide) in paragraph at lines 25--38
 [][] 
  []
 
-<Meskin_overall.png, id=317, 562.2606pt x 421.575pt>
+<Meskin_overall.png, id=318, 562.2606pt x 421.575pt>
 File: Meskin_overall.png Graphic file (type png)
 <use Meskin_overall.png>
 Package pdftex.def Info: Meskin_overall.png  used on input line 45.
 (pdftex.def)             Requested size: 337.35896pt x 252.94695pt.
 [28 <./Meskin_overall.png (PNG copy)>]
-<Meskin_states.png, id=324, 562.2606pt x 421.575pt>
+<Meskin_states.png, id=325, 562.2606pt x 421.575pt>
 File: Meskin_states.png Graphic file (type png)
 <use Meskin_states.png>
 Package pdftex.def Info: Meskin_states.png  used on input line 57.
@@ -985,7 +985,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 65--66
 
 LaTeX Warning: Citation `article1' on page xxx undefined on input line 6.
 
-<t1d_model.png, id=331, 906.38625pt x 438.63875pt>
+<t1d_model.png, id=332, 906.38625pt x 438.63875pt>
 File: t1d_model.png Graphic file (type png)
 <use t1d_model.png>
 Package pdftex.def Info: t1d_model.png  used on input line 10.
@@ -1068,13 +1068,13 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 63.
  ) 
 Here is how much of TeX's memory you used:
- 13290 strings out of 492649
- 192325 string characters out of 6129622
- 447822 words of memory out of 5000000
+ 13291 strings out of 492649
+ 192332 string characters out of 6129622
+ 447821 words of memory out of 5000000
  16311 multiletter control sequences out of 15000+600000
  12157 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 44i,16n,51p,1542b,2382s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,16n,51p,1535b,2382s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb>
@@ -1094,10 +1094,10 @@ texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2018/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2018/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2018/texm
 f-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (49 pages, 1866063 bytes).
+Output written on thesis.pdf (49 pages, 1866370 bytes).
 PDF statistics:
- 1106 PDF objects out of 1200 (max. 8388607)
- 1006 compressed objects within 11 object streams
- 611 named destinations out of 1000 (max. 500000)
+ 1107 PDF objects out of 1200 (max. 8388607)
+ 1007 compressed objects within 11 object streams
+ 612 named destinations out of 1000 (max. 500000)
  226 words of extra memory for PDF output out of 10000 (max. 10000000)
 
