@@ -9,7 +9,15 @@ The term 'unscented' was arbitrarily coined by the developer of the UKF, Jeffrey
 "Initially I only referred to it as the “new filter.” Needing a more specific name, people in my lab began referring to it as the “Uhlmann filter,” which obviously isn’t a name that I could use, so I had to come up with an official term. One evening everyone else in the lab was at the Royal Opera House, and as I was working I noticed someone’s deodorant on a desk. The word “unscented” caught my eye as the perfect technical term. At first people in the lab thought it was absurd—which is okay because absurdity is my guiding principle—and that it wouldn’t catch on. My claim was that people simply accept technical terms as technical terms: for example, does anyone think about why a tree is called a tree?"
 \end{displayquote}
 
+
 \section{Unscented Kalman Filter Algorithm}
+\noindent Recall that the algorithm consists of three major components:
+\begin{enumerate}
+  \item Initialize model by state variables
+  \item Generate a prediction
+  \item Update prediction with measurements from the system.
+\end{enumerate}
+One can see that this follows the basic outline of the previous versions of the KF, but the process of doing each step varies. More details about each step are explained below.
 
 \begin{enumerate}
     \item The first step is to initialize state vector, $x_0$, and covariance, $P_{x_0}$, which is exactly similar to both the KF and the EKF. Since we know that the $x_0$ is normally distributed, the expectation can be calculated by
@@ -24,7 +32,7 @@ The term 'unscented' was arbitrarily coined by the developer of the UKF, Jeffrey
 \noindent We need to initialize these values so the model can begin generating and correcting predictions. \\ \\
     It is critical to choose initial values that are close to the actual values of the data. Failure to do causes the model to converge slowly.
     
-        \item Unlike the KF and EKF, the UKF requires the calculation of sigma points, which is a way characterizing the distribution of the data. The number of sigma points is deterministic and depends on the dimensions of the system. In general, a UFK will have  $2 \cdot d_x$ + 1 sigma points, where $d_x$ represents the dimension of the state vector \cite{inbook, inproceedings, Wan01theunscented}.  All sigma points are stored in a sigma point matrix, called $\chi$. To get a general idea about the distribution of the data, we use $\lambda$, which is a scalar value that determines how spread out the sigma points are from the mean. $\lambda$ can be calculated by
+\noindent Unlike the KF and EKF, the UKF requires the calculation of sigma points, which is a way characterizing the distribution of the data. The number of sigma points is deterministic and depends on the dimensions of the system. In general, a UFK will have  $2 \cdot d_x$ + 1 sigma points, where $d_x$ represents the dimension of the state vector \cite{inbook, inproceedings, Wan01theunscented}.  All sigma points are stored in a sigma point matrix, called $\chi$. To get a general idea about the distribution of the data, we use $\lambda$, which is a scalar value that determines how spread out the sigma points are from the mean. $\lambda$ can be calculated by
          \begin{align*}
         \lambda = \alpha^{2}(d_{x}+\kappa)-d_{x},
          \end{align*}
@@ -45,7 +53,7 @@ The term 'unscented' was arbitrarily coined by the developer of the UKF, Jeffrey
         Recall that the square root of a matrix, satisfies the following condition: $A = B^2$, where $A$ and $B$ are both matrices. 
         
         
-        \item Next, we must calculate a weight for each sigma point. Weights are scalars used to calculate posterior sigma points after they have undergone a nonlinear transformation. One set of weights,  $W^{(m)}$, will be used to calculate the posterior mean while another set of weights $W^{(c)}$ will be used to calculate the posterior covariance. Weights can have positive or negative values, but will ultimately sum to 1 \cite{article6}.
+\noindent Next, we must calculate a weight for each sigma point. Weights are scalars used to calculate posterior sigma points after they have undergone a nonlinear transformation. One set of weights,  $W^{(m)}$, will be used to calculate the posterior mean while another set of weights $W^{(c)}$ will be used to calculate the posterior covariance. Weights can have positive or negative values, but will ultimately sum to 1 \cite{article6}.
         
         Calculations of the weights at the initial time step follow a formula distinct from the other time steps
          \textcolor{red}{because........}. $W^{(m)}_{0} $ can be found by
@@ -63,7 +71,7 @@ The term 'unscented' was arbitrarily coined by the developer of the UKF, Jeffrey
            
           
            
-        \item This step performs a nonlinear transformation on the sigma point matrix, $\chi$, in order to generate a prediction and provide an update on the covariance matrix. After $\chi$ undergoes a nonlinear transformation, $f$, the result is a transformed sigma point matrix at time step $k$ given the last time step, $k-1$, which will is called $\chi_{k | k - 1}$ and is given by
+        \item A prediction can be generated by performing a nonlinear transformation on the sigma point matrix, $\chi$, in order to generate a prediction and provide an update on the covariance matrix. After $\chi$ undergoes a nonlinear transformation, $f$, the result is a transformed sigma point matrix at time step $k$ given the last time step, $k-1$, which will is called $\chi_{k | k - 1}$ and is given by
         \begin{align*}
         \chi_{k | k - 1} = f(\chi).
         \end{align*}
@@ -74,16 +82,17 @@ The term 'unscented' was arbitrarily coined by the developer of the UKF, Jeffrey
         \begin{align*}
          x_{k} = \sum^{2d_x}_{i = 0} W_i^{(m)} \chi_{i, k | k - 1}.
         \end{align*}
-       Adding the weights help approximate the Gaussian distribution of the state variables after they undergo a transformation. Next, calculate the posterior covariance matrix for the state variable, which is necessary for updating the state covariance later on by
-
+       Adding the weights help approximate the Gaussian distribution of the state variables after they undergo a transformation. 
+       
+        
+                \item Now that the prediction component of the filter is completed, we move on to the correction step, which begins by calculting the transformed covariance matrix and then transforming our predictions into a format that can be compared with system measurements. Calculation of the posterior (also called augmented) sigma points is necessary for converting system measurements into a format that can be compared with the state variables. System measurements must undergo a non linear transformation, $h$, resulting in a non Gaussian distribution. Therefore, the Unscented Transform is used again.
+                Begin by calculating the posterior covariance matrix for the state variable, which is necessary for updating the state covariance later on by
         \begin{align*}
         P_{x, k | k-1} = \sum^{2d_x}_{i = 0} W_i^{(c)} (\chi_{i, k | k - 1} -   x_{k} )(\chi_{i, k | k - 1} - x_{k} )^T + Q,
         \end{align*} 
-        where $Q$ is process noise that provides the error in our model $f$, $T$ is the transpose, and $W_i^{(c)}$ are the weights calculated earlier. \\ \\
-        Steps 2 through 4 are part of a function known as the Unscented Transform.
-        
-        
-                \item Now that the prediction component of the filter is completed, we move on to the correction step, which begins by transforming our predictions into a format that can be compared with system measurements. Calculation of the posterior (also called augmented) sigma points is necessary for converting system measurements into a format that can be compared with the state variables. System measurements must undergo a non linear transformation, $h$, resulting in a non Gaussian distribution. Therefore, the Unscented Transform is used again. Begin by calculating sigma points, $\chi^{(aug)}$, by
+        where $Q$ is process noise that provides the error in our model $f$, $T$ is the transpose, and $W_i^{(c)}$ are the weights calculated earlier. \\ \\        
+                
+\noindent Then calculate augmented sigma points, $\chi^{(aug)}$, by
       \begin{align*}
         \chi^{(aug)}_{0, k|k-1} =  x_{k}
         \end{align*}
@@ -102,7 +111,7 @@ The term 'unscented' was arbitrarily coined by the developer of the UKF, Jeffrey
        Now, the prediction can be compared with actual system measurements.
        
               
-       \item The next step is to calculate Kalman Gain in order to determine how much to correct the model. \\ \\
+       Then, we are able to calculate the Kalman Gain in order to determine how much to correct the model. \\ \\
        Unlike previous versions of the KF, in addition to calculating the covariance of the state variables, calculations is also done for the covariance of observations, $P_{y}$, and for state variables with observations, $P_{xy}$. When generating the covariance matrix for $P_{y}$ the covariance of measurement noise is added. $P_{y}$ can be found by
         \begin{align*}
        P_{y, k | k-1} = \sum^{2d_x}_{i = 0} W_i^{(c)} (\mathcal{Y}_{i, k | k - 1} -   y_{k} )(\mathcal{Y}_{i, k | k - 1} -  y_{k} )^T + R,
@@ -118,7 +127,7 @@ The term 'unscented' was arbitrarily coined by the developer of the UKF, Jeffrey
         
         
         
-      \item The final step includes correcting the prediction and updating the covariance matrix, which will both be used in the next iteration. Similar to the UKF and the KF, the prediction of the state variables at the next time step, $x_{k+1}$, is given by 
+      \noindent Finally, we are able to correct the prediction and updating the covariance matrix, which will both be used in the next iteration. Similar to the UKF and the KF, the prediction of the state variables at the next time step, $x_{k+1}$, is given by 
       \begin{align*}
         x_{k+1} = x_{k} + K_k(\hat y_k - y_{k}),
         \end{align*}
