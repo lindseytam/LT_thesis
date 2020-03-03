@@ -1,11 +1,16 @@
 \section{Modeling a Biological System }
 \label{Modeling a Biological System }
 
-This example was inspired by a paper that uses an adaptation of the UKF, called the Iterative Unscented Kalman Filter (IUKF), to model the biological pathway of metabolites. Using the IUKF enabled the model converge faster by resetting the covariance to re-excite the model. By skipping this step (as is done in the UKF), the three state variables without measurements converge significantly slower. A metabolite is small bodily structure that is the byproduct of the metabolism. Data regarding metabolites is highly influenced by noise, which is a factor that makes other approaches, such as regression and annealing, fail \cite{article5}. \\ \\
 
-\noindent In the paper, researchers had access to their own data sources and used an approach that was adapted from the UKF. Though we are not using their exact dataset, we will be simulating data using the same approach as the previous example. However, this example will be following UKF algorithm, as opposed to the IUKF algorithm. Ultimately, the three goals of this example is to demonstrate how the UKF works on higher dimensional and more complex systems, how the UKF can correct for multiple variables or states, and how parameters can be adjusted to fit the model. \\ \\
 
-\noindent In this example, four metabolites, or states, are explored and denoted by
+
+This example was inspired by a paper that uses an adaptation of the UKF, called the Iterative Unscented Kalman Filter (IUKF), to model the biological pathway of metabolites, which are molecules that are the byproduct of the body's metabolism. This model contained four different states, or metabolites, which contained 18 unknown parameters. These researchers utilized the IUKF for parameter fitting and was useful in enabling the model converge faster by resetting the covariance to re-excite the model. Utilizing the IUKF on this model was effective, because data regarding metabolites is highly influenced by noise, which is a factor that makes other approaches, such as regression and annealing, fail \cite{article5} \\ 
+
+\noindent By skipping this step (as is done in the UKF), the three state variables without measurements converge significantly slower. A metabolite is small bodily structure that is the byproduct of the metabolism. Data regarding metabolites is highly influenced by noise, which is a factor that makes other approaches, such as regression and annealing, fail \cite{article5}. \\ 
+
+\noindent In the paper, researchers had access to their own data sources and used an approach that was adapted from the UKF. Though we are not using their exact dataset, we will be simulating data using the same approach as the previous example. However, this example will be following UKF algorithm, as opposed to the IUKF algorithm. By doing so, the state variables without incoming measurements converge significantly slower than the measurable states. Ultimately, the three goals of this example is to demonstrate how the UKF works on higher dimensional and more complex systems, how the UKF can correct for multiple variables or states, and how parameters can be adjusted to fit the model. \\ 
+
+\noindent In this example, four metabolites, or states, are have the following differential equations:
 \begin{align*}
 \dot x_1 &= \alpha_1 x_3^{g_{13}} x_5^{g_{15}} - \beta_1 x_1^{h_{11}}, \\
 \dot x_2 &= \alpha_2 x_1^{g_{21}} - \beta_2 x_2^{h_{22}}, \\
@@ -59,13 +64,17 @@ where there are 18 unknown parameters ($\alpha_1, \hdots, \alpha_4, \beta_1, \hd
     \label{map}
 \end{figure}
 
-
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale = 0.6]{Meskin_residuals_state1.png}
+    \caption{This scatterplot provides information regarding the residual, or innovation, of the first state, which is the only state recieving incoming system measurements.}
+\end{figure}
 
 
 \noindent \textcolor{red}{Expand here on tweaking parameters}.In the original example, researchers used the following parameter values: $\epsilon = 1, \kappa = -14$. In theory, values of $\kappa$ can be negative, but negative values cannot be inputted into MATLAB. Therefore, the parameter values used in this example are set to \noindent \textcolor{red}{ADD PARAM VALUES HERE}.\\
 
 
-\noindent \textcolor{red}{Expand here on correcting for 1+ states}
+\noindent \textcolor{red}{Expand here on correcting for 1+ states, currently we are having technical challenges in completing this step}
 
 
 
