@@ -2,7 +2,7 @@
 \label{Extended Kalman Filters}
 
 The Extended Kalman Filter (EKF) is the non-linear version of the Kalman Filter. For the most part, the EKF algorithm is nearly identical to the KF algorithm. The critical difference is in linearizing the non-linear state and observation function. The EKF uses the Jacobian to linearly approximate the non-linear function around the mean of the Gaussian distribution. Skipping this step would result in the transformed data being non-Gaussian; though taking the Jacobian enables the transformation to remain Gaussian, it is not exact, resulting in some generalization. Linear approximation through a single point also makes the EKF inefficient when dealing with complex, higher order systems. Because of this, the model is highly subject to error, which can be somewhat reduced by setting accurate initial values. Though these flaws exist, the EKF performs strongly with applications of real time spatial fields, including navigation and positioning systems.  \\ \\
-For the purpose of my thesis, I will not be applying the EKF to any examples. The purpose of incorporating it here is to demonstrate one of the simpler non-linear versions of the KF. For more information, including MATLAB code, the following can be referenced \cite{cao_2008, Chadaporn, article7}.
+For the purpose of my thesis, I will not be applying the EKF to any examples. The purpose of incorporating it here is to demonstrate one of the simpler non-linear versions of the KF. For more information, including MATLAB code, the following can be referenced \cite{cao_2008, article7}.
 
 \section{Extended Kalman Filter Algorithm}
 Similar the the KF, the EKF has two main models:

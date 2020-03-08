@@ -17,11 +17,9 @@ This example was inspired by a paper that uses an adaptation of the UKF, called 
 \dot x_3 &= \alpha_3 x_2^{g_{32}} - \beta_3 x_3^{h_{33}} x_4^{h_{34}}, \\
 \dot x_4 &= \alpha_4  x_1^{g_{41}} - \beta_4 x_4^{h_{44}},
 \end{align*}
-where there are 18 unknown parameters ($\alpha_1, \hdots, \alpha_4, \beta_1, \hdots, \beta_4, g_{13}, g_{15}, g_{21}, \\ g_{32}, g_{41}, h_{11}, h_{22}, h_{33}, h_{34}, h_{44} $). We have a guess as to what these values might be and we will use the UKF to find parameter values that best fit model to some state. In both the original example as well as this one, sampling time will be 0.1 seconds for 5 seconds, totaling 50 UKF estimates. \\ \\
+where there are 18 unknown parameters ($\alpha_1, \hdots, \alpha_4, \beta_1, \hdots, \beta_4, g_{13}, g_{15}, g_{21}, \\ g_{32}, g_{41}, h_{11}, h_{22}, h_{33}, h_{34}, h_{44} $). We have a guess as to what these values might be and we will use the UKF to find parameter values that best fit model to some state. In both the original example as well as this one, sampling time will be 0.1 seconds for 5 seconds, totaling 50 UKF estimates. \\
 
-\noindent Since we did not have access to the original example's dataset, data was simulated on MATLAB. Similar to the previous example, the system's true output was simulated using an ODE solver and incoming system measurements were calculated by adding noise to the true value. The model was initialized by setting the state variable to $x_0 = [4, 1, 3, 4]^T$ and the state covariance to $P_0 = .01I$.
-
-\newpage
+\noindent Since we did not have access to the original example's dataset, data was simulated on MATLAB. Similar to the previous example, the system's true output was simulated using an ODE solver and incoming system measurements were calculated by adding noise to the true value. The model was initialized by setting the state variable to $x_0 = [4, 1, 3, 4]^T$ and the state covariance to $P_0 = .01I$. Table 4.3 shows the true values of the parameters and Figure 4.8 shows the results of the UKF given the true parameter values.  
 
 \begin{center}
 \begin{table}
@@ -40,7 +38,6 @@ where there are 18 unknown parameters ($\alpha_1, \hdots, \alpha_4, \beta_1, \hd
     
     \hline
 \end{tabular}
-
 \end{table}
 \end{center}
 
@@ -52,10 +49,7 @@ where there are 18 unknown parameters ($\alpha_1, \hdots, \alpha_4, \beta_1, \hd
     %Paramaters included:  }% $, \alpha = 1, \kappa = 0  }
 \end{figure}
 
-
-
-
-\newpage
+\noindent Since the first state, $x1$ is the only state that has incoming system measurements, we have a 3 different blue lines in this figure. From this figure, it appears that the UKF prediction perfectly overlaps with the measured values. However, upon closer inspection, it actually does not. This is likely because there is only a small amount of measurement noise to the system. Figure 4.9 highlights the same information as Figure 4.8, but separates the states into different graphs, enabling a clearer illustration of each state's behavior.
 
 \begin{figure}[h]
     \centering
@@ -64,15 +58,21 @@ where there are 18 unknown parameters ($\alpha_1, \hdots, \alpha_4, \beta_1, \hd
     \label{map}
 \end{figure}
 
+\noindent In the original example, researchers used the following parameter values: $\epsilon = 1, \kappa = -14$. In theory, values of $\kappa$ can be negative, but negative values cannot be inputted into MATLAB. Therefore, the parameter values used in this example are set to default values ($\alpha = 1e-3, \beta = 2, \kappa = 0$). \textcolor{red}{Expand here on tweaking parameters}.\\
+
+\noindent Residuals, also known as the innovation, are one way to access the model's performance. Recall that the residual is the difference between the actual measurement values and the predicted measurement values. Since only one state, $x1$ had incoming measurements, the residual graph in Figure 4.10 is specifically for $x1$. Generally, a strong residual graph has
+\begin{itemize}
+\item a symmetrical distribution that is clustered toward the center,
+\item values that are close to 0,
+\item a random or unclear pattern.
+\end{itemize}
+Figure 4.10 exhibits these three characteristics, indicating strong model performance. 
+
 \begin{figure}[h]
     \centering
     \includegraphics[scale = 0.6]{Meskin_residuals_state1.png}
     \caption{This scatterplot provides information regarding the residual, or innovation, of the first state, which is the only state recieving incoming system measurements.}
 \end{figure}
-
-
-\noindent \textcolor{red}{Expand here on tweaking parameters}.In the original example, researchers used the following parameter values: $\epsilon = 1, \kappa = -14$. In theory, values of $\kappa$ can be negative, but negative values cannot be inputted into MATLAB. Therefore, the parameter values used in this example are set to \noindent \textcolor{red}{ADD PARAM VALUES HERE}.\\
-
 
 \noindent \textcolor{red}{Expand here on correcting for 1+ states, currently we are having technical challenges in completing this step}
 

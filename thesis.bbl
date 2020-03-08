@@ -1,10 +1,21 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{cao_2008}
+Yi~Cao.
+\newblock Learning the extended kalman filter - file exchange - matlab central,
+  Jan 2008.
 
 \bibitem{article6}
 J.~Gove and DY~Hollinger.
 \newblock Application of a dual unscented kalman filter for simultaneous state
   and parameter estimation in problems of surface-atmosphere exchange.
 \newblock {\em Journal of Geophysical Research}, 111:21 PP.--21 PP., 04 2006.
+
+\bibitem{Kalman_bio}
+Remembering rudolf e. kalman (1930 – 2016), Jul 2016.
+
+\bibitem{kalmanbio}
+Professor rudolf emil kalman.
 
 \bibitem{kinoshita_2013}
 Shuichi Kinoshita.
@@ -14,6 +25,11 @@ Shuichi Kinoshita.
 David Kohanbash.
 \newblock Kalman filtering – a practical implementation guide (with code!),
   Jan 2014.
+
+\bibitem{lim_ong_lim_koo_2016}
+Chot~Hun Lim, Lee~Yeng Ong, Tien~Sze Lim, and Voon~Chet Koo.
+\newblock Kalman filtering and its real‐time applications.
+\newblock {\em Real-time Systems}, Jun 2016.
 
 \bibitem{article5}
 Nader Meskin, Hazem Nounou, Mohamed Nounou, and Aniruddha Datta.

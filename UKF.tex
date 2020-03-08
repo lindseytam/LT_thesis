@@ -13,7 +13,7 @@ The Unscented Kalman Filter (UKF) is another nonlinear version of the Kalman Fil
 
 \newpage
 
-The term 'unscented' was arbitrarily coined by the developer of the UKF, Jeffrey Uhlmann. In an interview, he shares:
+\noindent The term 'unscented' was arbitrarily coined by the developer of the UKF, Jeffrey Uhlmann. In an interview, he shares:
 \begin{displayquote}
 "Initially I only referred to it as the “new filter.” Needing a more specific name, people in my lab began referring to it as the “Uhlmann filter,” which obviously isn’t a name that I could use, so I had to come up with an official term. One evening everyone else in the lab was at the Royal Opera House, and as I was working I noticed someone’s deodorant on a desk. The word “unscented” caught my eye as the perfect technical term. At first people in the lab thought it was absurd—which is okay because absurdity is my guiding principle—and that it wouldn’t catch on. My claim was that people simply accept technical terms as technical terms: for example, does anyone think about why a tree is called a tree?"
 \end{displayquote}
@@ -111,7 +111,7 @@ Before delving into the details of the algorithm, we will explore a high-level o
         \begin{align*}
         P_{x, k | k-1} = \sum^{2x}_{i = 0} W_i^{(c)} (\chi_{i, k | k - 1} -   x_{k} )(\chi_{i, k | k - 1} - x_{k} )^T + Q,
         \end{align*} 
-        where $Q$ is process noise that provides the error in our model $f$, $T$ is the transpose, and $W_i^{(c)}$ are the weights calculated earlier. \\ \\        
+        where $Q$ is process noise that provides the error in our model $f$, $T$ is the transpose, and $W_i^{(c)}$ are the weights calculated earlier. \\     
                 
 \noindent Then calculate augmented sigma points, $\chi^{(aug)}$, by
       \begin{align*}
