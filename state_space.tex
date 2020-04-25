@@ -1,0 +1,158 @@
+\chapter{State Space Models}
+\label{State Space Models}
+
+
+Applying the Kalman Filter to a system requires an understanding of state space models. A state space model represents a system's inputs, outputs, and states by describing a series of first order differential equations. A linear continuous state space system has a general form of 
+\begin{align*}
+&\dot x(t)= A x(t) + B u(t) +w(t) \quad &\text{(system)}, \\
+&y(t) = H x(t) +v(t) \quad &\text{(observation)} ,
+\end{align*}
+where $x$ is the state vector, $A$ is a square transformation matrix, $B$ is the input matrix, $u$ is a system input, $w$ is the process noise vector, $y$ is the transformed prediction, $H$ is the observation matrix, $v$ is the measurement noise vector, and $t$ is time. \\
+
+\noindent For implementing Kalman Filters, the continuous state space system must be discretized into time steps, call it $k$. The general equation is given below as
+\begin{align*}
+& x_k= e^{At}x_{k-1} + \int_0^t e^{A(t-r))} B u_k dr + w_k \quad &\text{(system)}, \\
+&y_k = H x_k + v_k  &\text{   (observation)} ,
+\end{align*}
+where $e^{At}$ is the matrix exponential of $A$. Generally, the matrix exponential is very time-consuming to compute, especially if the matrix is not diagnolizable. In these cases, an alternative solution is to use Euler's method, which approximates the discretized system using small time steps, as shown by 
+\begin{align*}
+& x_k= x_{k-1} + t f(x) &\text{(system)}, \\
+&y_k = H x_k + v_k  &\text{(observation)},
+\end{align*}
+where $t$ is some small time step and $f(x)$ is the state after it undergoes a transformation. In most of the examples that are explored in this thesis, computing the matrix exponential is inefficient and results in excessive computing time. Therefore, Euler's method will be mostly used for discretization.
+
+\noindent Consider an example of a moving mass, call it $m$, under a force, call it $u(t)$. The goal of this system is to predict the mass's position and velocity given its previous position and velocity. Therefore, position and velocity are the two states in this system. From differential equations, recall that the position of the mass is denoted by $x(t)$, the velocity of the mass is denoted by $\dot{x}(t)$, and the acceleration is denoted by $\ddot{x}(t)$. According to Newton's second law of motion, the force exerted on an object is given by the equation $F=ma$, or
+\begin{align*}
+u(t)=m\ddot{x}(t).
+\end{align*}
+
+\noindent This is a second order differential equation. To convert it into its state space format, begin by transforming it into a first order differential equation by substituting $x_1(t)$ for $x(t)$ and $x_2(t)$ for $\dot{x}(t)$, resulting in
+\begin{align*}
+\dot{x}_1(t) = x_2(t), \\
+\dot{x}_2(t) = \frac{u(t)}{m}.
+\end{align*}
+
+\noindent For the sake of simplicity, assume this system has no process or measurement noise. The state vector, $x$, containing both position and velocity, can now be rewritten as
+$$
+x=
+\begin{bmatrix}
+x_1(t)\\
+x_2(t)
+\end{bmatrix}.
+$$
+
+\noindent In order to predict the state of the system at the next time step, take the derivative of the state vector and rewrite it in vector-matrix form (which is possible because this system is linear), resulting in
+$$
+\dot x=
+\begin{bmatrix}
+\dot{x}_1(t)\\
+\dot{x}_2(t)
+\end{bmatrix}=
+\begin{bmatrix}
+x_2(t)\\
+\frac{u(t)}{m}
+\end{bmatrix}=
+\begin{bmatrix}
+0 & 1\\
+0 & 0
+\end{bmatrix} x +
+\begin{bmatrix}
+0\\
+\frac{1}{m}
+\end{bmatrix} u(t).
+$$
+Here, one can see how this form can be applied to the general linear state space model where $A = 
+\begin{bsmallmatrix}
+0 & 1\\
+0 & 0
+\end{bsmallmatrix} $ and $ B=[0, \frac{1}{m}]^T$. \\
+
+\noindent For the sake of this example, assume that only the position of the mass is measurable. Therefore, the transformed prediction, $y$, is given by
+$$
+ y=
+\begin{bmatrix}
+x_1(t)\\
+0
+\end{bmatrix}=
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix} x=
+x_1(t). $$
+
+\noindent Now that the continuous state system is defined, it can be discretized. Since this example considers a simple linear system, the matrix exponential can be calculated as follows 
+
+$$e^{At} =
+\begin{bmatrix}
+e^0& e^t \\
+0 & e^0
+\end{bmatrix}=
+\begin{bmatrix}
+1& t\\
+0 & 1
+\end{bmatrix},
+$$
+
+$$\int_0^t e^{A(t-r))}  e^{At} B u_k dr=
+\int_0^t e^{A(t-r))}  \begin{bmatrix}
+1& t\\
+0 & 1
+\end{bmatrix} 
+\begin{bmatrix}
+0\\
+\frac{1}{m}
+\end{bmatrix} u(t) dt =
+\int_0^t e^{A(t-r))}   \begin{bmatrix}
+\frac{t}{m}\\
+\frac{1}{m} 
+\end{bmatrix} u(t) dt =
+\begin{bmatrix}
+\frac{t^2}{2m}\\
+\frac{t}{m}
+\end{bmatrix} u(t).
+$$
+Now the discretized state space model can be written as 
+
+
+\begin{align*}
+x &=
+\begin{bmatrix}
+1& t\\
+0 & 1
+\end{bmatrix}+x_{k-1}
+\begin{bmatrix}
+\frac{t^2}{2m}\\
+\frac{t}{m}
+\end{bmatrix} u(t) &\text{(system)}, \\
+y &=
+\begin{bmatrix}
+1 \\
+0
+\end{bmatrix} x &\text{(observation)}.
+\end{align*} \\
+
+\noindent It is important to be able to discretize state space models because the goal of the Kalman Filter is to make some prediction about a future state. Therefore, discretization enables the Kalman Filter to make approximations about the system's state given past information. In addition, discretization makes numerical computing more efficient.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

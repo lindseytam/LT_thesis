@@ -1,5 +1,14 @@
 \begin{thebibliography}{10}
 
+\bibitem{article1}
+David Albers, Matthew Levine, Andrew Stuart, Lena Mamykina, Bruce Gluckman, and
+  George Hripcsak.
+\newblock Mechanistic machine learning: How data assimilation leverages
+  physiologic knowledge using bayesian inference to forecast the future, infer
+  the present, and phenotype.
+\newblock {\em Journal of the American Medical Informatics Association :
+  JAMIA}, 25:1392--1401, 10 2018.
+
 \bibitem{cao_2008}
 Yi~Cao.
 \newblock Learning the extended kalman filter - file exchange - matlab central,
@@ -49,6 +58,12 @@ Esra Saatci and Aydin Akan.
 \newblock {\em Dual Unscented Kalman Filter and Its Applications to Respiratory
   System Modeling}, page~4.
 \newblock intechopen, 04 2009.
+
+\bibitem{Shtylla}
+Blerta Shtylla, Marissa Gee, An~Do, Shahrokh Shabahang, Leif Eldevik, and
+  Lisette de~Pillis.
+\newblock A mathematical model for dc vaccine treatment of type i diabetes.
+\newblock {\em Frontiers in Physiology}, 10:1107, 2019.
 
 \bibitem{inproceedings}
 Eric Wan and Ronell Merwe.

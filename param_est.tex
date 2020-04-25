@@ -1,0 +1,11 @@
+\section{Parameter Estimation}
+\label{Parameter Estimation}
+
+
+The EKF (as well as other versions of the Kalman Filter), can be utilized for parameter estimation. In particular, this thesis explores the use of split parameter estimation. This technique involves creating new states for each of the unknown parameters. \\
+Consider a simple, arbitrary linear example:
+\begin{align*}
+
+\end{align*}
+There are many methods of parameter estimation, which include using dual techniques. In fact, there is a nonlinear version of the Kalman Filter, called the Dual Unscented Kalman Filter, that was designed in order to simultaneously monitor state and parameter values. Though this thesis does not explore these methods, more information can be found in \cite{inbook, article6}.
+

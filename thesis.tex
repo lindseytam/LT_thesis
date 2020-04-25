@@ -7,6 +7,7 @@
 \usepackage{amssymb}
 \usepackage{mathtools}
 \usepackage[english]{babel}
+\usepackage{hyperref}
 \usepackage{multicol}
 \usepackage{enumitem}
 \usepackage{array}
@@ -20,9 +21,11 @@
 \definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
 \definecolor{mylilas}{RGB}{170,55,241}
 \usepackage[toc,page]{appendix}
+\newcommand{\comment}[1]{}
 
 
-\title{An Exploration of Kalman Filters}
+\title{Kalman Filter Methods for Model Parametrization}\par
+
 \author{Lindsey Tam }
 \advisor{Blerta Shtylla}
 
@@ -31,14 +34,15 @@
 \maketitle
 
 \begin{abstract}
-	Kalman Filters are able to recursively generate predictions for linear systems; these predictions become progressively more accurate because of the system's ability to correct predictions using incoming data. Nonlinear forms of the Kalman Filter exist, including the Extended Kalman Filter and the Unscented Kalman Filter. This paper explores the theory behind each of these filters and implements a few examples of the Unscented Kalman Filter.
-\end{abstract}
+	This thesis explores the theory and applications of Kalman Filters in both state and parameter estimation. Kalman Filters are able to recursively generate predictions for linear systems and these predictions become progressively more accurate because of the system's ability to correct predictions using incoming data. Nonlinear forms of the Kalman Filter exist, including the Extended Kalman Filter (EKF) and the Unscented Kalman Filter (UKF). The EKF works by linearizing the system around the mean, making it more effective for simpler and lower dimensional systems. The UKF addresses the shortcomings of the EKF by linearizing the system around multiple points, known as sigma points. After exploring the theory behind these techniques, this paper implements a few examples of the EKF and the UKF for both state and parameter estimation. \end{abstract}
 
 \pagenumbering{roman}
 \tableofcontents
 
 
 \include{Introduction}
+
+\include{state_space}
 
 \include{KF}
 
@@ -48,9 +52,9 @@
 \include{UKF}
 \include{VDP}
 \include{Meskin_UKF}
-%\include{Diabetes_model}
 
-\newpage
+\include{future}
+
 \bibliographystyle{plain}
 \bibliography{bib.bib}
 
