@@ -2,16 +2,16 @@
 \label{Modeling Metabolites using EKF}
 \label{chap:EKF_Meskin}
 
-\noindent This example is inspired by research that models the biological pathway of metabolites, which are molecules that are the byproduct of the body's metabolism. This model contains four different states, or metabolites, which contain 18 unknown parameters \cite{article5}. Unlike the original research, which had datasources of their own, this example will simulate data by using a built-in ODE solver on Matlab. The dataset used to generate these results are included along with the code in the appendix. Ultimately, the goals of this example is to demonstrate how the EKF can be applied, how the EKF can correct for multiple variables or states, and how the EKF can be used for parameter fitting. \\ 
+\noindent This example is inspired by research that models the biological pathway of metabolites, which are molecules that are the byproduct of the body's metabolism. This model contains four different states, or metabolites, which contain 17 unknown parameters \cite{article5}. Unlike the original research, which had datasources of their own, this example will simulate data by using a built-in ODE solver on Matlab. The dataset used to generate these results are included along with the code in the appendix. Ultimately, the goals of this example is to demonstrate how the EKF can be applied, how the EKF can correct for multiple variables or states, and how the EKF can be used for parameter fitting. \\ 
 
-\noindent In this example, the four metabolites, or states, have the following differential equations:
+\noindent In this example, there are four states. The first state, $x_1$, is the concentration of the CadA enzyme. The second state, $x_2$, is the concentration of the CadBA enzyme. The third state, $x_3$, is the concentration of external lysine. Finally, the fourth state, $x_4$, is the concentration of external cadaverine. These four states have the following differential equations:
 \begin{align*}
 \dot x_1 &= \alpha_1 x_3^{g_{13}}  - \beta_1 x_1^{h_{11}}, \\
 \dot x_2 &= \alpha_2 x_1^{g_{21}} - \beta_2 x_2^{h_{22}}, \\
 \dot x_3 &= \alpha_3 x_2^{g_{32}} - \beta_3 x_3^{h_{33}} x_4^{h_{34}}, \\
 \dot x_4 &= \alpha_4  x_1^{g_{41}} - \beta_4 x_4^{h_{44}},
 \end{align*}
-where there are 18 unknown parameters ($\alpha_1, \hdots, \alpha_4, \beta_1, \hdots, \beta_4, g_{13}, g_{15}, g_{21}, \\ g_{32}, g_{41}, h_{11}, h_{22}, h_{33}, h_{34}, h_{44} $) and the state vector is given by $x= [x_{1}, x_{2}, x_{3}, x_{4}]^T$. For now, we will use the true value of these parameters (which can be found in \cite{article5}), but later on the EKF will be applied for parameter estimation. In both the original example as well as this one, sampling time will be 0.1 seconds for 5 seconds, totaling 50 UKF estimates. \\
+where there are 17 unknown parameters ($\alpha_1, \hdots, \alpha_4, \beta_1, \hdots, \beta_4, g_{13}, g_{21}, \\ g_{32}, g_{41}, h_{11}, h_{22}, h_{33}, h_{34}, h_{44} $) and the state vector is given by $x= [x_{1}, x_{2}, x_{3}, x_{4}]^T$. For now, we will use the true value of these parameters (which can be found in \cite{article5}), but later on the EKF will be applied for parameter estimation. In both the original example as well as this one, sampling time will be 0.1 seconds for 5 seconds, totaling 50 EKF estimates. \\
 
 
 
@@ -92,7 +92,7 @@ y_{1} &=  x_{1,1|0} + 0.05 * h(x_{1|0}) \\
 
 \end{enumerate}
 
-
+\comment{
 \begin{figure}[ht]
     \centering
     \includegraphics[scale = 0.3]{EKF_1state.png}
@@ -103,15 +103,34 @@ y_{1} &=  x_{1,1|0} + 0.05 * h(x_{1|0}) \\
     \caption{Using EKF with correction applied to all states using a model initialized with states $[4, 1, 3, 4]^T$.}
     \label{fig:EKF_4state}
 \end{figure}
+}
+
+\newpage
+\noindent Applying the EKF for 50 time steps by repeating steps 2 and 3 on Matlab results in Figure \ref{fig:EKF_1state}. The black lines are the true values of the system, the blue lines are the EKF estimates, and the green lines is the measured values. Only State 1 has a green line because only the State 1 was measurable. These accuracy of the EKF on each of these states is performing as expected. Notice that initially, the EKF performance on State 1 is influenced by the system measurements, but later on it becomes less influenced by the measurements and converges with the true. Out of all four states, the EKF performed best on State 1 because that was the state the system was correcting for.  State 2 and State 4 performed fairly well, with some misalignments in the first 2 seconds but converging with the true values later on. This is because the ODEs in State 2 and State 4 contain State 1. On the other hand, state 3 had the worst performance and only converges towards the end. This is because State 3 does not contain State 1 in its ODE.  \\
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale = 0.3]{EKF_1state.png}
+    \caption{The result of implementing EKF with correction applied to State 1 and initialized with states $[4, 1, 3, 4]^T$. State 1 has the best performance, because it is the only state that is measurable. Since State 2 and 4 are dependent on State 1, they perform fairly well, though they do not converge as quickly as State 1. State 3 is independent of State 1, and performs the most poorly.}
+    \label{fig:EKF_1state}
+  \end{figure}
+  \clearpage
 
 
+\noindent Multiple state correction is similar to the implementation above. The only difference is in the correction step, where the value of $h$ differs. Notice the improvement in performance when all states are being corrected, as seen in Figure \ref{fig:EKF_4state}. The black lines represent the true values of the system, the blue line is the EKF estimate, and the green line is the measured values.  Since all states are being corrected for at the same time, all four states quickly converge to their true values. \\
 
-\noindent Applying the EKF for 50 time steps by repeating steps 2 and 3 on Matlab results in figure \ref{fig:EKF_1state}. Multiple state correction is similar to the implementation above. The only difference is in the correction step. Notice the improvement in performance when all states are being corrected, as seen in fig \ref{fig:EKF_4state}.  \\
-
+\comment{
 \noindent For more examples on applying the EKF and MATLAB code, the following can be referenced \cite{cao_2008, article7}.
+}
 
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale = 0.3]{EKF_4state.png}
+    \caption{The results of using the EKF with correction applied to all states using a model initialized with states $[4, 1, 3, 4]^T$. Since all states are measurable, correction is being applied to all states, resulting in all of the states quickly converging to their true values.}
+    \label{fig:EKF_4state}
+  \end{figure}
 
-
+\noindent Part of the reason that the EKF performance is so accurate is because this system does not have many dimensions and the nonlinearity of the system was not too complex. Most real world systems will have greater than 4 states that are represented by more complex ODEs. Also, the way them model was initialized helped the system converge quicker. For instance, the initialized states of this model are extremely close to the system's true values. In addition, the measurement noise value of $R=0.01$ is very small, which assumes that the variation of noise is not high. These factors contribute to the accuracy in performance of this particular example. 
 
 
 
@@ -129,7 +148,12 @@ The EKF (as well as other versions of the Kalman Filter), can be utilized for pa
 \end{align*}
 
 
-\noindent The ODE for $x_5$ is 0, because $x_5$ is a parameter, or constant, and does not change overtime. In this 5 state system, the nonlinear state transition function is equal to $f = [\dot x_1, \dot x_2, \dot x_3, \dot x_4, \dot x_5]^T$. By applying the EKF to this system while correcting for all 5 states, the EKF performs well, as shown in ~\ref{fig:EKF_1param}.
+\noindent The ODE for $x_5$ is 0, because $x_5$ is a parameter, or constant, and does not change overtime. In this 5 state system, the nonlinear state transition function is equal to $f = [\dot x_1, \dot x_2, \dot x_3, \dot x_4, \dot x_5]^T$. \\
+
+
+\noindent By applying the EKF to this system while correcting for all 5 states, the EKF performs well, as shown in Figure~\ref{fig:EKF_1param}. The black lines represent the true values of the system while the blue lines represents the performance of the EKF. Though all of these states were measurable, the measured values are not shown on the graph . This example is assuming that the parameter $a_1$ is measurable; while this can occur, it should not be expected that all parameters are measurable. The performance of all 5 states is fairly accurate, with all states quickly converging to their true values. \\
+
+\newpage
 
 \begin{figure}[h]
     \centering
@@ -137,6 +161,9 @@ The EKF (as well as other versions of the Kalman Filter), can be utilized for pa
     \caption{Results obtained by implementing the EKF with parameter estimation of $\alpha_1$. The model is initialized with $[4, 1, 3, 4, 20]^T$, which is close to the true initial value of the system. While not depicted in this visual, the model still performs well when initialized with values further from the true system values. }
     \label{fig:EKF_1param}
 \end{figure}
+
+
+\noindent A large factor to the accuracy of this model is the fact that all states are being corrected for and the fact that the model was initialized with values near the true values. Though not shown in this thesis, using values further from the true values still led to convergence, just at a slower rate. Hypothetically, if only State 3 was being corrected for, then it would be expected that parameter estimation of $a_1$ would be very poor, because State 3 has no relation to $a_1$.
 
 \comment{
 The jacobian of $f$, or $F$ is given by
@@ -155,9 +182,9 @@ $$
 
 \clearpage
 
-\noindent Parameter estimation can be applied to more than one parameter. In this example, consider parameter estimation for four states, $\alpha_1, \alpha_2, \alpha_3, \alpha_4$. This introduces four new states into the original four state system, resulting in 
+\noindent Parameter estimation can be applied to more than one parameter. In this example, consider parameter estimation for four states, $\alpha_1, \alpha_2, \alpha_3, \alpha_4$. This introduces four new states into the original four state system, resulting in an 8 state system with the following ODES:
 \begin{align*}
-\dot x_1 &= x_5  x_3^{g_{13}} x_5^{g_{15}} - \beta_1 x_1^{h_{11}} , \\
+\dot x_1 &= x_5  x_3^{g_{13}} - \beta_1 x_1^{h_{11}} , \\
 \dot x_2 &= x_6  x_1^{g_{21}} - \beta_2 x_2^{h_{22}}, \\
 \dot x_3 &= x_7  x_2^{g_{32}} - \beta_3 x_3^{h_{33}} x_4^{h_{34}}, \\
 \dot x_4 &= x_8   x_1^{g_{41}} - \beta_4 x_4^{h_{44}} \\
@@ -181,15 +208,27 @@ x_8 g_{41} x_1^{g_{41}-1}&0&0&-\beta_4 h_{44} x_4^{h_{44}-1}&0 & 0 & 0 & x_1^{g_
 $$s
 }
 
-\noindent The results of the EKF when applied to this 8 state system is shown in figure ~\ref{fig:4param}. 
-After 50 time-steps, the EKF prediction of these four parameter is quite close to their true values, as shown in Table ~\ref{tab:4param}.
+
+\noindent The results of the EKF when applied to this 8 state system is shown in figure ~\ref{fig:4param}. The black line represents the true values of the system, while the blue line represents the EKF estimate. Since all 8 states are being corrected, the EKF performs well, with the states and parameters converging to their true values. Another reason for the system's quick convergence is because the model is initialized with values close to the true system values. Using initial values that are further from the true values still results in convergence, but at a slower rate. \\
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale = 0.3]{EKF_4param.png}
+    \caption{EKF performance of an 8 state system with 4 parameters. This model was initialized with $[4;1;3;4;20;8;3;2]^T$, which is almost exactly the system's true values. All of the states and parameters converge quickly because correction is being applied to all of the states.}
+    \label{fig:4param}
+\end{figure}
+
+\newpage
+
+
+\noindent After 50 time-steps, the EKF prediction of these four parameter is quite close to their true values, as shown in Table ~\ref{tab:4param}. Parameter $a_1$ seems to have the most accurate EKF estimate while parameter $a_4$ has the least accurate estimate, as compared to the other parameters. This table also includes the results from the Iterated Unscented Kalman Filter (IUKF), which was the original method used in \cite{article5}. Based on these results, the IUKF performs slightly better than the EKF. However, it is important to keep in mind that these results are not based on the same dataset. The IUKF uses actual data while the EKF uses simulated data.
 
 \begin{center}
 \begin{table}[h]
 \centering
 \begin{tabular}{ |P{3cm}||P{1cm} P{3cm} P{3cm} |}
     \hline
-    \multicolumn{3}{|c|}{Parameter Values} \\ 
+    \multicolumn{4}{|c|}{Parameter Values} \\ 
     \hline
      Parameters & True & EKF estimate & IUKF Estimate\\
     \hline
@@ -199,19 +238,16 @@ After 50 time-steps, the EKF prediction of these four parameter is quite close t
     $\alpha_4$ & 2.0 & 1.9614  & 2.0016 \\
     \hline
 \end{tabular}
-\caption{This table shows the true values of the parameters, the final EKF prediction of the parameters, and the final IUKF prediction of the parameters. Here, the term final is being used to denote the performance of the filter after 50 time-steps.}
+\caption{This table shows the true values of the parameters, the final EKF prediction of the parameters, and the final Iterated Unscented Kalman Filter (IUKF) prediction of the parameters. The IUKF is the original method used in \cite{article5}. Here, the term 'final' is being used to denote the performance of the filter after 50 time-steps. However, keep in mind that the EKF estimate and the IUKF estimate uses different system measurements because we do not have access to the original dataset.}
 \label{tab:4param}
 \end{table}
 \end{center}
 
-\begin{figure}[ht]
-    \centering
-    \includegraphics[scale = 0.5]{EKF_4param.png}
-    \caption{EKF performance of an 8 state system with 4 parameters. This model was initialized with $[4;1;3;4;20;8;3;2]^T$, which is almost exactly the system's true values.}
-    \label{fig:4param}
-\end{figure}
+\newpage
 
+\noindent In conclusion, this example illustrates how the EKF can be implemented on a nonlinear dynamical system by modeling  the pathway of metabolites, which are represented by a four state system. The EKF can be implemented after discretizing the continuous system using Euler's method. After it is in its state space format, the EKF can be applied to generate a prediction. The prediction is corrected by incorporating incoming measurements, which was done for one state and for all states. As expected, the model performs better when more states re being corrected, but still performs well when just one state is corrected. The results from this example perform well because this system has only 4 states, the ODEs are not too nonlinear, and the model is initialized with values near its true values. \\
 
+\noindent This example also demonstrates how the EKF can be used in joint parameter estimation. Joint parameter estimation involves creating new states for the parameters to be estimated. Here, we applied two examples of joint parameter estimation: one with a single parameter and one with 4 parameters. In both examples, the EKF was able to generate a prediction that is very close to the true parameter values. This is likely because we are assuming that the entire system is measurable, including the parameters. Another factor for this model's performance is because it is initialized with values close to the true values of the system.  
 
 
 

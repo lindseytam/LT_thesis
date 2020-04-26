@@ -2,22 +2,26 @@
 \label{Kalman Filters}
 
 
-The Kalman Filter (KF) recursively generates predictions for linear dynamical systems \cite{inbook}. The basic foundations of the this algorithm include generating a prediction given some initial knowledge of the data and using actual measurements from the system to continually correct the prediction. Therefore, unlike other predictive methods like machine learning, the KF can begin generating estimates without large amounts of initial data. The KF begins by assuming the given data is noisy and Gaussian \cite{inproceedings, article7}. The first predictive step assumes knowledge of initial states and the model process. Since we know the system is linear, the model process can be denoted as a matrix and the states can be expressed as a vector. Through matrix vector multiplication, this algorithm simulates how states are transformed after undergoing some process. The next step involves calculating the covariance in order to calculate the Kalman Gain, which is a measure of how much the estimate should be changed given actual measurements of the system. The corrective step utilizes the Kalman Gain, which is a matrix representing a weight to correct the prediction. This process can be done recursively, allowing the model to become progressively more accurate as more data is added. Overtime, it is expected that the model will converge with the actual system measurements. Examples and code for implementing the KF are not explored in this thesis, but can be found in \cite{article7}
+The Kalman Filter (KF) recursively generates predictions for linear dynamical systems \cite{inbook}. The basic foundations of the this algorithm include generating a prediction given some initial knowledge of the data and using actual measurements from the system to continually correct the prediction. A high level overview of this process is illustrated in Figure ~\ref{fig:coffee}, which visualizes the parallel between the KF and a coffee filter. 	Unlike other predictive methods like machine learning, the KF can begin generating estimates without large amounts of initial data. The KF begins by assuming the given data is noisy and Gaussian \cite{inproceedings, article7}. The first predictive step assumes knowledge of initial states and the model process. Since we know the system is linear, the model process can be denoted as a matrix and the states can be expressed as a vector. Through matrix vector multiplication, this algorithm simulates how states are transformed after undergoing some process. The next step involves calculating the covariance in order to calculate the Kalman Gain, which is a measure of how much the estimate should be changed given actual measurements of the system. The corrective step utilizes the Kalman Gain, which is a matrix representing a weight to correct the prediction. This process can be done recursively, allowing the model to become progressively more accurate as more data is added, as visualized in Figure ~\ref{fig:recursive}. Overtime, it is expected that the model will converge with the actual system measurements. Examples and code for implementing the KF are not explored in this thesis, but can be found in \cite{article7}
 \\  \\
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[scale = 0.3]{diagram.png}
-    \caption{A basic diagram demonstrating the recursive nature of the Kalman Filter \cite{kohanbash_2014}.}
-\end{figure}
-\newpage
-
-
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includegraphics[scale = 0.4]{coffee.png}
-    \caption{A simpler way to explore the KF is to facilitate a comparison with a coffee filter. This image is taken from a paper by Rhudy et al. comparing the Kalman Filter to a coffee filter \cite{article7}.}
+    \caption{A simpler way to explore the KF is to facilitate a comparison with a coffee filter. This image is taken from \cite{article7}.}
+      \label{fig:coffee}
     \end{figure}
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale = 0.3]{diagram.png}
+    \caption{This is a basic diagram taken from \cite{kohanbash_2014} that demonstrates the recursive nature of the Kalman Filter. The output of the KF is an estimation of the states in a future time step while the inputs of the KF is incoming measurements from the system. The KF is able to continually generate predictions and correct the predictions as long as system measurements are being inputted into the system.}
+    \label{fig:recursive}
+\end{figure}
+\clearpage
+
+
+
 
 \newpage
 
@@ -30,6 +34,27 @@ The Kalman Filter (KF) recursively generates predictions for linear dynamical sy
 
 \section{Kalman Filter Algorithm}
 
+\noindent Recall from Chapter~\ref{chap:two} that the KF requires the system to have a discretized state space form of \begin{align*}
+& x_k= e^{At}x_{k-1} + \int_0^t e^{A(t-r))} B u_k dr + w_k \quad &\text{(system)}, \\
+&y_k = H x_k + v_k  &\text{   (observation)}.
+\end{align*}
+ This thesis will not be exploring any examples with an input function, so moving forward $x_k$ will be expressed as 
+\begin{align*}
+& x_k= Fx_{k-1} + w_k \quad &\text{(system)},
+\end{align*}
+where $F=e^{At}$ and represent the transformation of the state function, and $w_k = \mathcal{N}(0, c_1)$ or Gaussian white noise. This formula means that the prediction of the next state is equal to a transformation of the previous state with some additive process noise. This general equation is significant to the generation of predictions and will continue to be used in different versions of the KF. \\ 
+
+\noindent Another important aspect of the KF is the incorporation of state measurements. It cannot be assumed that there will always be measurements for all states. More likely, there will only be measurements for a subset of states, Therefore, it is necessary to transform the prediction into a format that can be compared with state values. The transformed estimate of the system measurement at the next time step, call it $y_{k}$, is given by 
+\begin{align*}
+	y_{k} = H x_{k} + v_{k} \quad &\text{(observation)} ,
+\end{align*}
+where $H$ is the matrix observation function and $v_k$ is measurement noise vector at time step $k$ such that $v_k = \mathcal{N}(0, c_2)$ or Gaussian white noise. $H$, which can also be expressed as a matrix since the system is linear, enables the state variables to be linearly transformed to match the outputs of the system. The dimensions of $H$ reflects which state variables have measurable values in the system. It is not assumed that every state variable is measurable, so $H$ allows us to compare the measurable state variables to $x_k$. Simple applications of $H$ include creating matrices with 0's and 1's, with 1's denoting that a state variable is measurable and a 0's representing non-measurable states. In other cases, $H$ is an integer used as a scaling factor. \\ 
+
+
+
+
+
+\comment{
 Before delving into the formal steps of the KF it is important to understand the underlying foundation of this algorithm. The goal of the Kalman Filter is to predict the new state of a system, after it undergoes some transformation. Let this be represented by 
 \begin{align*}
 	\frac{dx}{dt} = f(x) + \varepsilon ',
@@ -38,7 +63,7 @@ where $\frac{dx}{dt}$ is the prediction of the states, $f$ is a linear function 
 \begin{align*}
 	\frac{dx}{dt} \approx M'x + \varepsilon '.
 \end{align*}
-
+    
 \noindent The Kalman Filter works by generating predictions and making correction at various time steps. Let these time steps be denoted as $k$, such that $ k $ is a nonnegative integer and let $x_k$ be the estimate of the state variables at time $k$ with initial assumptions of the state variables beginning at $x_0$, such that $x_0 = \mathcal{N}(m_0, c_0)$, where $m_0$ and $c_0$ is mean and variance, respectively. 
 
 \begin{figure}[h]
@@ -62,13 +87,13 @@ where $\frac{dx}{dt}$ is the prediction of the states, $f$ is a linear function 
 \end{align*}
 \noindent where $\varepsilon_k = \mathcal{N}(0, c_1)$ or Gaussian white noise. This general equation is significant to the generation of predictions and will continue to be used in different versions of the Kalman Filter. \\ 
 
-\noindent Another important aspect of the KF is the incorporation of state measurements. It cannot be assumed that there will always be measurements for all states. More likely, there will only be measurements for a subset of states, Therefore, it is necessary to transform the prediction into a format that can be compared with state values. The transformed estimate of the system measurement at the next time step, call it $y_{k+1}$, is given by 
-\begin{align*}
-	y_{k+1} = H x_{k+1} + v_{k+1},
-\end{align*}
-where $H$ is the matrix observation function and $v_k$ is measurement noise vector at time step $k$ such that $v_k = \mathcal{N}(0, c_2)$ or Gaussian white noise. $H$, which can also be expressed as a matrix since the system is linear, enables the state variables to be linearly transformed to match the outputs of the system. The dimensions of $H$ reflects which state variables have measurable values in the system. It is not assumed that every state variable is measurable, so $H$ allows us to compare the measurable state variables to $x_k$. Simple applications of $H$ include creating matrices with 0's and 1's, with 1's denoting that a state variable is measurable and a 0's representing non-measurable states. In other cases, $H$ is an integer used as a scaling factor. \\ 
+}
 
-\noindent Given the dynamics model and data model, the algorithm of the KF can be discussed in greater depth. As a general overview, the KF algorithm consists of three major components:
+
+
+
+
+\noindent Given the system model and observation model, the algorithm of the KF can be discussed in greater depth. As a general overview, the KF algorithm consists of three major components:
 \begin{enumerate}
   \item Initialize state variables
   \item Generate a prediction
@@ -142,15 +167,14 @@ The recursive component of the filter consists of repeating steps 2 and 3 repeat
     \begin{align*} 
         P_{k|k} = (I - K_k H) P_{k | k-1},
     \end{align*}
-    where $I$ is the identity matrix, $K_k$ is the Kalman Gain at time step $k$, $H$ is the observation matrix, and $P_{k|k-1}$ is the state covariance at time step $k$ given the last time step. $ P_k $ will be used in the next iteration of the filter. \\ \\
-\noindent Steps 2 and 3 may be repeated to progressively generate more accurate predictions.
+    where $I$ is the identity matrix, $K_k$ is the Kalman Gain at time step $k$, $H$ is the observation matrix, and $P_{k|k-1}$ is the state covariance at time step $k$ given the last time step. $ P_k $ will be used in the next iteration of the filter.
 \end{enumerate} 
-
-
 \newpage
 
+\noindent In all, the KF can be used to generate predictions for linear dynamical systems by initializing a model, generating a prediction, and correcting the prediction. Initializing the model requires an understanding of the state's initial values; confidence in the accuracy of the initial values is reflected in the state covariance. After initializing the model, a prediction can be made. Since the system is linear, state transformation can be done by representing the ODE of the state as a matrix and performing matrix multiplication. Finally, the prediction can be updated by incorporating incoming system measurements and calculating the Kalman Gain. This process can be done repeatedly as long as measurements are being inputted into the system. A summary of all of the variables used in the KF can be found in Table ~\ref{tab:KF}. Though the KF is effective in computing predictions for linear dynamical systems, not all systems in the real world are linear. There are several iterations of the KF that have been adapted for non linear dynamical systems.
+
 \begin{center}
-\begin{table}
+\begin{table}[h]
 \centering
 \caption{Description of all variables in the Kalman Filter} \label{tab:sometab}
 \begin{tabular}{ |p{2cm}||p{5cm}|p{2cm}| }
@@ -173,11 +197,8 @@ The recursive component of the filter consists of repeating steps 2 and 3 repeat
     \hline
 \end{tabular}
 \end{table}
+\label{tab:KF}
 \end{center} 
-
-\newpage
-
-% \section{Assessing Model Performance}
 
 
 

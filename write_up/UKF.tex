@@ -1,17 +1,20 @@
 \chapter{Unscented Kalman Filters}
 \label{Unscented Kalman Filters}
 
-The Unscented Kalman Filter (UKF) is another nonlinear version of the Kalman Filter and was developed to address the shortcomings of the EKF. As opposed to using the Jacobian to linearly approximate around a single point, the UKF uses the Unscented Transform (UT) to approximate around multiple points, known as sigma points. The UT is a method of approximating probability distributions that have undergone a non linear transformation using limited statistics. The UT uses these sigma points, which are represented in a Sigma Point Matrix, to represent the normal distribution of the data. Then, the sigma points undergo a non-linear transformation, resulting in a posterior distribution that is not normal \cite{inbook, Wan01theunscented} . We are able to approximate the normal distribution of the posterior distribution using the weights and covariance that were calculated prior to the transformation. This process enables the Kalman Filter to be applied to more complex non linear problems. \\ \\
+The Unscented Kalman Filter (UKF) is another nonlinear version of the Kalman Filter and was developed to address the shortcomings of the EKF. As opposed to using the Jacobian to linearly approximate around a single point, the UKF uses the Unscented Transform (UT) to approximate around multiple points, known as sigma points. The UT is a method of approximating probability distributions that have undergone a non linear transformation using limited statistics. The UT uses these sigma points, which are represented in a Sigma Point Matrix, to represent the normal distribution of the data. Then, the sigma points undergo a non-linear transformation, resulting in a posterior distribution that is not normal \cite{inbook, Wan01theunscented}. It is possible to approximate the normal distribution of the posterior distribution using the weights and covariance that were calculated prior to the transformation. A high level overview of this process is illustrated in Figure ~\ref{fig:UKF}. This process enables the Kalman Filter to be applied to more complex non linear problems. 
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[scale = 0.35]{UKF.png}
+    \caption{A depiction of the general overview of the UKF from \cite{chadha_2019}. Here we see that sigma points are sampled from a Gaussian distribution and are propagated through a non-linear function, called $g$. Though the output is non-Gaussian, an approximation of the Gaussian distribution can be obtained.}
+    \label{fig:UKF}
+\end{figure}
+
+
+\newpage
 
 \noindent Unlike the Kalman Filter and the Extended Kalman Filter, the UKF also has a set of parameters. Explanations of each parameter and their default values can be found in Table 4.2. Here, parameters are necessary for controlling the spread of sigma points. This was not needed for the EKF, since the EKF was only linearizing around the mean. The thesis will not be exploring how to tune these parameters, but one method to do so is through ad hoc testing.
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[scale = 0.7]{UKF.png}
-    \caption{A depiction of the general overview of the UKF. Here we see that sigma points are sampled from a Gaussian distribution and are propagated through a non-linear function, called $g$. Though the output is non-Gaussian, an approximation of the Gaussian distribution can be obtained.}
-\end{figure}
-
-\newpage
 
 \noindent The term 'unscented' was arbitrarily coined by the developer of the UKF, Jeffrey Uhlmann. In an interview, he shares:
 \begin{displayquote}
@@ -19,8 +22,11 @@ The Unscented Kalman Filter (UKF) is another nonlinear version of the Kalman Fil
 \end{displayquote}
 
 
+\newpage
+
 \section{Unscented Kalman Filter Algorithm}
-Before delving into the details of the algorithm, we will explore a high-level overview of the UKF process. As with the KF and the EKF, the UKF follows the three major components of:
+
+\noindent Before delving into the details of the algorithm, we will explore a high-level overview of the UKF process. As with the KF and the EKF, the UKF follows the three major components of:
 \begin{enumerate}
   \item Initializing the model's states
   \item Generating a prediction
@@ -157,13 +163,15 @@ Before delving into the details of the algorithm, we will explore a high-level o
        P_{x, k|k} = P_{x, k|k-1} -K_k (P_{y, k | k-1} ) {K_k}^T.
        \end{align*}     
   
-            
-            
-\newpage            
-\centering
+  \end{enumerate}          
+    
+\newpage        
 
+\noindent In conclusion, the UKF is a nonlinear version of the KF that addresses the shortcomings of the EKF. Unlike the EKF, the UKF linearizes around multiple points, which results in a better approximation of the nonlinear system. The algorithm for the UKF involves calculating sigma points, which are values that characterize the Gaussian distribution of the system, and weights. Using these weights and sigma points, it is possible to approximate the Gaussian distribution of a system after it undergoes a nonlinear transformation. This process is known as the Unscented Transform. In addition, this model can be tuned to adjust the spread of sigma points using the $\alpha, \beta, $ and $\kappa$ hyper-parameters. A summary of all of the parameters and hyper-parameters used in the UKF can be found in Table ~\ref{tab:UKF} and Table ~\ref{tab:hyperparam} respectively. 
+
+    
 \begin{center}
-\begin{table}
+\begin{table}[h]
 \centering
 \caption{Description of all variables in the Unscented Kalman Filter} \label{tab:sometab}
 \begin{tabular}{ |p{2cm}||p{5cm}|p{2cm}| }
@@ -190,27 +198,28 @@ Before delving into the details of the algorithm, we will explore a high-level o
 \end{tabular} 
 
 \end{table}
+\label{tab:UKF}
 \end{center}
 
+
 \begin{center}
-\begin{table}
+\begin{table}[h]
 \centering
-\caption{Description of all parameters in the Unscented Kalman Filter} \label{tab:sometab}
+\caption{Description of all hyper-parameters in the Unscented Kalman Filter} \label{tab:sometab}
 \begin{tabular}{ |p{1cm}||p{5cm}|p{2cm}| p{1cm}| }
     \hline
-    \multicolumn{4}{|c|}{Parameters in the Unscented Kalman Filter } \\ 
+    \multicolumn{4}{|c|}{Hyper-Parameters in the Unscented Kalman Filter } \\ 
     \hline
      & Description & Bounds & Default \\
     \hline
     $\alpha$ & Controls spread of sigma points & $0 < \alpha \leq 1$ & $.001$\\
     $\beta$ & Adjust sigma point weight & $\beta \geq 0$ & 2\\
-    $\kappa $ & Sigma point weighting constant & $0 \leq \kappa \leq 3^{*}$  & 0 \\
+    $\kappa $ & Sigma point weighting constant & $0 \leq \kappa \leq 3 $  & 0 \\
     \hline
 \end{tabular}
 \end{table}
+\label{tab:hyperparam}
 \end{center}
-* Some use $\kappa  = 3 - x$             
-            
             
             
             
@@ -218,6 +227,4 @@ Before delving into the details of the algorithm, we will explore a high-level o
             
             
     
-    
-        
-\end{enumerate}
+  

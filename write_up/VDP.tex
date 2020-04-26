@@ -1,5 +1,5 @@
-\section{Van der Pol Example}
-\label{Van der Pol Example}
+\section{Van der Pol Oscillator}
+\label{Van der Pol Oscillator}
 
 
 Applying the UKF to the Van der Pol oscillator will be used as a simple example to demonstrate the impacts of measurement and process noise. The Van der Pol equation, so named after its developer Balthasar Van der Pol, describes a self sustaining oscillator that create energy at small amplitudes and remove energy from large amplitudes. The Van der Pol equation describes a nonconservative oscillator (also known as a relaxation oscillator). Applications of the Van der Pol oscillators include circuits, vacuums, and modeling biological systems
@@ -9,7 +9,7 @@ Applying the UKF to the Van der Pol oscillator will be used as a simple example 
 \end{align*}   \\
 where $\mu$ is a damping coefficient, $\frac{d^2y}{dt^2}$ is acceleration, $\frac{dy}{dt}$ is velocity, and $y$ is position. Therefore, for all $\mu < 0$, dampening occurs and the system tends to 0. The rate at which the system converges to zero is dependent on the size of $\mu$, with larger values taking longer to converge and smaller values converging faster. If $\mu = 0$, the system becomes a simple harmonic oscillator, where motion is periodic. Lastly, if $\mu > 0$, the system enters a limit cycle, which is an isolated closed trajectory. \cite{kinoshita_2013}. \\ 
 
-\noindent The UKF can be applied to this nonlinear system to determine where the system will be at a point in time. To do so, relevant state variables include position and velocity.  \footnote{In Matlab, x(1) and x(2) represent position and velocity, respectively}
+\noindent The UKF can be applied to this nonlinear system to determine where the system will be at a point in time. To do so, relevant state variables include position and velocity. 
 \begin{align*}
 x_k = \begin{bmatrix}
           y\\ 
@@ -47,16 +47,18 @@ x_k = \begin{bmatrix}
 \end{align*}
 
 
-\noindent In this particular example, the only measurement received from the system is position. Therefore, this filter is continually correcting for the position state state variable through measurement function $h$. Here, measurements of the system are simulated by adding noise to the position state variable. Even though there are only measurements for one state variable, we can still generate estimates of both state variables. In terms of parameters $\alpha, \kappa$, and $\beta$, default values were used.\\ 
+\noindent In this particular example, the only measurement received from the system is position. Therefore, this filter is continually correcting for the position state state variable through measurement function $h$. Here, measurements of the system are simulated by adding noise to the position state variable. Even though there are only measurements for one state variable, we can still generate estimates of both state variables. In terms of hyper-parameters $\alpha, \kappa$, and $\beta$, default values were used.\\ 
 
-\noindent To simulate a Van der Pol Oscillator, an ordinary differential equation solver can be applied to state function $f$ to generate true values of the system. Of course, systems do not perform perfectly; variations in model performance can be captured by randomly adding noise to the system. \\
+\noindent To simulate a Van der Pol Oscillator, an ordinary differential equation solver can be applied to state function $f$ to generate true values of the system. Of course, systems do not perform perfectly; variations in model performance can be captured by randomly adding noise to the system. All of the code used to simulate the UKF for the Van der Pol oscillator is from \cite{matlab_simulink}. \\
 
+\comment{
 \noindent All of this can be modeled on Matlab; all source code is from Matlab and can be referenced in Appendix A \cite{matlab /& simulink}
+}
 
 \begin{figure}[h]
     \centering
     \includegraphics[scale = 0.6]{VDP.png}
-    \caption{Performance of the UKF with R = 0.2, and Q = (0.02 0.1).
+    \caption{Performance of the UKF with R = 0.2, and Q = diag[0.02, 0.1].
     As expected, the model converges on the true values of the system for both state variables. In this case, the only measurements we are receiving from the system are position, which is why the second state variable has no measured values.}
 \end{figure}
 \begin{figure}[h]

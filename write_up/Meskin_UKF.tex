@@ -10,12 +10,12 @@
 
 \noindent Recall that the four metabolites have the following differential equations:
 \begin{align*}
-\dot x_1 &= \alpha_1 x_3^{g_{13}} x_5^{g_{15}} - \beta_1 x_1^{h_{11}}, \\
+\dot x_1 &= \alpha_1 x_3^{g_{13}} - \beta_1 x_1^{h_{11}}, \\
 \dot x_2 &= \alpha_2 x_1^{g_{21}} - \beta_2 x_2^{h_{22}}, \\
 \dot x_3 &= \alpha_3 x_2^{g_{32}} - \beta_3 x_3^{h_{33}} x_4^{h_{34}}, \\
 \dot x_4 &= \alpha_4  x_1^{g_{41}} - \beta_4 x_4^{h_{44}},
 \end{align*}
-with 18 parameters ($\alpha_1, \hdots, \alpha_4, \beta_1, \hdots, \beta_4, g_{13}, g_{15}, g_{21}, g_{32}, g_{41}, h_{11}, h_{22}, h_{33}, h_{34},\\ h_{44} $). In both the original example as well as this one, sampling time will be 0.1 seconds for 5 seconds, totaling 50 UKF estimates. Recall that data is simulated on MATLAB and the model is initialized with state variable $x_0 = [4, 1, 3, 4]^T$ and the state covariance to $P_0 = .01I$. \\
+with 17 parameters ($\alpha_1, \hdots, \alpha_4, \beta_1, \hdots, \beta_4, g_{13}, g_{21}, g_{32}, g_{41}, h_{11}, h_{22}, h_{33}, h_{34},h_{44} $). In both the original example as well as this one, sampling time will be 0.1 seconds for 5 seconds, totaling 50 UKF estimates. Recall that data is simulated on MATLAB and the model is initialized with state variable $x_0 = [4, 1, 3, 4]^T$ and the state covariance to $P_0 = .01I$. \\
 
 \noindent In the original example, researchers used the following hyper-parameter values: $\epsilon = 1, \kappa = -14$. In theory, values of $\kappa$ can be negative, but negative hyper-parameter values cannot be inputted into MATLAB. For this example, the hyper-parameter values used in this example are set to Matlab default values ($\alpha = 1e-3, \beta = 2, \kappa = 0$). The performance of the UKF on this system with these default hyper parameter values is shown in Figure ~\ref{fig:UKF_states}. Future work includes looking into ways to tune this hyper-parameters. \\
 

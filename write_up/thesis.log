@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  23 APR 2020 10:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  25 APR 2020 23:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -510,7 +510,31 @@ Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'english'.
 
-(./thesis.aux)
+(./thesis.aux (./Introduction.aux) (./state_space.aux) (./KF.aux) (./EKF.aux
+
+LaTeX Warning: Label `tab:sometab' multiply defined.
+
+) (./Meskin_EKF.aux) (./UKF.aux
+
+LaTeX Warning: Label `tab:sometab' multiply defined.
+
+
+LaTeX Warning: Label `tab:sometab' multiply defined.
+
+) (./VDP.aux
+
+LaTeX Warning: Label `fig:f1' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:f1' multiply defined.
+
+
+LaTeX Warning: Label `fig:f2' multiply defined.
+
+
+LaTeX Warning: Label `sub@fig:f2' multiply defined.
+
+) (./Meskin_UKF.aux) (./future.aux) (./Appendix.aux))
 \openout1 = `thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
@@ -581,7 +605,7 @@ LaTeX Info: Redefining \nameref on input line 32.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
 Package caption Info: End \AtBeginDocument code.
-<pomonalogo.pdf, id=4, 464.73625pt x 194.7275pt>
+<pomonalogo.pdf, id=52, 464.73625pt x 194.7275pt>
 File: pomonalogo.pdf Graphic file (type pdf)
 <use pomonalogo.pdf>
 Package pdftex.def Info: pomonalogo.pdf  used on input line 34.
@@ -603,14 +627,31 @@ ge.}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.37 ...e and parameter estimation. \end{abstract}
-                                                   [1]
+                                                   [1] (./thesis.toc
+Overfull \hbox (0.61113pt too wide) detected at line 7
+ []\OT1/cmr/m/n/10 xvii
+ []
 
-Package hyperref Warning: old toc file detected, not used; run LaTeX again.
 
+Overfull \hbox (8.66672pt too wide) detected at line 12
+ []\OT1/cmr/m/n/10 xxxiii
+ []
+
+
+Overfull \hbox (8.38895pt too wide) detected at line 13
+ []\OT1/cmr/m/n/10 xxxix
+ []
+
+
+Overfull \hbox (0.8889pt too wide) detected at line 14
+ []\OT1/cmr/m/n/10 xliii
+ []
+
+)
 \tf@toc=\write4
 \openout4 = `thesis.toc'.
 
-[1
+ [1
 
 ]
 \openout2 = `Introduction.aux'.
@@ -618,8 +659,9 @@ Package hyperref Warning: old toc file detected, not used; run LaTeX again.
  (./Introduction.tex
 Chapter 1.
 
-Underfull \hbox (badness 10000) in paragraph at lines 4--5
-
+Overfull \hbox (1.94514pt too wide) in paragraph at lines 4--5
+\OT1/cmr/m/n/10 This the-sis ex-plores the the-ory and com-pu-ta-tional im-ple-
+men-ta-tion of the Kalman
  []
 
 
@@ -633,7 +675,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 6--7
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 6--7
+Underfull \hbox (badness 10000) in paragraph at lines 8--9
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 10--11
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 12--13
 
  []
 
@@ -646,51 +698,68 @@ Underfull \hbox (badness 10000) in paragraph at lines 6--7
  (./state_space.tex
 Chapter 2.
 
+LaTeX Warning: Citation `bolviken' on page iv undefined on input line 10.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 9--11
 
  []
+
+
+LaTeX Warning: Citation `bolviken' on page iv undefined on input line 17.
+
+
+LaTeX Warning: Citation `griffiths_higham_2011' on page iv undefined on input l
+ine 22.
 
 [4
 
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 63--69
+<EM.png, id=107, 1204.5pt x 941.5175pt>
+File: EM.png Graphic file (type png)
+<use EM.png>
+Package pdftex.def Info: EM.png  used on input line 26.
+(pdftex.def)             Requested size: 180.6672pt x 141.22153pt.
+
+
+LaTeX Warning: Citation `EM_image' on page v undefined on input line 27.
+
+
+LaTeX Warning: Citation `EM_image' on page v undefined on input line 27.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 31--32
 
  []
 
 
-Overfull \hbox (61.15883pt too wide) detected at line 113
+LaTeX Warning: Citation `bolviken' on page v undefined on input line 33.
+
+[5 <./EM.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 72--78
+
+ []
+
+
+Overfull \hbox (43.98521pt too wide) detected at line 122
 [][] \OML/cmm/m/it/10 e[]e[]Bu[]dr \OT1/cmr/m/n/10 = [][] \OML/cmm/m/it/10 e[] 
-[] [] u\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 dt 
-\OT1/cmr/m/n/10 = [][] \OML/cmm/m/it/10 e[] [] u\OT1/cmr/m/n/10 (\OML/cmm/m/it/
-10 t\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 dt \OT1/cmr/m/n/10 = [] \OML/cmm/m/it/10 
-u\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 :
+[] [] u[]dt \OT1/cmr/m/n/10 = [][] \OML/cmm/m/it/10 e[] [] u[]dt \OT1/cmr/m/n/1
+0 = [] \OML/cmm/m/it/10 u[]:
  []
 
-[5]
-Underfull \hbox (badness 10000) in paragraph at lines 132--133
+
+Underfull \hbox (badness 10000) in paragraph at lines 141--142
 
  []
 
-) [6]
+[6]) [7]
 \openout2 = `KF.aux'.
 
  (./KF.tex
 Chapter 3.
 
-LaTeX Warning: Citation `inbook' on page vii undefined on input line 5.
-
-
-LaTeX Warning: Citation `inproceedings' on page vii undefined on input line 5.
-
-
-LaTeX Warning: Citation `article7' on page vii undefined on input line 5.
-
-
-LaTeX Warning: Citation `article7' on page vii undefined on input line 5.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 5--7
 
  []
@@ -700,127 +769,83 @@ Underfull \hbox (badness 10000) in paragraph at lines 5--7
 
  []
 
-<diagram.png, id=57, 956.57375pt x 478.78876pt>
-File: diagram.png Graphic file (type png)
-<use diagram.png>
-Package pdftex.def Info: diagram.png  used on input line 10.
-(pdftex.def)             Requested size: 286.97433pt x 143.63773pt.
-
-LaTeX Warning: Citation `kohanbash_2014' on page vii undefined on input line 11
-.
-
-
-LaTeX Warning: Citation `kohanbash_2014' on page vii undefined on input line 11
-.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[7
-
-
-
-]
-<coffee.png, id=64, 749.80125pt x 646.415pt>
+<coffee.png, id=134, 749.80125pt x 646.415pt>
 File: coffee.png Graphic file (type png)
 <use coffee.png>
-Package pdftex.def Info: coffee.png  used on input line 18.
+Package pdftex.def Info: coffee.png  used on input line 10.
 (pdftex.def)             Requested size: 299.91519pt x 258.56142pt.
+<diagram.png, id=137, 956.57375pt x 478.78876pt>
+File: diagram.png Graphic file (type png)
+<use diagram.png>
+Package pdftex.def Info: diagram.png  used on input line 17.
+(pdftex.def)             Requested size: 286.97433pt x 143.63773pt.
+[8
 
 
-LaTeX Warning: Citation `article7' on page viii undefined on input line 19.
 
-
-LaTeX Warning: Citation `article7' on page viii undefined on input line 19.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: Citation `lim_ong_lim_koo_2016' on page viii undefined on input 
-line 24.
-
-
-LaTeX Warning: Citation `kalmanbio' on page viii undefined on input line 24.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 24--25
+] [9 <./coffee.png> <./diagram.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 28--29
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 24--25
+Underfull \hbox (badness 10000) in paragraph at lines 28--29
+
+ []
+
+[10
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 44--46
 
  []
 
 
-LaTeX Warning: Citation `kalmanbio' on page viii undefined on input line 27.
-
-
-LaTeX Warning: Citation `Kalman_bio' on page viii undefined on input line 27.
-
-[8 <./diagram.png>] [9 <./coffee.png>]
-<kgraph.png, id=79, 1032.85875pt x 237.88875pt>
-File: kgraph.png Graphic file (type png)
-<use kgraph.png>
-Package pdftex.def Info: kgraph.png  used on input line 46.
-(pdftex.def)             Requested size: 309.86002pt x 71.36716pt.
-
-Underfull \hbox (badness 10000) in paragraph at lines 62--64
+Underfull \hbox (badness 10000) in paragraph at lines 50--52
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 68--70
-
- []
-
-[10 <./kgraph.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 77--78
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 104--106
+Underfull \hbox (badness 10000) in paragraph at lines 102--103
 
  []
 
 [11]
-Underfull \hbox (badness 10000) in paragraph at lines 110--113
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 110--113
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 122--124
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 125--126
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 127--128
+Underfull \hbox (badness 10000) in paragraph at lines 129--131
 
  []
 
 [12]
-Underfull \hbox (badness 10000) in paragraph at lines 138--140
+Underfull \hbox (badness 10000) in paragraph at lines 135--138
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 144--147
+Underfull \hbox (badness 10000) in paragraph at lines 135--138
 
  []
 
-[13] [14])
+
+Underfull \hbox (badness 10000) in paragraph at lines 147--149
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 150--151
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 152--153
+
+ []
+
+[13]
+Underfull \hbox (badness 10000) in paragraph at lines 163--165
+
+ []
+
+[14]) [15]
 \openout2 = `EKF.aux'.
 
  (./EKF.tex
@@ -830,62 +855,62 @@ Underfull \hbox (badness 10000) in paragraph at lines 4--5
 
  []
 
-<EKF.png, id=115, 504.88625pt x 381.425pt>
+<EKF.png, id=203, 504.88625pt x 381.425pt>
 File: EKF.png Graphic file (type png)
 <use EKF.png>
 Package pdftex.def Info: EKF.png  used on input line 8.
-(pdftex.def)             Requested size: 201.95091pt x 152.56729pt.
-[15
+(pdftex.def)             Requested size: 176.71283pt x 133.50075pt.
+
+LaTeX Warning: Citation `chadha_2019' on page xvi undefined on input line 9.
+
+
+LaTeX Warning: Citation `chadha_2019' on page xvi undefined on input line 9.
+
+[16
 
 
 
  <./EKF.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 19--21
+Underfull \hbox (badness 10000) in paragraph at lines 20--22
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 22--23
+Underfull \hbox (badness 10000) in paragraph at lines 23--24
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 39--41
+Underfull \hbox (badness 10000) in paragraph at lines 40--42
 
  []
 
-[16
+[17
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 50--51
+Underfull \hbox (badness 10000) in paragraph at lines 51--52
 
  []
 
-[17]
-Underfull \hbox (badness 10000) in paragraph at lines 96--98
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 106--109
+[18]
+Underfull \hbox (badness 10000) in paragraph at lines 97--99
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 122--124
+Underfull \hbox (badness 10000) in paragraph at lines 107--110
 
  []
 
-[18] [19]) [20
 
-]
+Underfull \hbox (badness 10000) in paragraph at lines 123--125
+
+ []
+
+[19]) [20]
 \openout2 = `Meskin_EKF.aux'.
 
  (./Meskin_EKF.tex
-
-LaTeX Warning: Citation `article5' on page xxi undefined on input line 5.
-
-
 Overfull \hbox (7.19513pt too wide) in paragraph at lines 5--6
 \OT1/cmr/m/n/10 metabo-lites, which are molecules that are the byprod-uct of th
 e body's metabolism.
@@ -895,9 +920,6 @@ e body's metabolism.
 Underfull \hbox (badness 10000) in paragraph at lines 5--6
 
  []
-
-
-LaTeX Warning: Citation `article5' on page xxi undefined on input line 14.
 
 
 Overfull \hbox (6.72343pt too wide) in paragraph at lines 13--15
@@ -931,222 +953,168 @@ Underfull \hbox (badness 10000) in paragraph at lines 79--80
 
  []
 
-<EKF_1state.png, id=167, 1445.4pt x 807.015pt>
-File: EKF_1state.png Graphic file (type png)
-<use EKF_1state.png>
-Package pdftex.def Info: EKF_1state.png  used on input line 98.
-(pdftex.def)             Requested size: 433.62335pt x 242.10637pt.
-
-Overfull \hbox (88.62335pt too wide) in paragraph at lines 98--99
- [][] 
- []
-
-<EKF_4state.png, id=168, 1445.4pt x 807.015pt>
-File: EKF_4state.png Graphic file (type png)
-<use EKF_4state.png>
-Package pdftex.def Info: EKF_4state.png  used on input line 102.
-(pdftex.def)             Requested size: 433.62335pt x 242.10637pt.
-
-Overfull \hbox (88.62335pt too wide) in paragraph at lines 102--103
- [][] 
- []
-
-
-LaTeX Warning: Float too large for page by 15.21274pt on input line 105.
-
-
-LaTeX Warning: Reference `fig:EKF_1state' on page xxiii undefined on input line
- 109.
-
-
-LaTeX Warning: Reference `fig:EKF_4state' on page xxiii undefined on input line
- 109.
-
-
+[23]
 Underfull \hbox (badness 10000) in paragraph at lines 109--110
 
  []
 
+<EKF_1state.png, id=257, 1445.4pt x 807.015pt>
+File: EKF_1state.png Graphic file (type png)
+<use EKF_1state.png>
+Package pdftex.def Info: EKF_1state.png  used on input line 113.
+(pdftex.def)             Requested size: 433.62335pt x 242.10637pt.
 
-LaTeX Warning: Citation `cao_2008' on page xxiii undefined on input line 111.
+Overfull \hbox (88.62335pt too wide) in paragraph at lines 113--114
+ [][] 
+ []
 
-
-LaTeX Warning: Citation `article7' on page xxiii undefined on input line 111.
-
-[23] [24 <./EKF_1state.png (PNG copy)> <./EKF_4state.png (PNG copy)>]
-
-LaTeX Warning: Citation `inbook' on page xxv undefined on input line 120.
-
-
-LaTeX Warning: Citation `article6' on page xxv undefined on input line 120.
-
-
+[24 <./EKF_1state.png (PNG copy)>]
 Underfull \hbox (badness 10000) in paragraph at lines 120--121
 
  []
 
-
-LaTeX Warning: Reference `fig:EKF_1param' on page xxv undefined on input line 1
-32.
-
-<EKF_1param.png, id=179, 1445.4pt x 807.015pt>
-File: EKF_1param.png Graphic file (type png)
-<use EKF_1param.png>
-Package pdftex.def Info: EKF_1param.png  used on input line 136.
+<EKF_4state.png, id=264, 1445.4pt x 807.015pt>
+File: EKF_4state.png Graphic file (type png)
+<use EKF_4state.png>
+Package pdftex.def Info: EKF_4state.png  used on input line 128.
 (pdftex.def)             Requested size: 433.62335pt x 242.10637pt.
 
-Overfull \hbox (88.62335pt too wide) in paragraph at lines 136--137
+Overfull \hbox (88.62335pt too wide) in paragraph at lines 128--129
  [][] 
  []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
 
 [25
 
-] [26 <./EKF_1param.png (PNG copy)>]
+ <./EKF_4state.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 139--140
 
-LaTeX Warning: Reference `fig:4param' on page xxvii undefined on input line 184
-.
-
-
-LaTeX Warning: Reference `tab:4param' on page xxvii undefined on input line 185
-.
-
-<EKF_4param.png, id=190, 716.9184pt x 1190.046pt>
-File: EKF_4param.png Graphic file (type png)
-<use EKF_4param.png>
-Package pdftex.def Info: EKF_4param.png  used on input line 209.
-(pdftex.def)             Requested size: 358.45831pt x 595.02155pt.
-
-Overfull \hbox (13.45831pt too wide) in paragraph at lines 209--210
- [][] 
  []
 
 
-LaTeX Warning: Float too large for page by 91.02155pt on input line 212.
+Underfull \hbox (badness 10000) in paragraph at lines 151--152
 
-) [27
+ []
 
-] [28 <./EKF_4param.png>]
+
+Underfull \hbox (badness 10000) in paragraph at lines 154--155
+
+ []
+
+[26
+
+]
+<EKF_1param.png, id=280, 1445.4pt x 807.015pt>
+File: EKF_1param.png Graphic file (type png)
+<use EKF_1param.png>
+Package pdftex.def Info: EKF_1param.png  used on input line 160.
+(pdftex.def)             Requested size: 433.62335pt x 242.10637pt.
+
+Overfull \hbox (88.62335pt too wide) in paragraph at lines 160--161
+ [][] 
+ []
+
+[27 <./EKF_1param.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 212--213
+
+ []
+
+<EKF_4param.png, id=286, 1190.046pt x 716.9184pt>
+File: EKF_4param.png Graphic file (type png)
+<use EKF_4param.png>
+Package pdftex.def Info: EKF_4param.png  used on input line 216.
+(pdftex.def)             Requested size: 357.01656pt x 215.07718pt.
+
+Overfull \hbox (12.01656pt too wide) in paragraph at lines 216--217
+ [][] 
+ []
+
+[28
+
+ <./EKF_4param.png>] [29]
+Underfull \hbox (badness 10000) in paragraph at lines 248--249
+
+ []
+
+) [30]
 \openout2 = `UKF.aux'.
 
  (./UKF.tex
 Chapter 5.
-
-LaTeX Warning: Citation `inbook' on page xxix undefined on input line 4.
-
-
-LaTeX Warning: Citation `Wan01theunscented' on page xxix undefined on input lin
-e 4.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 4--5
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 4--5
-
- []
-
-<UKF.png, id=202, 491.8375pt x 376.40625pt>
+<UKF.png, id=311, 491.8375pt x 376.40625pt>
 File: UKF.png Graphic file (type png)
 <use UKF.png>
-Package pdftex.def Info: UKF.png  used on input line 10.
-(pdftex.def)             Requested size: 344.28389pt x 263.48257pt.
+Package pdftex.def Info: UKF.png  used on input line 8.
+(pdftex.def)             Requested size: 172.14569pt x 131.74416pt.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[29
+LaTeX Warning: Citation `chadha_2019' on page xxxi undefined on input line 9.
 
 
+LaTeX Warning: Citation `chadha_2019' on page xxxi undefined on input line 9.
 
-] [30 <./UKF.png>]
-<SPM.png, id=215, 868.24374pt x 244.915pt>
+[31
+
+
+
+ <./UKF.png>] [32]
+<SPM.png, id=323, 868.24374pt x 244.915pt>
 File: SPM.png Graphic file (type png)
 <use SPM.png>
-Package pdftex.def Info: SPM.png  used on input line 33.
+Package pdftex.def Info: SPM.png  used on input line 39.
 (pdftex.def)             Requested size: 347.29134pt x 97.96425pt.
 
-Overfull \hbox (2.29134pt too wide) in paragraph at lines 33--34
+Overfull \hbox (2.29134pt too wide) in paragraph at lines 39--40
  [][] 
  []
 
-<transform.png, id=216, 828.09375pt x 133.49875pt>
+<transform.png, id=324, 828.09375pt x 133.49875pt>
 File: transform.png Graphic file (type png)
 <use transform.png>
-Package pdftex.def Info: transform.png  used on input line 40.
+Package pdftex.def Info: transform.png  used on input line 46.
 (pdftex.def)             Requested size: 372.63875pt x 60.07387pt.
 
-Overfull \hbox (27.63875pt too wide) in paragraph at lines 40--41
+Overfull \hbox (27.63875pt too wide) in paragraph at lines 46--47
  [][] 
  []
 
-[31 <./SPM.png> <./transform.png>]
-
-LaTeX Warning: Citation `inbook' on page xxxii undefined on input line 58.
-
-
-LaTeX Warning: Citation `inproceedings' on page xxxii undefined on input line 5
-8.
-
-
-LaTeX Warning: Citation `Wan01theunscented' on page xxxii undefined on input li
-ne 58.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 61--65
+[33 <./SPM.png> <./transform.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 67--71
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 61--65
+Underfull \hbox (badness 10000) in paragraph at lines 67--71
 
  []
 
-[32]
-
-LaTeX Warning: Citation `article6' on page xxxiii undefined on input line 79.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 79--80
+[34]
+Underfull \hbox (badness 10000) in paragraph at lines 85--86
 
  []
 
-[33]
-Underfull \hbox (badness 10000) in paragraph at lines 113--115
+[35]
+Underfull \hbox (badness 10000) in paragraph at lines 119--121
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 122--125
+Underfull \hbox (badness 10000) in paragraph at lines 128--131
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 135--137
+Underfull \hbox (badness 10000) in paragraph at lines 141--143
 
  []
 
-[34] [35]
-Overfull \hbox (3.90845pt too wide) in paragraph at lines 203--204
+[36] [37]
+Overfull \hbox (3.90845pt too wide) in paragraph at lines 213--214
 []|\OT1/cmr/m/n/10 Default| 
  []
 
-) [36]
+) [38]
 \openout2 = `VDP.aux'.
 
  (./VDP.tex
-
-LaTeX Warning: Citation `weisstein_2019' on page xxxvii undefined on input line
- 6.
-
-
-LaTeX Warning: Citation `kinoshita_2013' on page xxxvii undefined on input line
- 10.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 9--11
 
  []
@@ -1156,7 +1124,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 50--51
 
  []
 
-[37
+[39
 
 
 ]
@@ -1165,15 +1133,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 52--53
  []
 
 
-LaTeX Warning: Citation `matlab /& simulink' on page xxxviii undefined on input
- line 54.
+LaTeX Warning: Citation `matlab /& simulink' on page xl undefined on input line
+ 54.
 
-<VDP.png, id=263, 562.2606pt x 421.575pt>
+<VDP.png, id=379, 562.2606pt x 421.575pt>
 File: VDP.png Graphic file (type png)
 <use VDP.png>
 Package pdftex.def Info: VDP.png  used on input line 58.
 (pdftex.def)             Requested size: 337.35896pt x 252.94695pt.
-<VDP_badinitial.png, id=264, 562.2606pt x 421.575pt>
+<VDP_badinitial.png, id=380, 562.2606pt x 421.575pt>
 File: VDP_badinitial.png Graphic file (type png)
 <use VDP_badinitial.png>
 Package pdftex.def Info: VDP_badinitial.png  used on input line 64.
@@ -1181,40 +1149,32 @@ Package pdftex.def Info: VDP_badinitial.png  used on input line 64.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<VDP_highMN.png, id=265, 562.2606pt x 421.575pt>
+<VDP_highMN.png, id=381, 562.2606pt x 421.575pt>
 File: VDP_highMN.png Graphic file (type png)
 <use VDP_highMN.png>
 Package pdftex.def Info: VDP_highMN.png  used on input line 71.
 (pdftex.def)             Requested size: 172.5pt x 129.33603pt.
-<VDP_lowMN.png, id=266, 562.2606pt x 421.575pt>
+<VDP_lowMN.png, id=382, 562.2606pt x 421.575pt>
 File: VDP_lowMN.png Graphic file (type png)
 <use VDP_lowMN.png>
 Package pdftex.def Info: VDP_lowMN.png  used on input line 73.
 (pdftex.def)             Requested size: 172.5pt x 129.33603pt.
-<VDP_highPN.png, id=267, 562.2606pt x 421.575pt>
+<VDP_highPN.png, id=383, 562.2606pt x 421.575pt>
 File: VDP_highPN.png Graphic file (type png)
 <use VDP_highPN.png>
 Package pdftex.def Info: VDP_highPN.png  used on input line 81.
 (pdftex.def)             Requested size: 172.5pt x 129.33603pt.
-<VDP_lowPN.png, id=268, 562.2606pt x 421.575pt>
+<VDP_lowPN.png, id=384, 562.2606pt x 421.575pt>
 File: VDP_lowPN.png Graphic file (type png)
 <use VDP_lowPN.png>
 Package pdftex.def Info: VDP_lowPN.png  used on input line 83.
 (pdftex.def)             Requested size: 172.5pt x 129.33603pt.
-) [38 <./VDP.png (PNG copy)>] [39 <./VDP_badinitial.png (PNG copy)>] [40 <./VDP
+) [40 <./VDP.png (PNG copy)>] [41 <./VDP_badinitial.png (PNG copy)>] [42 <./VDP
 _highMN.png (PNG copy)> <./VDP_lowMN.png (PNG copy)> <./VDP_highPN.png (PNG cop
 y)> <./VDP_lowPN.png (PNG copy)>]
 \openout2 = `Meskin_UKF.aux'.
 
  (./Meskin_UKF.tex
-
-LaTeX Warning: Reference `chap:EKF_Meskin' on page xli undefined on input line 
-7.
-
-
-LaTeX Warning: Citation `article5' on page xli undefined on input line 7.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 7--8
 
  []
@@ -1225,9 +1185,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--10
  []
 
 
-Overfull \hbox (1.97339pt too wide) in paragraph at lines 17--19
-\OT1/cmr/m/n/10 with 18 pa-ram-e-ters ($\OML/cmm/m/it/10 []; [] ; []; ^^L[]; 
-[] ; ^^L[]; g[]; g[]; g[]; g[]; g[]; h[]; h[]; h[]; h[]; [] 
+Overfull \hbox (5.18756pt too wide) in paragraph at lines 17--19
+\OT1/cmr/m/n/10 with 17 pa-ram-e-ters ($\OML/cmm/m/it/10 []; [] ; []; ^^L[]; 
+[] ; ^^L[]; g[]; g[]; g[]; g[]; h[]; h[]; h[]; h[]; h[]$\OT1/cmr/m/n/10 ).
  []
 
 
@@ -1236,15 +1196,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 17--19
  []
 
 
-LaTeX Warning: Reference `fig:UKF_states' on page xli undefined on input line 2
-0.
-
-
 Underfull \hbox (badness 10000) in paragraph at lines 20--21
 
  []
 
-<UKF_states.png, id=289, 1445.4pt x 830.1414pt>
+<UKF_states.png, id=409, 1445.4pt x 830.1414pt>
 File: UKF_states.png Graphic file (type png)
 <use UKF_states.png>
 Package pdftex.def Info: UKF_states.png  used on input line 28.
@@ -1254,40 +1210,19 @@ Overfull \hbox (88.62335pt too wide) in paragraph at lines 28--29
  [][] 
  []
 
-
-LaTeX Warning: Citation `article5' on page xli undefined on input line 29.
-
-
-LaTeX Warning: Citation `article5' on page xli undefined on input line 29.
-
-[41
+[43
 
 
-] [42 <./UKF_states.png (PNG copy)>]
-
-LaTeX Warning: Reference `chap:EKF_Meskin' on page xliii undefined on input lin
-e 40.
-
-
-LaTeX Warning: Reference `fig:UKF_4param' on page xliii undefined on input line
- 49.
-
-
-LaTeX Warning: Reference `tab:UKF_4param' on page xliii undefined on input line
- 49.
-
-<UKF_4param.png, id=302, 724.6272pt x 1193.9004pt>
+] [44 <./UKF_states.png (PNG copy)>]
+<UKF_4param.png, id=424, 1193.9004pt x 724.6272pt>
 File: UKF_4param.png Graphic file (type png)
 <use UKF_4param.png>
 Package pdftex.def Info: UKF_4param.png  used on input line 53.
-(pdftex.def)             Requested size: 362.31271pt x 596.94875pt.
+(pdftex.def)             Requested size: 596.94875pt x 362.31271pt.
 
-Overfull \hbox (17.31271pt too wide) in paragraph at lines 53--54
+Overfull \hbox (251.94875pt too wide) in paragraph at lines 53--54
  [][] 
  []
-
-
-LaTeX Warning: Float too large for page by 68.94875pt on input line 56.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -1297,9 +1232,9 @@ Overfull \hbox (17.35387pt too wide) in paragraph at lines 61--73
  [][] 
  []
 
-[43
+[45
 
-] [44 <./UKF_4param.png>]
+] [46 <./UKF_4param.png>]
 LaTeX Font Info:    Try loading font information for OMS+cmr on input line 84.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/omscmr.fd
@@ -1307,16 +1242,12 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 84.
-
-
-LaTeX Warning: Reference `fig:4params' on page xlv undefined on input line 89.
-
-<UKF_4param_residual.png, id=315, 562.2606pt x 421.575pt>
+<UKF_4param_residual.png, id=439, 562.2606pt x 421.575pt>
 File: UKF_4param_residual.png Graphic file (type png)
 <use UKF_4param_residual.png>
 Package pdftex.def Info: UKF_4param_residual.png  used on input line 93.
 (pdftex.def)             Requested size: 337.35896pt x 252.94695pt.
-) [45
+) [47
 
 
  <./UKF_4param_residual.png (PNG copy)>]
@@ -1324,17 +1255,7 @@ Package pdftex.def Info: UKF_4param_residual.png  used on input line 93.
 
  (./future.tex
 Chapter 6.
-
-LaTeX Warning: Citation `article1' on page xlvi undefined on input line 5.
-
-
-LaTeX Warning: Citation `Shtylla' on page xlvi undefined on input line 5.
-
-
-LaTeX Warning: Reference `fig:relations' on page xlvi undefined on input line 5
-.
-
-<t1d_model.png, id=321, 906.38625pt x 438.63875pt>
+<t1d_model.png, id=449, 906.38625pt x 438.63875pt>
 File: t1d_model.png Graphic file (type png)
 <use t1d_model.png>
 Package pdftex.def Info: t1d_model.png  used on input line 9.
@@ -1344,35 +1265,14 @@ Overfull \hbox (108.19202pt too wide) in paragraph at lines 9--10
  [][] 
  []
 
-
-LaTeX Warning: Citation `Shtylla' on page xlvi undefined on input line 10.
-
-
-LaTeX Warning: Citation `Shtylla' on page xlvi undefined on input line 10.
-
-[46
+[48
 
 
 
- <./t1d_model.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 31--33
-
- []
+ <./t1d_model.png>]) [49] (./thesis.bbl [50
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 31--33
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 31--33
-
- []
-
-) [47] (./thesis.bbl [48
-
-
-]) [49]
+]) [51]
 \openout2 = `Appendix.aux'.
 
  (./Appendix.tex
@@ -1407,59 +1307,53 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 68.
 (./Appendix.aux))
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 68.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 68.
+Package rerunfilecheck Info: File `thesis.out' has not changed.
+(rerunfilecheck)             Checksum: 2AFA2F3401C2AFA9DAE3127CE11B725F;761.
 
-
-Package rerunfilecheck Warning: File `thesis.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `thesis.out':
-(rerunfilecheck)             Before: D41D8CD98F00B204E9800998ECF8427E;0
-(rerunfilecheck)             After:  E1FEC0410ED08E6E75DC0A4626A6122B;758.
 
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 68.
-[50
+[52
 
 
 
 \BOOKMARK [0][-]{chapter.1}{Van der Pol Example}{}% 13
-\@writefile{toc}{\contentsline {chapter}{\numberline {A}Van der Pol Example}{l}
-{chapter.1}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {A}Van der Pol Example}{li
+i}{chapter.1}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
 ]
 Overfull \vbox (21.0pt too high) has occurred while \output is active []
 
- [51
-\newlabel{Van der Pol Code}{{A}{li}{Van der Pol Example}{chapter.1}{}}
+ [53
+\newlabel{Van der Pol Code}{{A}{liii}{Van der Pol Example}{chapter.1}{}}
 \BOOKMARK [0][-]{chapter.2}{EKF Metabolites Example}{}% 14
 \@writefile{toc}{\contentsline {chapter}{\numberline {B}EKF Metabolites Example
-}{li}{chapter.2}}
+}{liii}{chapter.2}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{EKF metabolites example code}{{B}{li}{EKF Metabolites Example}{chapte
-r.2}{}}
+\newlabel{EKF metabolites example code}{{B}{liii}{EKF Metabolites Example}{chap
+ter.2}{}}
 \BOOKMARK [0][-]{chapter.3}{UKF Metabolites Example code}{}% 15
 \@writefile{toc}{\contentsline {chapter}{\numberline {C}UKF Metabolites Example
- code}{li}{chapter.3}}
+ code}{liii}{chapter.3}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\newlabel{UKF metabolites example code}{{C}{li}{UKF Metabolites Example code}{c
-hapter.3}{}}
+\newlabel{UKF metabolites example code}{{C}{liii}{UKF Metabolites Example code}
+{chapter.3}{}}
 ] ) 
 Here is how much of TeX's memory you used:
- 11776 strings out of 492649
- 174564 string characters out of 6129622
- 322486 words of memory out of 5000000
- 15294 multiletter control sequences out of 15000+600000
+ 11838 strings out of 492649
+ 175235 string characters out of 6129622
+ 335634 words of memory out of 5000000
+ 15330 multiletter control sequences out of 15000+600000
  12157 words of font info for 46 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 44i,16n,51p,1539b,529s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,16n,51p,1726b,529s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pf
 b></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 ></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb
@@ -1479,10 +1373,10 @@ e/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2
 exmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2018/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2018/tex
 mf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (53 pages, 3433935 bytes).
+Output written on thesis.pdf (55 pages, 3390058 bytes).
 PDF statistics:
- 461 PDF objects out of 1000 (max. 8388607)
- 351 compressed objects within 4 object streams
- 134 named destinations out of 1000 (max. 500000)
- 111 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 579 PDF objects out of 1000 (max. 8388607)
+ 461 compressed objects within 5 object streams
+ 138 named destinations out of 1000 (max. 500000)
+ 207 words of extra memory for PDF output out of 10000 (max. 10000000)
 

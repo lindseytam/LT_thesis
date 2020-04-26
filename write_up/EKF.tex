@@ -1,12 +1,13 @@
 \chapter{Extended Kalman Filters}
 \label{Extended Kalman Filters}
 
-The Extended Kalman Filter (EKF) is one of the non-linear versions of the Kalman Filter. For the most part, the EKF algorithm is nearly identical to the KF algorithm. The critical difference is in linearizing the non-linear state and observation function. The EKF uses the Jacobian to linearly approximate the non-linear function around the mean of the Gaussian distribution. Skipping this step would result in the transformed data being non-Gaussian; though taking the Jacobian enables the transformation to remain Gaussian, it is not exact, resulting in some generalization. Linear approximation through a single point also makes the EKF inefficient when dealing with complex, higher order systems. Because of this, the model is highly subject to error, which can be somewhat reduced by setting accurate initial values. Though these flaws exist, the EKF performs strongly with applications of real time spatial fields, including navigation and positioning systems.  \\
+The Extended Kalman Filter (EKF) is one of the non-linear versions of the Kalman Filter. For the most part, the EKF algorithm is nearly identical to the KF algorithm. The critical difference is in linearizing the non-linear state and observation function. The EKF uses the Jacobian to linearly approximate the non-linear function around the mean of the Gaussian distribution. Skipping this step would result in the transformed data being non-Gaussian; though taking the Jacobian enables the transformation to remain Gaussian, it is not exact, resulting in some generalization. A high level overview of this process is illustrated in Figure ~\ref{fig:EKF}. Linear approximation through a single point also makes the EKF inefficient when dealing with complex, higher order systems. Because of this, the model is highly subject to error, which can be reduced by setting accurate initial values. Though these flaws exist, the EKF performs strongly with applications of real time spatial fields, including navigation and GPS.  \\
 
- \begin{figure}[h]
+ \begin{figure}[ht]
     \centering
-    \includegraphics[scale = 0.4]{EKF.png}
-    \caption{Overview of how the EKF approximates the Gaussian distribution using the mean after the system has been transformed by a nonlinear function.}
+    \includegraphics[scale = 0.35]{EKF.png}
+    \caption{This image from \cite{chadha_2019} gives an overview of how the EKF approximates the Gaussian distribution using the mean after the system has been transformed by a nonlinear function.}
+    \label{fig:EKF}
     \end{figure}
     
 \clearpage
@@ -122,9 +123,16 @@ The recursive component of the filter consists of repeating steps 2 and 3 repeat
     \end{align*}
     where $I$ is the identity matrix, $K_k$ is the Kalman Gain at time $k$, $P_{k | k-1}$ is the covariance matrix given the last time step, and $H$ is the Jacobian of the nonlinear observation matrix. \\
 \end{enumerate} 
-\clearpage
+
+
+
+
+\noindent In all, the EKF is the simplest non linear version of the KF that linearizes the system around the mean by taking the Jacobian of the non linear function. A summary of all the variables in the EKF algorithm can be found in Table ~\ref{tab:EKF}. Implementing the EKF is nearly identical to the KF, except in the correction step. Since the EKF only linearizes around a single point, it is most effective in less complex and lower dimensional systems. When considering alternative forms of the KF that can addresss complex and higher dimensional non linear dynamical systems, one must consider more effective ways of linearization.
+
+
+
 \begin{center}
-\begin{table}
+\begin{table}[h]
 \centering
 \caption{Description of all variables in the Extended Kalman Filter} \label{tab:sometab}
 \begin{tabular}{ |p{2cm}||p{5cm}|p{2cm}| }
@@ -149,4 +157,5 @@ The recursive component of the filter consists of repeating steps 2 and 3 repeat
     \hline
 \end{tabular}
 \end{table}
+\label{tab:EKF}
 \end{center}

@@ -7,6 +7,6 @@
 \BOOKMARK [1][-]{section.4.2}{Modeling Metabolites using EKF}{chapter.4}% 7
 \BOOKMARK [0][-]{chapter.5}{Unscented Kalman Filters}{}% 8
 \BOOKMARK [1][-]{section.5.1}{Unscented Kalman Filter Algorithm}{chapter.5}% 9
-\BOOKMARK [1][-]{section.5.2}{Van der Pol Example}{chapter.5}% 10
+\BOOKMARK [1][-]{section.5.2}{Van der Pol Oscillator}{chapter.5}% 10
 \BOOKMARK [1][-]{section.5.3}{Modeling Metabolites using UKF}{chapter.5}% 11
 \BOOKMARK [0][-]{chapter.6}{Future Work}{}% 12
