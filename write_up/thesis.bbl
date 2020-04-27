@@ -9,16 +9,29 @@ David Albers, Matthew Levine, Andrew Stuart, Lena Mamykina, Bruce Gluckman, and
 \newblock {\em Journal of the American Medical Informatics Association :
   JAMIA}, 25:1392--1401, 10 2018.
 
-\bibitem{cao_2008}
-Yi~Cao.
-\newblock Learning the extended kalman filter - file exchange - matlab central,
-  Jan 2008.
+\bibitem{bolviken}
+Erik Bølviken, Nils Christophersen, and Geir Storvik.
+\newblock In-st 259 course lecture, Oct 1998.
+
+\bibitem{chadha_2019}
+Harveen~Singh Chadha.
+\newblock The unscented kalman filter: Anything ekf can do i can do it better!,
+  Nov 2019.
 
 \bibitem{article6}
 J.~Gove and DY~Hollinger.
 \newblock Application of a dual unscented kalman filter for simultaneous state
   and parameter estimation in problems of surface-atmosphere exchange.
 \newblock {\em Journal of Geophysical Research}, 111:21 PP.--21 PP., 04 2006.
+
+\bibitem{griffiths_higham_2011}
+D.~F. Griffiths and Desmond~J. Higham.
+\newblock {\em Numerical methods for ordinary differential equations: initial
+  value problems}.
+\newblock Springer, 2011.
+
+\bibitem{EM_image}
+Euler method, Mar 2020.
 
 \bibitem{Kalman_bio}
 Remembering rudolf e. kalman (1930 – 2016), Jul 2016.
@@ -39,6 +52,9 @@ David Kohanbash.
 Chot~Hun Lim, Lee~Yeng Ong, Tien~Sze Lim, and Voon~Chet Koo.
 \newblock Kalman filtering and its real‐time applications.
 \newblock {\em Real-time Systems}, Jun 2016.
+
+\bibitem{matlab_simulink}
+Nonlinear state estimation using unscented kalman filter and particle filter.
 
 \bibitem{article5}
 Nader Meskin, Hazem Nounou, Mohamed Nounou, and Aniruddha Datta.

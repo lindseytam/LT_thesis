@@ -4,35 +4,37 @@
 \citation{kinoshita_2013}
 \@writefile{toc}{\contentsline {section}{\numberline {5.2}Van der Pol Oscillator}{xxxix}{section.5.2}}
 \newlabel{Van der Pol Oscillator}{{5.2}{xxxix}{Van der Pol Oscillator}{section.5.2}{}}
-\citation{matlab /& simulink}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces Performance of the UKF with R = 0.2, and Q = (0.02 0.1). As expected, the model converges on the true values of the system for both state variables. In this case, the only measurements we are receiving from the system are position, which is why the second state variable has no measured values.\relax }}{xl}{figure.caption.19}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces Performance of the UKF with poor initial conditions: (1, 7) instead of (2,0). Recall that inaccurate intial conditions cause convergence to take place more slowly. This seems to be the case, especially in the state variable that is not being corrected for.\relax }}{xli}{figure.caption.20}}
-\newlabel{fig:f1}{{5.6a}{xlii}{Subfigure 5 5.6a}{subfigure.5.6.1}{}}
+\citation{matlab_simulink}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces The top graph is represents position and the bottom graph represent velocity. In both cases, the UKF model has parameters R = 0.2, Q = diag[0.02, 0.1], and the initial state is $x_0=$[2,0], which is the true initial value. As expected, the model converges with the true values of the system for both state variables. In this case, the only measurements we are receiving from the system are position, which is why the second state variable has no measured values.\relax }}{xli}{figure.caption.19}}
+\newlabel{fig:VDP}{{5.4}{xli}{The top graph is represents position and the bottom graph represent velocity. In both cases, the UKF model has parameters R = 0.2, Q = diag[0.02, 0.1], and the initial state is $x_0=$[2,0], which is the true initial value. As expected, the model converges with the true values of the system for both state variables. In this case, the only measurements we are receiving from the system are position, which is why the second state variable has no measured values.\relax }{figure.caption.19}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.5}{\ignorespaces This figure visualizes the performance of the UKF with poor initial conditions: $x_0=$[1, 7] instead of $x_0=$[2,0]. Inaccurate initial conditions cause convergence to take place more slowly. This seems to be the case, especially in the state variable that is not being corrected for.\relax }}{xlii}{figure.caption.20}}
+\newlabel{fig:BADVDP}{{5.5}{xlii}{This figure visualizes the performance of the UKF with poor initial conditions: $x_0=$[1, 7] instead of $x_0=$[2,0]. Inaccurate initial conditions cause convergence to take place more slowly. This seems to be the case, especially in the state variable that is not being corrected for.\relax }{figure.caption.20}{}}
+\newlabel{fig:f1}{{5.6a}{xliii}{Subfigure 5 5.6a}{subfigure.5.6.1}{}}
 \newlabel{sub@fig:f1}{{(a)}{a}{Subfigure 5 5.6a\relax }{subfigure.5.6.1}{}}
-\newlabel{fig:f2}{{5.6b}{xlii}{Subfigure 5 5.6b}{subfigure.5.6.2}{}}
+\newlabel{fig:f2}{{5.6b}{xliii}{Subfigure 5 5.6b}{subfigure.5.6.2}{}}
 \newlabel{sub@fig:f2}{{(b)}{b}{Subfigure 5 5.6b\relax }{subfigure.5.6.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.6}{\ignorespaces UKF on VDP oscillator with difference values of measurement noise. The model's behavior changes in response to the different values of measurement noise. Even when measurement noise is high, the UKF continues to perform well. Though, the rate of convergence appears to be slower. On the other hand, when measurement noise is low, the UKF seems to converge instantly with the measured values. The velocity state variable also quickly converges with the true value of the system.\relax }}{xlii}{figure.caption.21}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {UKF with high measurement noise (0.9)}}}{xlii}{subfigure.6.1}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {UKF with low measurement noise (0.002)}}}{xlii}{subfigure.6.2}}
-\newlabel{fig:f1}{{5.7a}{xlii}{Subfigure 5 5.7a}{subfigure.5.7.1}{}}
-\newlabel{sub@fig:f1}{{(a)}{a}{Subfigure 5 5.7a\relax }{subfigure.5.7.1}{}}
-\newlabel{fig:f2}{{5.7b}{xlii}{Subfigure 5 5.7b}{subfigure.5.7.2}{}}
-\newlabel{sub@fig:f2}{{(b)}{b}{Subfigure 5 5.7b\relax }{subfigure.5.7.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.7}{\ignorespaces UKF on VDP oscillator with different values of process noise. Recall that process noise measures errors in the model. For the purpose of this example, process error was set to extreme high and low values. In theory, the Van der Pol equation should have small process error because it is a well used equation.\relax }}{xlii}{figure.caption.22}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {UKF with high process noise (0.9 0.8)}}}{xlii}{subfigure.7.1}}
-\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {UKF with low process noise (0.0001 0.0001)}}}{xlii}{subfigure.7.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.6}{\ignorespaces UKF performance on the VDP oscillator with difference values of measurement noise. The model's behavior changes in response to the different values of measurement noise. Even when measurement noise is high, the UKF continues to perform well. Though, the rate of convergence appears to be slower. On the other hand, when measurement noise is low, the UKF seems to converge instantly with the measured values.\relax }}{xliii}{figure.caption.21}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {UKF with high measurement noise (0.9)}}}{xliii}{subfigure.6.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {UKF with low measurement noise (0.002)}}}{xliii}{subfigure.6.2}}
+\newlabel{fig:f3}{{5.7a}{xliv}{Subfigure 5 5.7a}{subfigure.5.7.1}{}}
+\newlabel{sub@fig:f3}{{(a)}{a}{Subfigure 5 5.7a\relax }{subfigure.5.7.1}{}}
+\newlabel{fig:f4}{{5.7b}{xliv}{Subfigure 5 5.7b}{subfigure.5.7.2}{}}
+\newlabel{sub@fig:f4}{{(b)}{b}{Subfigure 5 5.7b\relax }{subfigure.5.7.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.7}{\ignorespaces UKF performance on the VDP oscillator with different values of process noise. Recall that process noise measures errors in the model. For the purpose of this example, process error was set to extreme high and low values. In theory, the Van der Pol equation should have small process error because it is a well used equation. Lower process noise seems to have a smoothing effect on the UKF estimate. On the other hand, higher process noise causes the model to almost entirely depend on incoming system measurements.\relax }}{xliv}{figure.caption.22}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {UKF with high process noise (0.9 0.8)}}}{xliv}{subfigure.7.1}}
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {UKF with low process noise (0.0001 0.0001)}}}{xliv}{subfigure.7.2}}
 \@setckpt{VDP}{
-\setcounter{page}{43}
+\setcounter{page}{46}
 \setcounter{equation}{0}
 \setcounter{enumi}{3}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}
 \setcounter{enumiv}{0}
-\setcounter{footnote}{1}
+\setcounter{footnote}{0}
 \setcounter{mpfootnote}{0}
 \setcounter{parentequation}{0}
 \setcounter{Item}{21}
-\setcounter{Hfootnote}{3}
+\setcounter{Hfootnote}{2}
 \setcounter{bookmark@seq@number}{10}
 \setcounter{part}{0}
 \setcounter{chapter}{5}

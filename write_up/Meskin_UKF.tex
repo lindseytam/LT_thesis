@@ -17,16 +17,26 @@
 \end{align*}
 with 17 parameters ($\alpha_1, \hdots, \alpha_4, \beta_1, \hdots, \beta_4, g_{13}, g_{21}, g_{32}, g_{41}, h_{11}, h_{22}, h_{33}, h_{34},h_{44} $). In both the original example as well as this one, sampling time will be 0.1 seconds for 5 seconds, totaling 50 UKF estimates. Recall that data is simulated on MATLAB and the model is initialized with state variable $x_0 = [4, 1, 3, 4]^T$ and the state covariance to $P_0 = .01I$. \\
 
-\noindent In the original example, researchers used the following hyper-parameter values: $\epsilon = 1, \kappa = -14$. In theory, values of $\kappa$ can be negative, but negative hyper-parameter values cannot be inputted into MATLAB. For this example, the hyper-parameter values used in this example are set to Matlab default values ($\alpha = 1e-3, \beta = 2, \kappa = 0$). The performance of the UKF on this system with these default hyper parameter values is shown in Figure ~\ref{fig:UKF_states}. Future work includes looking into ways to tune this hyper-parameters. \\
+\noindent In the original example, researchers used the following hyper-parameter values: $\epsilon = 1, \kappa = -14$. In theory, values of $\kappa$ can be negative, but negative hyper-parameter values cannot be inputted into MATLAB. For this example, the hyper-parameter values used in this example are set to Matlab default values ($\alpha = 1e-3, \beta = 2, \kappa = 0$).  Future work includes looking into ways to tune this hyper-parameters. \\
+
+\clearpage 
+
+
+
+
+
+\noindent The performance of the UKF on this system with these default hyper parameter values is shown in Figure ~\ref{fig:UKF_states}. Since the model is correcting for all 4 states, most of the states quickly converge to their true value. An exception to this is State 3. State 3 appears to converge in the beginning, but after the 1.5 second time-step, it deviates from the true values. There seems to be a phase shift upwards, but it is unclear why State 3 has this behavior. Measurement noise and the process noise for State 3 is not high; this possibly suggests that the performance can be better tuned using the system's hyper-parameters.
 
 \comment{
 \noindent Since the first state, $x1$ is the only state that has incoming system measurements, we have a 3 different blue lines in this figure. From this figure, it appears that the UKF prediction perfectly overlaps with the measured values. However, upon closer inspection, it actually does not. This is likely because there is only a small amount of measurement noise to the system. Figure 4.9 highlights the same information as Figure 4.8, but separates the states into different graphs, enabling a clearer illustration of each state's behavior.
 }
 
+
+
 \begin{figure}[ht]
     \centering
-    \includegraphics[scale = 0.3]{UKF_states.png}
-    \caption{Performance of all four state variables with all four states being corrected. The model is initialized with $x_0 = [4, 1, 3, 4]^T$, which is close to the system's true values and is why the system quickly converges with the true values. The measured and true values are very close together because the system has low values of measurement noise, $R=0.01$, and process noise, $Q=diag([0.2 0.1 0.3 .4 .2 .3 .2 .1])$. The values for $Q$ and $R$ were not taken from the original example \cite{article5}, which is a factor to consider when comparing results.}
+    \includegraphics[scale = 0.25]{UKF_states.png}
+    \caption{Performance of all four state variables with all four states being corrected. The model is initialized with $x_0 = [4, 1, 3, 4]^T$, which is close to the system's true values and is why the system quickly converges with the true values. The measured and true values are very close together because the system has low values of measurement noise, $R=0.01$, and process noise, $Q=diag([0.2, 0.1, 0.3, .4])$. The values for $Q$ and $R$ were not taken from the original example \cite{article5}, which is a factor to consider when comparing results.}
     \label{fig:UKF_states}
 \end{figure}
 
@@ -34,7 +44,10 @@ with 17 parameters ($\alpha_1, \hdots, \alpha_4, \beta_1, \hdots, \beta_4, g_{13
 \noindent An attempt was made to observe how the system changes with differing values of noise. In the real world, measurement noise values of $R=0.01$ is quite low; therefore, there was interest in seeing how increasing this value would change the system's behavior. However, }
 
 
+
 \clearpage
+
+
 \subsubsection{Parameter estimation}
 
 Similar to chapter chapter~\ref{chap:EKF_Meskin}, joint parameter estimation can also be applied to the UKF. This example will be using the exact same dataset for measured and true system values as the one used in the EKF version. In order to estimate parameters, $\alpha_1,\alpha_2, \alpha_3, \alpha_4$, declare them as new states. Recall from the earlier EKF example that the system is as follows
@@ -46,17 +59,25 @@ Similar to chapter chapter~\ref{chap:EKF_Meskin}, joint parameter estimation can
 \dot x_5 &= \dot x_6= \dot x_7 = \dot x_8 = 0.
 \end{align*}
 
-\noindent The system is initialized with the same values as the EKF four parameter example, with the initial state being $x_0 = [4, 1, 3, 4, 20, 8, 3, 2]^T$ and the state covariance being $P_0 = .01I$. Also, the values of $Q$ and $R$ also remain the same. The results of the UKF on this 8 state system is illustrated in ~\ref{fig:UKF_4param}. Compared with the EKF results, the UKF seems to do poorer for State 3. However, in terms of parameter estimation, the EKF and UKF version seem to have the exact same performance, as shown in ~\ref{tab:UKF_4param}. These results may possibly be adjusted by changing hyper parameter values and can be explored in future work.
+\noindent The system is initialized with the same values as the EKF four parameter example, with the initial state being $x_0 = [4, 1, 3, 4, 20, 8, 3, 2]^T$ and the state covariance being $P_0 = .01I$. Also, the values of $Q$ and $R$ also remain the same. In addition, the system measurements used in the EKF estimate are also used here in the UKF estimate.  \\
 
-\begin{figure}[h]
+\noindent The results of the UKF on this 8 state system is illustrated in ~\ref{fig:UKF_4param}. Since all states are measurable and are being corrected for, all 8 states quickly converge to their true values. Also, the issue in State 3 has disappeared, though it is unclear why. Another reason that the model was able to quickly converge is because the model was initialized with values close to the system's true values. \\
+
+\noindent The results of the UKF estimate may be compared with alternative parameter estimation methods. Compared with the EKF results in terms of parameter estimation, the EKF and UKF version seem to have the exact same performance, as shown in Table ~\ref{tab:UKF_4param}. These results may possibly be adjusted by changing hyper parameter values and can be explored in future work. Table ~\ref{tab:UKF_4param} also includes the IUKF estimate obtained in \cite{article5}. Recall that the EKF and UKF estimate use the same dataset, but the IUKF estimate uses a separate dataset. Therefore, when interpreting this table one must keep in mind that it is not completely fair to compare the results of IUKF with either the EKF or UKF estimates.
+
+
+
+\newpage
+
+\begin{figure}[ht]
     \centering
-    \includegraphics[scale = 0.5]{UKF_4param.png}
-    \caption{ds}
+    \includegraphics[scale = 0.3]{UKF_4param.png}
+    \caption{This graph visualizes the result of the UKF applied to 4 states and 4 parameters. In this system, correction is being applied to all 8 states. Therefore, convergence for all 8 states seems to take place almost immediately. The issue in State 3 almost seems to have resolved itself, though it is unclear why. Interestingly, the UKF result of all 4 parameters is identical to the EKF result of all parameters, given that the two use the same system measurements. It is possible that tuning the hyper-parameters of the UKF can yield better results.  }
     \label{fig:UKF_4param}
 \end{figure}
 
 \begin{center}
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \begin{tabular}{ |P{2cm}||P{1cm} P{2.5cm} P{2.5cm} P{2.5cm} |}
     \hline
@@ -70,14 +91,15 @@ Similar to chapter chapter~\ref{chap:EKF_Meskin}, joint parameter estimation can
     $\alpha_4$ & 2.0 & 1.9614 &1.9614 & 2.0016 \\
     \hline
 \end{tabular}
-\caption{This table shows the true values of the parameters, the final EKF prediction of the parameters (as a reference to compare filter performance), the final UKF prediction of parameters, and the final IUKF prediction of the parameters. Here, the term final is being used to denote the performance of the filter after 50 time-steps. Interestingly, the performance of the EKF is the exact same as the performance of the UKF. By changing the hyper-parameters for the UKF, the model may be able to provide more accurate results.}
+\caption{This table shows the true values of the parameters, the final EKF prediction of the parameters (as a reference to compare filter performance), the final UKF prediction of parameters, and the final IUKF prediction of the parameters. Note that the EKF and UKF estimate are based on the same system measurements, but the IUKF uses a separate dataset. Here, the term final is being used to denote the performance of the filter after 50 time-steps. Interestingly, the performance of the EKF is the exact same as the performance of the UKF. By changing the hyper-parameters for the UKF, the model may be able to provide more accurate results.}
 \label{tab:UKF_4param}
 \end{table}
 \end{center}
 
-\clearpage
 
 \clearpage
+
+\subsubsection{UKF Model Assessment }
 \noindent Residuals, also known as the innovation, are one way to access the model's performance. Recall that the residual is the difference between the actual measurement values and the predicted measurement values. Generally, a strong residual graph has
 
 \begin{itemize}
@@ -95,9 +117,23 @@ Similar to chapter chapter~\ref{chap:EKF_Meskin}, joint parameter estimation can
     \label{fig:4params}
 \end{figure}
 
-\noindent Future work includes using the UKF for parameter fitting. One approach would be to use a technique similar to the one employed in chapter 3.2. Alternatively, another non-linear Kalman Filter technique, known as the Dual Unscented Kalman Filter, may also be a promising solution. Either of these two methods will likely be better than the method used in chapter 3.2, because calculating the exponential matrix and jacobian of the system is very computationally expensive and can be avoided with the UKF.
+\noindent Future work to improve the use UKF for parameter fitting includes tuning hyper parameters or looking into alternative parameter estimation methods. There is another nonlinear KF that is based on the UKF, known as the Dual Unscented Kalman Filter (DUKF), that was deigned to simultaneously estimate state and parameters. Research into the DUKF can potentially yield better results into parameter estimation.
 
-%\noindent \textcolor{red}{Expand here on correcting for 1+ states, currently we are having technical challenges in completing this step}
+\clearpage
+
+% \subsubsection{Current Challenges }
+%\newpage
+
+\noindent In conclusion, this example demonstrates how the UKF can be applied to a simple nonlinear system and how the UKF can be used in parameter estimation. In addition, this example also shows how model performance can be assessed using residuals. \\ 
+
+\noindent This metabolites model is a four state nonlinear system. When implementing the EKF while correcting for all states, it was expected that all 4 states would converge to their true values. However, it was interesting that State 3 performed unexpectedly, and had an unexplainable phase shift. Other than State 3, the other 3 states performed as expected and converged quickly. \\
+
+\noindent When using UKF in joint parameter estimation for 4 states, $a_1, \hdots, a_4$, the UKF had the exact same performance as the EKF, when using the same system measurements. The UKF model could yield better results when the hyper-parameters are tuned, which is not a direction that this thesis explores, but could be studied in future work. \\
+
+\noindent Residuals were used as a way to gauge the model's accuracy. The residual graph for this example indicates that model performance can be improved. Though the residual is symmetrical, clustered close to the center, and near 0, the pattern of the residual is not random. \\
+
+\noindent In all, applying the UKF to this metabolites example allows one to compare performance of nonlinear KF methods. 
+
 
 
 

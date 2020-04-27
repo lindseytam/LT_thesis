@@ -4,62 +4,54 @@ The top-level auxiliary file: thesis.aux
 A level-1 auxiliary file: Introduction.aux
 A level-1 auxiliary file: state_space.aux
 A level-1 auxiliary file: KF.aux
-White space in argument---line 5 of file KF.aux
- : \citation{article
- :                   7}
-I'm skipping whatever remains of this command
 A level-1 auxiliary file: EKF.aux
 A level-1 auxiliary file: Meskin_EKF.aux
 A level-1 auxiliary file: UKF.aux
 A level-1 auxiliary file: VDP.aux
-White space in argument---line 7 of file VDP.aux
- : \citation{matlab
- :                  /& simulink}
-I'm skipping whatever remains of this command
 A level-1 auxiliary file: Meskin_UKF.aux
 A level-1 auxiliary file: future.aux
+A level-1 auxiliary file: conclusion.aux
 The style file: plain.bst
 A level-1 auxiliary file: Appendix.aux
 Database file #1: bib.bib
-You've used 15 entries,
+You've used 19 entries,
             2118 wiz_defined-function locations,
-            598 strings with 6482 characters,
-and the built_in function-call counts, 4641 in all, are:
-= -- 431
-> -- 212
+            624 strings with 6965 characters,
+and the built_in function-call counts, 5460 in all, are:
+= -- 500
+> -- 245
 < -- 4
-+ -- 89
-- -- 70
-* -- 306
-:= -- 740
-add.period$ -- 38
-call.type$ -- 15
-change.case$ -- 81
++ -- 104
+- -- 80
+* -- 346
+:= -- 857
+add.period$ -- 45
+call.type$ -- 19
+change.case$ -- 99
 chr.to.int$ -- 0
-cite$ -- 15
-duplicate$ -- 171
-empty$ -- 396
-format.name$ -- 70
-if$ -- 995
+cite$ -- 19
+duplicate$ -- 204
+empty$ -- 486
+format.name$ -- 80
+if$ -- 1178
 int.to.chr$ -- 0
-int.to.str$ -- 15
-missing$ -- 10
-newline$ -- 70
-num.names$ -- 26
-pop$ -- 109
+int.to.str$ -- 19
+missing$ -- 12
+newline$ -- 85
+num.names$ -- 30
+pop$ -- 144
 preamble$ -- 1
-purify$ -- 67
+purify$ -- 82
 quote$ -- 0
-skip$ -- 148
+skip$ -- 183
 stack$ -- 0
-substring$ -- 260
-swap$ -- 41
+substring$ -- 281
+swap$ -- 45
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 58
+type$ -- 72
 warning$ -- 0
-while$ -- 37
-width$ -- 17
-write$ -- 145
-(There were 2 error messages)
+while$ -- 41
+width$ -- 21
+write$ -- 174

@@ -1,31 +1,33 @@
 \relax 
 \providecommand\hyper@newdestlabel[2]{}
 \citation{article5}
+\@writefile{toc}{\contentsline {section}{\numberline {5.3}Modeling Metabolites using UKF}{xlvi}{section.5.3}}
+\newlabel{Modeling Metabolites using UKF}{{5.3}{xlvi}{Modeling Metabolites using UKF}{section.5.3}{}}
 \citation{article5}
 \citation{article5}
-\@writefile{toc}{\contentsline {section}{\numberline {5.3}Modeling Metabolites using UKF}{xliii}{section.5.3}}
-\newlabel{Modeling Metabolites using UKF}{{5.3}{xliii}{Modeling Metabolites using UKF}{section.5.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.8}{\ignorespaces Performance of all four state variables with all four states being corrected. The model is initialized with $x_0 = [4, 1, 3, 4]^T$, which is close to the system's true values and is why the system quickly converges with the true values. The measured and true values are very close together because the system has low values of measurement noise, $R=0.01$, and process noise, $Q=diag([0.2 0.1 0.3 .4 .2 .3 .2 .1])$. The values for $Q$ and $R$ were not taken from the original example \cite  {article5}, which is a factor to consider when comparing results.\relax }}{xliv}{figure.caption.23}}
-\newlabel{fig:UKF_states}{{5.8}{xliv}{Performance of all four state variables with all four states being corrected. The model is initialized with $x_0 = [4, 1, 3, 4]^T$, which is close to the system's true values and is why the system quickly converges with the true values. The measured and true values are very close together because the system has low values of measurement noise, $R=0.01$, and process noise, $Q=diag([0.2 0.1 0.3 .4 .2 .3 .2 .1])$. The values for $Q$ and $R$ were not taken from the original example \cite {article5}, which is a factor to consider when comparing results.\relax }{figure.caption.23}{}}
-\@writefile{toc}{\contentsline {subsubsection}{Parameter estimation}{xlv}{section*.24}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.3}{\ignorespaces This table shows the true values of the parameters, the final EKF prediction of the parameters (as a reference to compare filter performance), the final UKF prediction of parameters, and the final IUKF prediction of the parameters. Here, the term final is being used to denote the performance of the filter after 50 time-steps. Interestingly, the performance of the EKF is the exact same as the performance of the UKF. By changing the hyper-parameters for the UKF, the model may be able to provide more accurate results.\relax }}{xlv}{table.caption.26}}
-\newlabel{tab:UKF_4param}{{5.3}{xlv}{This table shows the true values of the parameters, the final EKF prediction of the parameters (as a reference to compare filter performance), the final UKF prediction of parameters, and the final IUKF prediction of the parameters. Here, the term final is being used to denote the performance of the filter after 50 time-steps. Interestingly, the performance of the EKF is the exact same as the performance of the UKF. By changing the hyper-parameters for the UKF, the model may be able to provide more accurate results.\relax }{table.caption.26}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.9}{\ignorespaces ds\relax }}{xlvi}{figure.caption.25}}
-\newlabel{fig:UKF_4param}{{5.9}{xlvi}{ds\relax }{figure.caption.25}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5.10}{\ignorespaces Built in matlab, four state correction and 4 param\relax }}{xlvii}{figure.caption.27}}
-\newlabel{fig:4params}{{5.10}{xlvii}{Built in matlab, four state correction and 4 param\relax }{figure.caption.27}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.8}{\ignorespaces Performance of all four state variables with all four states being corrected. The model is initialized with $x_0 = [4, 1, 3, 4]^T$, which is close to the system's true values and is why the system quickly converges with the true values. The measured and true values are very close together because the system has low values of measurement noise, $R=0.01$, and process noise, $Q=diag([0.2, 0.1, 0.3, .4])$. The values for $Q$ and $R$ were not taken from the original example \cite  {article5}, which is a factor to consider when comparing results.\relax }}{xlvii}{figure.caption.23}}
+\newlabel{fig:UKF_states}{{5.8}{xlvii}{Performance of all four state variables with all four states being corrected. The model is initialized with $x_0 = [4, 1, 3, 4]^T$, which is close to the system's true values and is why the system quickly converges with the true values. The measured and true values are very close together because the system has low values of measurement noise, $R=0.01$, and process noise, $Q=diag([0.2, 0.1, 0.3, .4])$. The values for $Q$ and $R$ were not taken from the original example \cite {article5}, which is a factor to consider when comparing results.\relax }{figure.caption.23}{}}
+\citation{article5}
+\@writefile{toc}{\contentsline {subsubsection}{Parameter estimation}{xlviii}{section*.24}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.9}{\ignorespaces This graph visualizes the result of the UKF applied to 4 states and 4 parameters. In this system, correction is being applied to all 8 states. Therefore, convergence for all 8 states seems to take place almost immediately. The issue in State 3 almost seems to have resolved itself, though it is unclear why. Interestingly, the UKF result of all 4 parameters is identical to the EKF result of all parameters, given that the two use the same system measurements. It is possible that tuning the hyper-parameters of the UKF can yield better results. \relax }}{xlix}{figure.caption.25}}
+\newlabel{fig:UKF_4param}{{5.9}{xlix}{This graph visualizes the result of the UKF applied to 4 states and 4 parameters. In this system, correction is being applied to all 8 states. Therefore, convergence for all 8 states seems to take place almost immediately. The issue in State 3 almost seems to have resolved itself, though it is unclear why. Interestingly, the UKF result of all 4 parameters is identical to the EKF result of all parameters, given that the two use the same system measurements. It is possible that tuning the hyper-parameters of the UKF can yield better results. \relax }{figure.caption.25}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.3}{\ignorespaces This table shows the true values of the parameters, the final EKF prediction of the parameters (as a reference to compare filter performance), the final UKF prediction of parameters, and the final IUKF prediction of the parameters. Note that the EKF and UKF estimate are based on the same system measurements, but the IUKF uses a separate dataset. Here, the term final is being used to denote the performance of the filter after 50 time-steps. Interestingly, the performance of the EKF is the exact same as the performance of the UKF. By changing the hyper-parameters for the UKF, the model may be able to provide more accurate results.\relax }}{l}{table.caption.26}}
+\newlabel{tab:UKF_4param}{{5.3}{l}{This table shows the true values of the parameters, the final EKF prediction of the parameters (as a reference to compare filter performance), the final UKF prediction of parameters, and the final IUKF prediction of the parameters. Note that the EKF and UKF estimate are based on the same system measurements, but the IUKF uses a separate dataset. Here, the term final is being used to denote the performance of the filter after 50 time-steps. Interestingly, the performance of the EKF is the exact same as the performance of the UKF. By changing the hyper-parameters for the UKF, the model may be able to provide more accurate results.\relax }{table.caption.26}{}}
+\@writefile{toc}{\contentsline {subsubsection}{UKF Model Assessment }{li}{section*.27}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5.10}{\ignorespaces Built in matlab, four state correction and 4 param\relax }}{li}{figure.caption.28}}
+\newlabel{fig:4params}{{5.10}{li}{Built in matlab, four state correction and 4 param\relax }{figure.caption.28}{}}
 \@setckpt{Meskin_UKF}{
-\setcounter{page}{48}
+\setcounter{page}{53}
 \setcounter{equation}{0}
 \setcounter{enumi}{3}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}
 \setcounter{enumiv}{0}
-\setcounter{footnote}{1}
+\setcounter{footnote}{0}
 \setcounter{mpfootnote}{0}
 \setcounter{parentequation}{0}
 \setcounter{Item}{21}
-\setcounter{Hfootnote}{3}
+\setcounter{Hfootnote}{2}
 \setcounter{bookmark@seq@number}{11}
 \setcounter{part}{0}
 \setcounter{chapter}{5}
