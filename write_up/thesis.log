@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  26 APR 2020 17:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.4.16)  28 APR 2020 09:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -924,9 +924,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 109--110
 File: EKF_1state.png Graphic file (type png)
 <use EKF_1state.png>
 Package pdftex.def Info: EKF_1state.png  used on input line 113.
-(pdftex.def)             Requested size: 433.62335pt x 242.10637pt.
+(pdftex.def)             Requested size: 346.90309pt x 193.68755pt.
 
-Overfull \hbox (88.62335pt too wide) in paragraph at lines 113--114
+Overfull \hbox (1.90309pt too wide) in paragraph at lines 113--114
  [][] 
  []
 
@@ -939,9 +939,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 120--121
 File: EKF_4state.png Graphic file (type png)
 <use EKF_4state.png>
 Package pdftex.def Info: EKF_4state.png  used on input line 128.
-(pdftex.def)             Requested size: 433.62335pt x 242.10637pt.
+(pdftex.def)             Requested size: 346.90309pt x 193.68755pt.
 
-Overfull \hbox (88.62335pt too wide) in paragraph at lines 128--129
+Overfull \hbox (1.90309pt too wide) in paragraph at lines 128--129
  [][] 
  []
 
@@ -969,9 +969,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 154--155
 File: EKF_1param.png Graphic file (type png)
 <use EKF_1param.png>
 Package pdftex.def Info: EKF_1param.png  used on input line 160.
-(pdftex.def)             Requested size: 433.62335pt x 242.10637pt.
+(pdftex.def)             Requested size: 346.90309pt x 193.68755pt.
 
-Overfull \hbox (88.62335pt too wide) in paragraph at lines 160--161
+Overfull \hbox (1.90309pt too wide) in paragraph at lines 160--161
  [][] 
  []
 
@@ -1195,9 +1195,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 20--21
 File: UKF_states.png Graphic file (type png)
 <use UKF_states.png>
 Package pdftex.def Info: UKF_states.png  used on input line 38.
-(pdftex.def)             Requested size: 361.34912pt x 207.53484pt.
+(pdftex.def)             Requested size: 346.90309pt x 199.238pt.
 
-Overfull \hbox (16.34912pt too wide) in paragraph at lines 38--39
+Overfull \hbox (1.90309pt too wide) in paragraph at lines 38--39
  [][] 
  []
 
@@ -1220,12 +1220,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 64--65
 File: UKF_4param.png Graphic file (type png)
 <use UKF_4param.png>
 Package pdftex.def Info: UKF_4param.png  used on input line 74.
-(pdftex.def)             Requested size: 358.17288pt x 217.38983pt.
-
-Overfull \hbox (13.17288pt too wide) in paragraph at lines 74--75
- [][] 
- []
-
+(pdftex.def)             Requested size: 340.26515pt x 206.52089pt.
 
 Overfull \hbox (17.35387pt too wide) in paragraph at lines 82--94
  [][] 
@@ -1278,12 +1273,7 @@ Chapter 6.
 File: t1d_model.png Graphic file (type png)
 <use t1d_model.png>
 Package pdftex.def Info: t1d_model.png  used on input line 9.
-(pdftex.def)             Requested size: 362.54808pt x 175.45238pt.
-
-Overfull \hbox (17.54808pt too wide) in paragraph at lines 9--10
- [][] 
- []
-
+(pdftex.def)             Requested size: 335.35767pt x 162.2938pt.
 [53
 
 
@@ -1413,7 +1403,7 @@ e/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2
 exmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2018/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2018/tex
 mf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (62 pages, 3405816 bytes).
+Output written on thesis.pdf (62 pages, 3405831 bytes).
 PDF statistics:
  650 PDF objects out of 1000 (max. 8388607)
  521 compressed objects within 6 object streams

@@ -35,7 +35,7 @@ with 17 parameters ($\alpha_1, \hdots, \alpha_4, \beta_1, \hdots, \beta_4, g_{13
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[scale = 0.25]{UKF_states.png}
+    \includegraphics[scale = 0.24]{UKF_states.png}
     \caption{Performance of all four state variables with all four states being corrected. The model is initialized with $x_0 = [4, 1, 3, 4]^T$, which is close to the system's true values and is why the system quickly converges with the true values. The measured and true values are very close together because the system has low values of measurement noise, $R=0.01$, and process noise, $Q=diag([0.2, 0.1, 0.3, .4])$. The values for $Q$ and $R$ were not taken from the original example \cite{article5}, which is a factor to consider when comparing results.}
     \label{fig:UKF_states}
 \end{figure}
@@ -71,7 +71,7 @@ Similar to chapter chapter~\ref{chap:EKF_Meskin}, joint parameter estimation can
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[scale = 0.3]{UKF_4param.png}
+    \includegraphics[scale = 0.285]{UKF_4param.png}
     \caption{This graph visualizes the result of the UKF applied to 4 states and 4 parameters. In this system, correction is being applied to all 8 states. Therefore, convergence for all 8 states seems to take place almost immediately. The issue in State 3 almost seems to have resolved itself, though it is unclear why. Interestingly, the UKF result of all 4 parameters is identical to the EKF result of all parameters, given that the two use the same system measurements. It is possible that tuning the hyper-parameters of the UKF can yield better results.  }
     \label{fig:UKF_4param}
 \end{figure}
