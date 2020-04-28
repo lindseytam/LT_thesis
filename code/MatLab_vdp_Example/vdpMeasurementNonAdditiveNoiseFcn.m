@@ -1,4 +1,7 @@
 function yk = vdpMeasurementNonAdditiveNoiseFcn(xk,vk)
+% Code originally from Matlab
+% This code is used to generate system measurements
+
 % vdpMeasurementNonAdditiveNoiseFcn Example measurement function for discrete
 % time nonlinear state estimators with non-additive measurement noise.
 %

@@ -1,4 +1,7 @@
 function x = vdpStateFcn(x) 
+% Code originally from Matlab
+% This code uses Euler's method to discretize the system
+
 % vdpStateFcn Discrete-time approximation to van der Pol ODEs for mu = 1. 
 % Sample time is 0.05s.
 %

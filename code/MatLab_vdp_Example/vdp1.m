@@ -1,4 +1,8 @@
 function dydt = vdp1(t,y)
+% Code originally from Matlab 
+% This function represents the VDP oscillator system and is used to
+% generate a prediction, think of it as the f function
+
 %VDP1  Evaluate the van der Pol ODEs for mu = 1
 %
 %   See also ODE113, ODE23, ODE45.
