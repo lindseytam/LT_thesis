@@ -1,6 +1,8 @@
-## Folders in this directory
-There are 3 folders in this directory: `states`, `one param`, and `four param`. Each of these foldeers implements the EKF as applied to the system described by [Meskin](https://drive.google.com/file/d/1PYTPskAWuQ-HrS7cBfBXQ_-OeJp-do8H/view?usp=sharing).
-Below is a brief description of each folder:
+## Implementing Meskin using the EKF
+
+This example implements the system in a paper written by [Meskin](https://drive.google.com/file/d/1PYTPskAWuQ-HrS7cBfBXQ_-OeJp-do8H/view?usp=sharing) 
+that models the pathway of the body's metabolites. There are 3 folders in this directory: `states`, `one param`, and `four param`. Below is a brief description of each folder:
+
 * The `states` folder contains EKF code for doing state estimation. Within the code itself, 
 you can change how many/which states are being measured. There are comments within the code
 that describes how to do this.
