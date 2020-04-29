@@ -1,39 +1,39 @@
 # Implementing Meskin using the UKF
 
 This example implements the system in a paper written by [Meskin](https://drive.google.com/file/d/1PYTPskAWuQ-HrS7cBfBXQ_-OeJp-do8H/view?usp=sharing) 
-that models the pathway of the body's metabolites. There are currently 3 items in this directory. 
-```
-1. states
-```
-This Matlab file is used to generate simulated data, which are used in both `Meskin_Matlab` and `Meskin_handwritten`. 
-The data is created by taking the true values of the system (as given by putting the system through an ODE solver) and adding noise.
-The level is noise is normally distributed with a mean of 0 and a variance of R (which can be adjusted).
-The simulated data is saved as a csv file; in both `Meskin_Matlab` and `Meskin_handwritten`, the csv data files 
-are generated with this function
+that models the pathway of the body's metabolites. There are currently 3 items in this directory and a description of each of them is given below:
+* The `states` folder contains UKF code for doing state estimation. Within the code itself, 
+you can change how many/which states are being measured. There are comments within the code
+that describes how to do this.
+* The `one param` folder implements the UKF for parameter estimation for all four states and one parameter (a_1). 
+Joint parameter estimation techniques are used and this code assumes that all states and parameters are measurable.
+* The `four param` folder implements the UKF for all four states and four parameters (a_1,...,a_4). 
+Joint parameter estimation techniques are used and this code assumes that all states and parameters are measurable.
 
 
-```
-2. Meskin_Matlab
-```
-This folder implements the example using Matlab's built-in EKF. There is more documentation availble in the folder.
+### What is inside each folder
 
-```
+There are a number of files in each folder in addition to a main file that calls all of the files. 
+Below is a general description of what you can expect to find in each.   
 
-### Possible Errors / Warnings
-There are a few errors that have reoccured in the code. Below are a few of the obstacles encountered and how they were fixed:
-```diff
-- Warning: Imaginary parts of complex X and/or Y arguements ignored
-```
-This warning will still allow your code to run. One possible solution to this problem is to reduce measurement noise (R) values.
+* `Meskin_true_XXX.csv` is the csv file generated from `Mekin_true.m` that contains the true values for all states of the system. Note that the true system values and system measurements, given by `Meskin_true_XXX.csv` and `Meskin_meas_XXX.csv` respectively, are the same for same for each folder in `UKF_Meskin`. For instance, the csv files in `EKF_Meskin>states` are the same csv files in `UKF_Meskin>states`.
 
-```diff
-- Unable to perform assignment because the size of the left side is X-by-X and the size of the right side is X-by-X.
-```
-This is a simple error where the dimenions of the matrixes are incorrect.
-One may encounter this when they are moving in between files. A solution is to use the command
-`clear all` to remove the stored Matlab values. If this problem persists, it could be an issue in the code itself. 
-Try looking for the comments `%CHANGE THIS` to see if there is a value that needs to be adjusted.
+* `Meskin_meas_XXX.csv` is the csv file generated from `Mekin_true.m` that contains measurements for all states of the system. 
+If you only want to have measurements for certain states, you can change the code (NOT this file) to only take in the columns that represent the state that is measurable.    
+
+* `Meskin_ODE_XX.m` is a file containing the ODE of the system, think about this file as the f function.  
+
+* `MeskinMeasurementFcnX.m` determines which states are measurable, think of this as the h function. 
+
+* `MeskinStateFcnX.m` is how the code uses the Euler method to discretize the system. 
+
+* `parameter_values.m` contains all of the true parameter values of the system.    
+
+* `Meskin_XXX` **is the main function that calls these subfunction to implement the UKF**. To run the example, open and run this file to generate results
+
+Within each of these files is also code that describes what is happening. Comments starting with `%CHANGE THIS` indicate that 
+the code can be adjusted if so desired.
 
 ## Acknowledgements
 
-Most of this code was adapted from [Matlab's documentation of a UKF example](https://www.mathworks.com/help/control/examples/nonlinear-state-estimation-using-unscented-kalman-filter.html)
+This code was adapted from [Matlab's documentation of a UKF example](https://www.mathworks.com/help/control/examples/nonlinear-state-estimation-using-unscented-kalman-filter.html)
