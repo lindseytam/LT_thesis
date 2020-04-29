@@ -1,21 +1,12 @@
 ## Folders in this directory
 There are 3 folders in this directory: `states`, `one param`, and `four param`. Each of these foldeers implements the EKF as applied to the system described by [Meskin](https://drive.google.com/file/d/1PYTPskAWuQ-HrS7cBfBXQ_-OeJp-do8H/view?usp=sharing).
-Below is a brief description of each folder.
-```
-states
-```
-This folder contains EKF code for doing state estimation. Within the code itself, 
+Below is a brief description of each folder:
+* The `states` folder contains EKF code for doing state estimation. Within the code itself, 
 you can change how many/which states are being measured. There are comments within the code
 that describes how to do this.
-```
-one param
-```
-This folder implements the EKF for parameter estimation for all four states and one parameter (a_1). 
+* The `one param` folder implements the EKF for parameter estimation for all four states and one parameter (a_1). 
 Joint parameter estimation techniques are used and this code assumes that all states and parameters are measurable.
-```
-four param
-```
-This folder implements the EKF for all four states and four parameters (a_1,...,a_4). 
+* The `four param` folder implements the EKF for all four states and four parameters (a_1,...,a_4). 
 Joint parameter estimation techniques are used and this code assumes that all states and parameters are measurable.
 
 ### What is inside each folder
