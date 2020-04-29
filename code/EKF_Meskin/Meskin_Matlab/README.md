@@ -4,9 +4,9 @@ Below is a brief description of each folder:
 * The `states` folder contains EKF code for doing state estimation. Within the code itself, 
 you can change how many/which states are being measured. There are comments within the code
 that describes how to do this.
-* The `one param` folder implements the UKF for parameter estimation for all four states and one parameter (a_1). 
+* The `one param` folder implements the EKF for parameter estimation for all four states and one parameter (a_1). 
 Joint parameter estimation techniques are used and this code assumes that all states and parameters are measurable.
-* The `four param` folder implements the UKF for all four states and four parameters (a_1,...,a_4). 
+* The `four param` folder implements the EKF for all four states and four parameters (a_1,...,a_4). 
 Joint parameter estimation techniques are used and this code assumes that all states and parameters are measurable.
 
 ### What is inside each folder
@@ -27,10 +27,10 @@ If you only want to have measurements for certain states, you can change the cod
 
 * `parameter_values.m` contains all of the true parameter values of the system.    
 
-* `Meskin_XXX` **is the main function that calls these subfunction to implement the UKF**. To run the example, open and run this file to generate results
+* `Meskin_XXX` **is the main function that calls these subfunction to implement the EKF**. To run the example, open and run this file to generate results
 
 Within each of these files is also code that describes what is happening. Comments starting with `%CHANGE THIS` indicate that 
 the code can be adjusted if so desired.
 
 ### Acknowledgements
-The method of implementing the UKF was adapted from [Matlab's example of implementing the Van der Pol oscillator](https://www.mathworks.com/help/control/ug/nonlinear-state-estimation-using-unscented-kalman-filter.html)
+The method of implementing the EKF was adapted from UKF code from [Matlab's example of implementing the Van der Pol oscillator](https://www.mathworks.com/help/control/ug/nonlinear-state-estimation-using-unscented-kalman-filter.html)
