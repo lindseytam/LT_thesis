@@ -1,9 +1,10 @@
-% Code is from from Matlab
+% Code is from Matlab
 % (https://www.mathworks.com/help/control/ug/nonlinear-state-estimation-using-unscented-kalman-filter.html)
 % Edits were made by Lindsey Tam (as indicated by comments)
-
-% This is the main function that calls all of the sub functions in this
-% directory in order to implement the UKF for the VDP oscillator example
+% Description:
+    % This is the main function that calls all of the sub functions in this
+    % directory in order to implement the UKF for the VDP oscillator example
+% Last updated: 29 April 2020
 
 initialStateGuess = [2;0]; % xhat[k|k-1]
 % Construct the filter

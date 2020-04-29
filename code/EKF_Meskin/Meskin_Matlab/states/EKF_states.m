@@ -1,3 +1,16 @@
+% Acknowledgements: This code is adapted from Matlab's VDP example https://www.mathworks.com/help/control/ug/nonlinear-state-estimation-using-unscented-kalman-filter.html
+% Author: Ltam
+% Description: 
+    % This is the main function that implements the UKF on all four states
+    % in Meskin. Currently, this code reads in previously generated data
+    % and corrects for all four states. However, these can be adjusted as
+    % neccessary. In addition, this function graphs the results of al four
+    % states and their residuals.
+% Inputs:   None
+% Outputs:  None
+% Last updated: 
+    % 29 April 2020: added comments
+
 initialStateGuess = [4;1;3;4]; % true intials
 % initialStateGuess = [6;4;2;7]; % bad intials
 
@@ -14,13 +27,13 @@ ekf.MeasurementNoise = R;
 ekf.ProcessNoise = diag([0.2 0.1 .3 .4]); %stores the process noise covariance
 
 T = 0.1; % [s] Filter sample time
-timeVector = 0:T:5;
+timeVector = 0:T:5; % These time values are the same ones used in Meskin's original paper
 
 xTrue = readtable('Meskin_true.csv'); % loading true values from ODE solver, data generated from Meskin_true.m
-xTrue = xTrue{:,:};
+xTrue = xTrue{:,:}; % This changes the data into a matrix format
 
-yMeas = readtable('Meskin_meas.csv'); % % loading simulated measured, generated from Meskin_true.m
-yMeas = yMeas{:,:};% use this if you are correcting for all states
+yMeas = readtable('Meskin_meas.csv'); % loading simulated measured, generated from Meskin_true.m
+yMeas = yMeas{:,:}; % Without uncommenting the line below, tthis assumes all states are measurable                  
 % yMeas = yMeas{:,1}; % CHANGE THIS depending on which states have incoming
 % measurements
 
@@ -49,7 +62,6 @@ for k=1:n
     % using the "correct" command. This updates the State and StateCovariance
     % properties of the filter to contain x[k|k] and P[k|k]. These values
     % are also produced as the output of the "correct" command.
-    
     [xCorrectedEKF(k,:), PCorrected(k,:,:)] = correct(ekf, yMeas(k,:));
     
     % Predict the states at next time step, k+1. This updates the State and
@@ -144,11 +156,9 @@ ylabel('x_4', 'FontSize', 15);
 xlabel('Time [s]', 'FontSize', 15);
 title("State 4")
 
-% saveas(gcf,'\Users\lindseytam\Desktop\IM\EKF_4states_badinitials.png')
 
 %{
- 
-% Generates one figure with all states 
+Ltam: This code block generates one figure with all states 
 figure();
 subplot(1,1,1);
 plot(timeVector, xTrue(:,1), 'Color', blue, 'LineStyle', '-',...

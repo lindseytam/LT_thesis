@@ -1,4 +1,10 @@
-%This script saves the baseline parameter values for our model
+% Author: Ltam
+% Description:
+    % This script saves the baseline parameter values for our model and is
+    % called by the main function. The values here are taken from the original Meskin paper
+% Last updated: 29 April 2020
+% Inputs:   None
+% Outputs:  None
 
 a_1 = 20;
 a_2 = 8;

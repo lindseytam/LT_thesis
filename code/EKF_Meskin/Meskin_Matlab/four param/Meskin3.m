@@ -1,6 +1,16 @@
-
-
 function dydt = Meskin3(t, y)
+
+% Author: Ltam
+% Description:
+    % This function describes the Meskin system through the ODEs for all
+    % four states and is called in the main function, EKF_params.m, 
+    % in order to generate a prediction.
+    % The subscript parameter_values.m is also called here.
+% Last Updated: 29 April 2020
+% Inputs:   x: vector of intial state values
+%           t: scalar value for time, use t=0
+% Outputs:  dydt: vector that describes state values after they undergo a
+%                 transformation
 
 parameter_values;
 
