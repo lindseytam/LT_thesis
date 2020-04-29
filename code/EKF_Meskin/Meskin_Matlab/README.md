@@ -9,14 +9,12 @@ Joint parameter estimation techniques are used and this code assumes that all st
 * The `four param` folder implements the UKF for all four states and four parameters (a_1,...,a_4). 
 Joint parameter estimation techniques are used and this code assumes that all states and parameters are measurable.
 
-Note that the true system values and system measurements, given by `Meskin_true_XXX.csv` and `Meskin_meas_XXX.csv` respectively, are the same for same for each folder in `UKF_Meskin`. For instance, the csv files in `UKF_Meskin>states` are the same csv files in `EKF_Meskin>states`.
-
 ### What is inside each folder
 
 There are a number of files in each folder in addition to a main file that calls all of the files. 
 Below is a general description of what you can expect to find in each.   
 
-* `Meskin_true_XXX.csv` is the csv file generated from `Mekin_true.m` that contains the true values for all states of the system.  
+* `Meskin_true_XXX.csv` is the csv file generated from `Mekin_true.m` that contains the true values for all states of the system. Note that the true system values and system measurements, given by `Meskin_true_XXX.csv` and `Meskin_meas_XXX.csv` respectively, are the same for same for each folder in `UKF_Meskin`. For instance, the csv files in `UKF_Meskin>states` are the same csv files in `EKF_Meskin>states`.
 
 * `Meskin_meas_XXX.csv` is the csv file generated from `Mekin_true.m` that contains measurements for all states of the system. 
 If you only want to have measurements for certain states, you can change the code (NOT this file) to only take in the columns that represent the state that is measurable.    
