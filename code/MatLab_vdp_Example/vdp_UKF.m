@@ -22,8 +22,8 @@ ukf.ProcessNoise = diag([0.02 0.1]); % original value from Matlab
 %ukf.ProcessNoise = diag([0.9 0.8]); % Ltam testing high process noiss
 %ukf.ProcessNoise = diag([0.0001 0.0001]); % Ltam testing low process noise
 
-T = 0.25; % [s] Filter sample time
-timeVector = 0:T:15;
+T = 0.05; % [s] Filter sample time
+timeVector = 0:T:5;
 [~,xTrue]=ode45(@vdp1,timeVector,initialStateGuess);
 
 rng(1); % Fix the random number generator for reproducible results
