@@ -1,6 +1,6 @@
 function yk = MeskinMeasurementFcn(xk)
 % Author: Ltam
-% Date: November 17, 2019
+% Date: 30 April 2020
 % Summary:  
 % Inputs:   xk = states at time k, x[k]
 %           vk = measurement noise vector at time, k v[k]

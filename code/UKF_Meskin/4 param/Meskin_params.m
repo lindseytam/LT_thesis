@@ -1,3 +1,15 @@
+% Acknowledgements: This code is adapted from Matlab's VDP example https://www.mathworks.com/help/control/ug/nonlinear-state-estimation-using-unscented-kalman-filter.html
+% Author: Ltam
+% Description: 
+    % This is the main function that implements the UKF on all four states
+    % and four parameters in Meskin using joint parameter estimation. Currently, this code reads in previously generated data
+    % and corrects for all eight states. However, these can be adjusted as
+    % neccessary. In addition, this function graphs the results of all
+    % eight states and their residuals.
+% Inputs:   None
+% Outputs:  None
+% Last updated: 30 April 2020
+
 initialStateGuess = [4;1;3;4;20;8;3;2]; % true intials
 % initialStateGuess = [4;1;3;4;23;5;6;5]; % bad intials
 

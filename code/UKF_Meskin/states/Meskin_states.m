@@ -1,3 +1,15 @@
+% Acknowledgements: This code is adapted from Matlab's VDP example https://www.mathworks.com/help/control/ug/nonlinear-state-estimation-using-unscented-kalman-filter.html
+% Author: Ltam
+% Description: 
+    % This is the main function that implements the UKF on all four states
+    % in Meskin. Currently, this code reads in previously generated data
+    % and corrects for all four states. However, these can be adjusted as
+    % neccessary. In addition, this function graphs the results of all
+    % four states and their residuals.
+% Inputs:   None
+% Outputs:  None
+% Last updated: 30 April 2020
+
 initialStateGuess = [4;1;3;4]; % xhat[k|k-1]
 %initialStateGuess = [1;4;2;5]; % bad intials
 
