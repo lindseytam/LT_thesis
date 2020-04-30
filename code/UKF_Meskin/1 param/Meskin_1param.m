@@ -31,10 +31,10 @@ ukf.ProcessNoise = diag([0.2 0.1 .3 .4 .2]); %stores the process noise covarianc
 T = 0.1; % [s] Filter sample time
 timeVector = 0:T:5;
 
-xTrue = readtable('Meskin_true_1param.csv'); % meas
-xTrue = xTrue{:,:};
+xTrue = readtable('Meskin_true_1param.csv'); % trtue system values
+xTrue = xTrue{:,:}; % converts csv data into matrix format
 
-yMeas = readtable('Meskin_meas_1param.csv'); % meas
+yMeas = readtable('Meskin_meas_1param.csv'); % system measurements
 yMeas = yMeas{:,:};
 % yMeas = yMeas(:,:);% CHANGE THIS depending on how many states are being
 
@@ -62,7 +62,6 @@ for k=1:n
     % using the "correct" command. This updates the State and StateCovariance
     % properties of the filter to contain x[k|k] and P[k|k]. These values
     % are also produced as the output of the "correct" command.
-    
     [xCorrectedUKF(k,:), PCorrected(k,:,:)] = correct(ukf, yMeas(k,:));
     
     % Predict the states at next time step, k+1. This updates the State and

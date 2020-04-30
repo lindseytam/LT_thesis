@@ -28,10 +28,10 @@ true_initials = [4;1;3;4;20];
 T = 0.1; % [s] Filter sample time
 timeVector = 0:T:5;
 
-xTrue = readtable('Meskin_true_1param.csv'); 
-xTrue = xTrue{:,:};
+xTrue = readtable('Meskin_true_1param.csv'); % true system values
+xTrue = xTrue{:,:}; % converts csv data into matrix format
 
-yMeas = readtable('Meskin_meas_1param.csv'); % meas
+yMeas = readtable('Meskin_meas_1param.csv'); % system measurements
 yMeas = yMeas{:,:}; % CHANGE THIS depending on how many states are being
 
 rng(1); % Fix the random number generator for reproducible results
@@ -50,6 +50,7 @@ rng(1); % Fix the random number generator for reproducible results
 
 [n,m]=size(yMeas); % determine number of loops in forloop
 e=zeros(n,5); % set aside space for residuals
+
 for k=1:n
     % Let k denote the current time.
     
@@ -60,7 +61,6 @@ for k=1:n
     % using the "correct" command. This updates the State and StateCovariance
     % properties of the filter to contain x[k|k] and P[k|k]. These values
     % are also produced as the output of the "correct" command.
-    
     [xCorrectedEKF(k,:), PCorrected(k,:,:)] = correct(ekf, yMeas(k,:));
     
     % Predict the states at next time step, k+1. This updates the State and
